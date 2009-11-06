@@ -1,0 +1,6 @@
+jeffrafter-spreadhead --source http://gems.github.com
+sprockets
+justinfrench-formtastic --source http://gems.github.com
+authlogic
+less
+will_paginate
