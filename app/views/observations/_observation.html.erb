@@ -1,0 +1,4 @@
+<% div_for observation do %>
+	<h3><%= observation.observed_at.to_s :long %></h3>
+	<%= [:temp, :wind_speed, :wind_dir, :hi_speed, :hi_dir, :barometer].collect{|a| "#{a}: #{observation.send(a)}. " } %>
+<% end %>
