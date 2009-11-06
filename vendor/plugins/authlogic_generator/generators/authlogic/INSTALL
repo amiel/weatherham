@@ -1,0 +1,20 @@
+AuthlogicGenerator
+==================
+
+Controllers, Models, Views, Routes, Migrations and basic test coverage have been generated for you.
+
+* Make sure to have the authlogic gem or plugin installed
+  script/plugin install git://github.com/binarylogic/authlogic.git
+
+* Run the database migrations
+  rake db:migrate
+
+* Have a look at the generated stuff...
+  Login is at:          /login
+  Login is at:          /logout
+  Signup is at:         /signup
+  Users account is at:	/account
+
+
+Christian Felder (www.masone.ch)
+--------------------------------

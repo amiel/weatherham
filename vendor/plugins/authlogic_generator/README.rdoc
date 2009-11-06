@@ -1,0 +1,49 @@
+= AuthlogicGenerator
+
+Generates an authentication system with Ben Johnsons awesome Authlogic plugin/gem as seen in his basic tutorial at: http://www.binarylogic.com/2008/11/3/tutorial-authlogic-basic-setup
+
+The generator supports Erb and Haml, Test::Unit and Rspec.
+
+Yeah I know it is Authlogics intention not to have a generator. But I personally like to have a scaffold as a starting point for any further customization wherever possible. 
+
+
+== What this generator creates for you
+
+* UserSession / User model and corresponding controller
+* Login form, views for the user management (Rrb or Haml)
+* Some nice looking routes
+* Basic test coverage (Test::Unit or Rspec)
+
+
+== Installation
+
+	$ script/plugin install git://github.com/binarylogic/authlogic.git
+	$ script/plugin install git://github.com/masone/authlogic_generator.git
+
+
+== Usage
+
+1. Run the generator
+
+	$ script/generate authlogic [--rspec] [--haml]
+
+2. Run the database migrations
+
+	$ rake db:migrate
+
+3. Have a look at the generated stuff...
+
+	Login is at:          /login
+	Login is at:          /logout
+	Signup is at:         /signup
+	Users account is at:	/account
+
+
+== Notes
+
+* The plugin has been written for Rails 2.3
+* The generator will not run properly if you already have a user model
+
+
+Copyright (c) 2009 Christian Felder (www.masone.ch).
+Thanks to Nick Plante (zapnap) for adding Haml and Rspec support!
