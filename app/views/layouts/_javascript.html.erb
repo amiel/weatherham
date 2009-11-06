@@ -1,4 +1,4 @@
-<%= javascript_include_tag 'vendor/jquery.js', 'base', 'application' %>
+<%= sprockets_include_tag  'application' %>
 
 <% js_var :DEBUG, !Rails.env.production? %>
 <% js_var :authenticity_token, form_authenticity_token %>

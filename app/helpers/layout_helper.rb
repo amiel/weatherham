@@ -19,7 +19,7 @@ module LayoutHelper
 	
 
 	def javascript(name)
-		content_for(:javascript) { javascript_include_tag name }
+		content_for(:javascript) { sprockets_include_tag name }
 	end
 
 	def stylesheet(name)

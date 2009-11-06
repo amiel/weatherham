@@ -1,4 +1,8 @@
 ActionController::Routing::Routes.draw do |map|
+  SprocketsApplication.routes(map)
+
+  map.root :controller => 'observations'
+
   map.signup '/signup', :controller => 'users', :action => 'create', :conditions => { :method => :post}
   map.signup '/signup', :controller => 'users', :action => 'new', :conditions => { :method => :get}
   map.resource :account, :controller => 'users'
