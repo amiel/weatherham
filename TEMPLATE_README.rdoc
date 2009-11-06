@@ -1,0 +1,50 @@
+= Rails Templates
+
+NOTE: this is unfinished. Not all options are thoroughly tested.
+
+== INFO
+
+So far, I'm still working on the "base" template, which contains:
+
+* jquery (not the gem, just jquery)
+* lesscss and more
+* will_paginate
+* cucumber
+* shoulda
+* factory_girl
+
+and will ask you if you want:
+
+* your option of reset.css, sens.css, or 960gs
+* jQuery tools (TODO)
+* a form builder (to be determined)
+* sprockets and sprockets-rails (my version of sprockets-rails http://github.com/amiel/sprockets-rails)
+* hoptoad_notifier
+* authlogic and authlogic_generator
+* paperclip
+
+== TO INSTALL
+
+Add this function, courtesy of Ryan Bates, to your bash profile.
+
+	function cmapp {
+		appname=$1
+		shift
+		rails $appname -m http://github.com/amiel/rails-templates/raw/master/carnes_media.rb $@
+	}
+
+== USAGE
+
+TODO: explain these things
+* title
+* body_class
+* js_var
+* more...
+
+
+
+== TODO
+* instructions at end of template
+* jQuery tools
+* other handy jquery plugins (facebox? )
+* write more info on features in this doc

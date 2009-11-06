@@ -1,0 +1,11 @@
+<% flashes_to_show = ([ :error, :warning, :notice ] << flash[:show]).flatten.compact.uniq %>
+<% unless flashes_to_show.collect{|e|flash[e]}.compact.empty? %>
+	<div class="hide panel" id="flash_panel">
+		<div class="content">
+			<%- flashes_to_show.each do |key| -%>
+				<%= content_tag(:div, h(flash[key]), :class => "flash #{key}") if flash[key] -%>
+			<%- end -%>
+		</div>
+	</div>
+<% end %>
+

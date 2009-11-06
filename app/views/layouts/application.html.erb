@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+	<title><%= render_title %></title>
+	<meta name="Description" content="<%= yield :description -%>" />
+	<meta name="Keywords" content="<%= yield :keywords -%>" />
+
+
+	<%= render 'layouts/unobtrusive_hack' %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= stylesheet_link_tag 'print', :media => 'print' %>
+
+	<%= yield :head %>
+
+	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+</head>
+<body class="<%= body_class %>">
+
+	<%= render 'layouts/flashes' %>
+
+	<%= yield %>
+	<%= render 'layouts/javascript' %>
+
+</body>
+</html>
