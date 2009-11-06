@@ -9,7 +9,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106074930) do
+ActiveRecord::Schema.define(:version => 20091106080100) do
+
+  create_table "observations", :force => true do |t|
+    t.datetime "observed_at"
+    t.float    "temp"
+    t.float    "hi_temp"
+    t.float    "low_temp"
+    t.integer  "humidity"
+    t.float    "dew_point"
+    t.float    "wind_speed"
+    t.string   "wind_dir"
+    t.float    "wind_run"
+    t.float    "hi_speed"
+    t.string   "hi_dir"
+    t.float    "wind_chill"
+    t.float    "barometer"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "url",                            :null => false

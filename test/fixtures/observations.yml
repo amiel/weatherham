@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  observed_at: 2009-11-06 00:01:00
+  temp: 1.5
+  hi_temp: 1.5
+  low_temp: 1.5
+  humidity: 1
+  dew_point: 1.5
+  wind_speed: 1.5
+  wind_dir: MyString
+  wind_run: 1.5
+  hi_speed: 1.5
+  hi_dir: MyString
+  wind_chill: 1.5
+  barometer: 1.5
+
+two:
+  observed_at: 2009-11-06 00:01:00
+  temp: 1.5
+  hi_temp: 1.5
+  low_temp: 1.5
+  humidity: 1
+  dew_point: 1.5
+  wind_speed: 1.5
+  wind_dir: MyString
+  wind_run: 1.5
+  hi_speed: 1.5
+  hi_dir: MyString
+  wind_chill: 1.5
+  barometer: 1.5
