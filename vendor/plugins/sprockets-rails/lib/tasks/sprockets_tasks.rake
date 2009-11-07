@@ -3,14 +3,14 @@ namespace :sprockets do
 	task :install_scripts => :environment do
 		asset_root = File.join(Rails.root, 'public', 'sprockets')
 		Dir.mkdir asset_root unless File.exists? asset_root
-		Dir.chdir File.join(Rails.root, 'app', 'javascripts') do
-			p Dir['*']
-			Dir['*.js'].each do |filename|
-				asset_path = File.join(asset_root, filename)
-				s = SprocketsApplication.new(filename)
-				puts "concatenation for #{filename} save_to(#{asset_path})"
-				s.send(:concatenation).save_to(asset_path)
-			end
+		app_dir = File.join(Rails.root, 'app', 'javascripts')
+
+		Dir[File.join(app_dir,'*.js')].each do |path|
+			filename = File.basename path
+			asset_path = File.join(asset_root, filename)
+			s = SprocketsApplication.new(filename)
+			puts "concatenation for #{filename} save_to(#{asset_path})"
+			s.send(:concatenation).save_to(asset_path)
 		end
 	end
 end
