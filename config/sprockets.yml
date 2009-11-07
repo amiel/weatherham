@@ -2,6 +2,7 @@
 :load_path:
   - app/javascripts
   - app/javascripts/vendor
+  - app/javascripts/lib
   - vendor/sprockets/*/src
   - vendor/plugins/*/javascripts
 :source_files:
