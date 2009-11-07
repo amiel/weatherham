@@ -4,5 +4,8 @@
 
 <div class="container_12">
 	<%= spreadhead "home" %>
+	
+	<h2>Last Observation at <%= @observations.first.observed_at.to_s :long %></h2>
+		
 	<%= plot :wind_speed %>
 </div>
