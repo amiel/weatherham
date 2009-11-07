@@ -2,5 +2,5 @@
 # See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  site_name: Bhamweather
-  slogan: One awesomely cool site
+  site_name: Bellingham Weather
+  slogan: Visualization of recent weather data from Bellingham Coldstorage

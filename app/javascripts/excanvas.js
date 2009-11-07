@@ -1,0 +1,1 @@
+//= require <flot/excanvas.min.js>
