@@ -5,7 +5,7 @@ namespace :heroku do
 
 	namespace :deploy do
 
-		task :default => ['assets:compile', :commit, :push, 'assets:cleanup']
+		task :default => ['assets:compile', :commit, :push, 'assets:cleanup', :commit]
 
 		desc "Commit pre-deployment changes"
 		task :commit do
