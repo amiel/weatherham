@@ -4,6 +4,7 @@
 
 <% js_var :DEBUG, !Rails.env.production? %>
 <% js_var :authenticity_token, form_authenticity_token %>
+<% assign_i18n_for_javasrcipt %>
 
 <%= yield :javascript %>
 

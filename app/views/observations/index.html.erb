@@ -6,6 +6,14 @@
 	<%= spreadhead "home" %>
 	
 	<h2>Last Observation at <%= @observations.first.observed_at.to_s :long %></h2>
-		
-	<%= plot :wind_speed %>
+	
+	<form>
+		<%= metric_toggler 'wind_speed' %>
+		<%= metric_toggler 'hi_speed' %>
+
+		<div class="clear"></div>
+	</form>
+	
+	<%= plot :weather %>
 </div>
+

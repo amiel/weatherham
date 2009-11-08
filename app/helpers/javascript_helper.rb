@@ -12,6 +12,6 @@ module JavascriptHelper
 	end
 	
 	def assign_i18n_for_javasrcipt
-		js_var :I18n, I18n.backend.send(:translations)[I18n.locale.to_sym][:js]
+		js_var :I18n, I18n.backend.send(:translations)[I18n.locale.to_sym] # [:js]
 	end
 end
