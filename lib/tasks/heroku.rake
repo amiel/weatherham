@@ -5,16 +5,17 @@ namespace :heroku do
 
 	namespace :deploy do
 
-		task :default => ['assets:compile', :commit, :push, 'assets:cleanup', :commit]
+		task :default => ['assets:compile', :commit, :push, 'assets:cleanup', :commit_lack_of_assets]
 
 		desc "Commit pre-deployment changes"
 		task :commit do
 			puts 'Committing deployment changes'
-			if system 'git status' then # if there are changed files, then this is after assets:cleanup
-				system "git commit -m'cleaned up assets after deploy'"
-			else # we expect that the user called deploy with a clean working tree
-				system "git add . && git commit -m 'Prepared for heroku deployment'"
-			end
+			system "git add . && git commit -m 'Prepared for heroku deployment'"
+		end
+		
+		task :commit_lack_of_assets do
+			puts 'Committing deletion of assets'
+			system "git commit -m'cleaned up assets after deploy'"
 		end
 
 		desc "Push application to heroku"
