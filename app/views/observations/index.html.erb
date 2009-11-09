@@ -1,6 +1,6 @@
 
 <% js_var :observations, @observations.collect(&:to_h) %>
-
+<% js_var :observation_range_path, range_observations_path(:format => :json) %>
 
 <div class="container_12">
 	<%= spreadhead "home" %>

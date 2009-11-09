@@ -59,7 +59,7 @@ $(document).ready(function() {
 		};
 		
 		var get_range = function(begin, end) {
-			$.getJSON('/observations.json', { 'range[begin]': new Date(begin), 'range[end]': new Date(end) }, handle_ajax);
+			$.getJSON(Base.observation_range_path, { 'range[begin]': new Date(begin), 'range[end]': new Date(end) }, handle_ajax);
 		};
 		
 		if (min < Base.observations[0].observed_at)
