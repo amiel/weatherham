@@ -1,7 +1,10 @@
 class Fetch < ActiveRecord::Base
 	belongs_to :observation # the most recent observation at this fetch
 	
-	def self.start!; create!; end
+	def self.start!
+		return if Fetch.find_by_finish_at nil
+		create!
+	end
 	
 	after_create :spawn_and_fetch
 	def spawn_and_fetch
