@@ -9,7 +9,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091106080100) do
+ActiveRecord::Schema.define(:version => 20091109183231) do
+
+  create_table "fetches", :force => true do |t|
+    t.datetime "start_at"
+    t.datetime "finish_at"
+    t.integer  "observation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "observations", :force => true do |t|
     t.datetime "observed_at"

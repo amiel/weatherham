@@ -2,6 +2,7 @@ require 'time'
 require 'open-uri'
 module Gather
 	def self.bellingham_coldstorage_observations!
+
 		open 'http://www.bellcold.com/download.txt' do |f|
 			f.each do |line|
 				datas = parse_weather(line)
