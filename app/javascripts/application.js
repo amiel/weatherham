@@ -67,8 +67,8 @@ $(document).ready(function() {
 			get_range(Base.observations[Base.observations.length-1].observed_at, max);
 	}
 	
-	// placeholder.bind('plotpan',  handle_pan_or_zoom);
-	// placeholder.bind('plotzoom', handle_pan_or_zoom);
+	placeholder.bind('plotpan',  handle_pan_or_zoom);
+	placeholder.bind('plotzoom', handle_pan_or_zoom);
 	
 	$('.metric_toggler input').change(function() {
 		plot_for_checkboxes();
