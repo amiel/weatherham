@@ -1,8 +1,8 @@
 class ObservationsController < ApplicationController
 	def index
-		@observations = Observation.paginate :page => params[:page], :per_page => 1.day / 5.minutes, :order => 'id DESC'
+		@observations = Observation.paginate :page => params[:page], :per_page => 5.days / 5.minutes, :order => 'id DESC'
 
-		if Observation.need_fetch? then
+		if Rails.env.production? and Observation.need_fetch? then
 			Fetch.start!
 			flash.now[:notice] = 'Gathering new datas!'
 		end

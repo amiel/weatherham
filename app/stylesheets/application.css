@@ -490,3 +490,7 @@ form.formtastic fieldset ol li.datetime fieldset ol li label input {
   padding: 0;
 }
 .legend td { padding: 2px; }
+#activity {
+  background: #ffffff url(/images/ajax-loader.gif) no-repeat center center;
+  height: 20px;
+}
