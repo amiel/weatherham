@@ -65,7 +65,7 @@ $(document).ready(function() {
 			baro_ticks = function(axis) {
 				var res = [[atm, '1 atm']], i = Math.ceil(axis.min * 5) / 5;
 				do {
-					res.push([i, i + ' ' + Base.I18n.barometer.unit]);
+					res.push([i, Math.round(i*5)/5 + ' ' + Base.I18n.barometer.unit]);
 					i += 1/5;
 				} while (i < axis.max);
 				return res;
