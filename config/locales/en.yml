@@ -16,3 +16,6 @@ en:
   barometer:
     title: Barometer
     unit: inHg
+  time:
+    formats:
+      long: '%a, %b %d, %Y %H:%M %Z'
