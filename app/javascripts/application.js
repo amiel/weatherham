@@ -83,7 +83,7 @@ $(document).ready(function() {
                     previousPoint = item.datapoint;
                     
                     $("#tooltip").remove();
-                    var x = item.datapoint[0].toFixed(2),
+                    var x = item.datapoint[0],
                         y = item.datapoint[1].toFixed(2);
                     
 					var content = y;
@@ -93,6 +93,7 @@ $(document).ready(function() {
 							dir = d[correct_dir];
 						content += ' ' + dir;
 					}
+					content += ' at ' + new Date(x);
                     show_tooltip(item.pageX, item.pageY, content);
                 }
             }
