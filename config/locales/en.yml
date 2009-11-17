@@ -6,10 +6,10 @@ en:
   slogan: Visualization of recent weather data from Bellingham Coldstorage
   hi_speed:
     title: Gusts
-    unit: knots
+    unit: mph
   wind_speed:
     title: Wind Speed
-    unit: knots
+    unit: mph
   temp:
     title: Temperature
     unit: farenheit

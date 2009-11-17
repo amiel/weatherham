@@ -34,6 +34,11 @@ $(document).ready(function() {
 		observations.sort(compare_observation);
 	}
 	
+	
+	function label_for(attribute) {
+		return Base.I18n[attribute] ? Base.I18n[attribute].title + ' (' + Base.I18n[attribute].unit + ')' : attribute.titleize();
+	}
+	
 	function setup_datasets() {
 		// if (datasets != null) return datasets;
 	
@@ -45,8 +50,7 @@ $(document).ready(function() {
 	
 		var current_color = 0;
 		function data_with_label_for(attribute) {
-			var label = Base.I18n[attribute] ? Base.I18n[attribute].title + ' (' + Base.I18n[attribute].unit + ')' : attribute.titleize();
-			return { label: label, data: map_date_and_attribute(attribute), color: current_color++ };
+			return { label: label_for(attribute), data: map_date_and_attribute(attribute), color: current_color++ };
 		}
 
 		show_activity();		
@@ -56,6 +60,48 @@ $(document).ready(function() {
 		datasets.barometer.yaxis = 2;
 		return datasets;
 	}
+	
+	
+	function show_tooltip(x, y, contents) {
+        $('<div id="tooltip">' + contents + '</div>').css( {
+            position: 'absolute',
+            display: 'none',
+            top: y + 5,
+            left: x + 5,
+            border: '1px solid #fdd',
+            padding: '2px',
+            'background-color': '#fee',
+            opacity: 0.80
+        }).appendTo("body").fadeIn(200);
+    }
+    
+
+    var previousPoint = null;
+    placeholder.bind("plothover", function (event, pos, item) {
+            if (item) {
+                if (previousPoint != item.datapoint) {
+                    previousPoint = item.datapoint;
+                    
+                    $("#tooltip").remove();
+                    var x = item.datapoint[0].toFixed(2),
+                        y = item.datapoint[1].toFixed(2);
+                    
+					var content = y;
+					if (/Gust|Wind/.test(item.series.label)) {
+						var d = Base.observations.filter(function(t) { return t.observed_at == x; })[0],
+							correct_dir = /Gust/.test(item.series.label) ? 'hi_dir' : 'wind_dir',
+							dir = d[correct_dir];
+						content += ' ' + dir;
+					}
+                    show_tooltip(item.pageX, item.pageY, content);
+                }
+            }
+            else {
+                $("#tooltip").remove();
+                previousPoint = null;            
+            }
+    });
+
 	
 	function plot(data, options) {
 		var atm = 29.9213,
@@ -80,9 +126,13 @@ $(document).ready(function() {
 				position: 'nw',
 				margin: [ 10, 5 ]
 			},
-			grid: { markings: [ { y2axis: { from: atm, to: atm } } ] },
+			grid: {
+				markings: [ { y2axis: { from: atm, to: atm } } ],
+				hoverable: true, clickable: true
+			},
             series: {
-				lines: { steps: true }
+				lines: { show: true }
+				// points: { show: true }
 			},
 	        pan: { interactive: true }
 		});
