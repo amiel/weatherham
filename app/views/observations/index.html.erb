@@ -7,7 +7,7 @@
 <div class="container_12">
 	<%= spreadhead "home" %>
 	
-	<h2>Last Observation at <%= @observations.first.observed_at.to_s :long %></h2>
+	<h2>Last Observation at <%= @observations.first.observed_at.to_s :rfc822 %></h2>
 
 	<div class="grid_12" id="activity"></div>
 	

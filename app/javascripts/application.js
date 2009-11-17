@@ -57,10 +57,18 @@ $(document).ready(function() {
 	}
 	
 	function plot(data, options) {
+		function baro_formatter(val, axis) {
+			return val.toFixed(axis.tickDecimals) + ' inHg';
+		}
+		
 		$.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
 			yaxis: { min: 0, max: Base.ranges.max },
-			yaxis2: { min: Base.ranges.barometer.min, max: Base.ranges.barometer.max },
+			y2axis: {
+				min: Base.ranges.barometer.min,
+				max: Base.ranges.barometer.max,
+				tickFormatter: baro_formatter
+			},
             series: {
 				lines: { steps: true }
 			},
