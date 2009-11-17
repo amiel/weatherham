@@ -4,7 +4,15 @@
 en:
   site_name: Bellingham Weather
   slogan: Visualization of recent weather data from Bellingham Coldstorage
-  hi_speed: Gust (knots)
-  wind_speed: Wind Speed (knots)
-  temp: Temperature (farenheit)
-  barometer: Barometer (inHg)
+  hi_speed:
+    title: Gusts
+    unit: knots
+  wind_speed:
+    title: Wind Speed
+    unit: knots
+  temp:
+    title: Temperature
+    unit: farenheit
+  barometer:
+    title: Barometer
+    unit: inHg

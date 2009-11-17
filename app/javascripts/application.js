@@ -45,7 +45,8 @@ $(document).ready(function() {
 	
 		var current_color = 0;
 		function data_with_label_for(attribute) {
-			return { label: Base.I18n[attribute] || attribute.titleize(), data: map_date_and_attribute(attribute), color: current_color++ };
+			var label = Base.I18n[attribute] ? Base.I18n[attribute].title + ' (' + Base.I18n[attribute].unit + ')' : attribute.titleize();
+			return { label: label, data: map_date_and_attribute(attribute), color: current_color++ };
 		}
 
 		show_activity();		
@@ -57,18 +58,34 @@ $(document).ready(function() {
 	}
 	
 	function plot(data, options) {
-		function baro_formatter(val, axis) {
-			return val.toFixed(axis.tickDecimals) + ' inHg';
-		}
+		var atm = 29.9213,
+			// baro_formatter = function(val, axis) {
+			// 	return val.toFixed(axis.tickDecimals) + ' inHg';
+			// },
+			baro_ticks = function(axis) {
+				var res = [[atm, '1 atm']], i = Math.ceil(axis.min * 5) / 5;
+				do {
+					res.push([i, i + ' ' + Base.I18n.barometer.unit]);
+					i += 1/5;
+				} while (i < axis.max);
+				return res;
+			};
 		
+		// 29.9213 == 1 atm
 		$.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
 			yaxis: { min: 0, max: Base.ranges.max },
 			y2axis: {
 				min: Base.ranges.barometer.min,
 				max: Base.ranges.barometer.max,
-				tickFormatter: baro_formatter
+				// tickFormatter: baro_formatter,
+				ticks: baro_ticks
 			},
+			legend: {
+				position: 'nw',
+				margin: [ 10, 5 ]
+			},
+			grid: { markings: [ { y2axis: { from: atm, to: atm } } ] },
             series: {
 				lines: { steps: true }
 			},

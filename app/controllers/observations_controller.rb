@@ -1,6 +1,6 @@
 class ObservationsController < ApplicationController
 	def index
-		@observations = Observation.paginate :page => params[:page], :per_page => 5.days / 5.minutes, :order => 'id DESC'
+		@observations = Observation.paginate :page => params[:page], :per_page => 2.5.days / 5.minutes, :order => 'id DESC'
 		
 		@ranges = {
 			:barometer => {
