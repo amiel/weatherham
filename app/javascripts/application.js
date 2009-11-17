@@ -59,9 +59,6 @@ $(document).ready(function() {
 	
 	function plot(data, options) {
 		var atm = 29.9213,
-			// baro_formatter = function(val, axis) {
-			// 	return val.toFixed(axis.tickDecimals) + ' inHg';
-			// },
 			baro_ticks = function(axis) {
 				var res = [[atm, '1 atm']], i = Math.ceil(axis.min * 5) / 5;
 				do {
@@ -71,14 +68,12 @@ $(document).ready(function() {
 				return res;
 			};
 		
-		// 29.9213 == 1 atm
 		$.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
 			yaxis: { min: 0, max: Base.ranges.max },
 			y2axis: {
 				min: Base.ranges.barometer.min,
 				max: Base.ranges.barometer.max,
-				// tickFormatter: baro_formatter,
 				ticks: baro_ticks
 			},
 			legend: {

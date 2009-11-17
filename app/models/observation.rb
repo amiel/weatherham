@@ -3,7 +3,7 @@ class Observation < ActiveRecord::Base
 	
 	def self.need_fetch?
 		return true unless Observation.first
-		Observation.last.observed_at < 1.hour.ago
+		Observation.last.observed_at < 30.minutes.ago
 	end
 	
 	def to_h
