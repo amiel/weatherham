@@ -59,7 +59,8 @@ $(document).ready(function() {
 	function plot(data, options) {
 		$.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
-			yaxis: { min: 0 },
+			yaxis: { min: 0, max: Base.ranges.max },
+			yaxis2: { min: Base.ranges.barometer.min, max: Base.ranges.barometer.max },
             series: {
 				lines: { steps: true }
 			},
