@@ -10,7 +10,7 @@ module Gather
 				tolerance_range = (datas[:observed_at] - 1.minute)..(datas[:observed_at] + 1.minute)
 				next if Observation.first :conditions => { :observed_at => tolerance_range }
 				o = Observation.create datas
-				puts "created #{o.inspect}"
+				Observation.logger.info "created #{o.inspect}"
 			end
 		end
 	end
