@@ -1,4 +1,4 @@
-//= require <jquery>
+//= require <facebox>
 //= require <base>
 //= require <core_ext>
 
@@ -7,6 +7,9 @@
 // //= require <flot/jquery.flot.image.min.js>
 
 $(document).ready(function() {
+	
+	$('a[rel=facebox]').facebox();
+	
 	var observations = null,
 		placeholder = $('#weather'),
 		datasets = null,

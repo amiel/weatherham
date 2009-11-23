@@ -1,0 +1,39 @@
+#facebox .loading{ margin: 20px auto;	width: 28px; height: 28px;	background: url(/images/facebox/loading.gif) no-repeat; text-align: center; }
+
+#facebox_overlay{	position: fixed; top: 0px; left: 0px; height:100%;	width:100%; }
+	.facebox_hide{ z-index: -100; }
+	.facebox_overlayBG{ background-color: #22222c; z-index: 99; }
+
+#facebox{ position: absolute;	top: 0; left: 0; z-index: 100; text-align: left; }
+	#facebox .popup{ position: relative; }
+
+	#facebox table { border-collapse: collapse; width: auto; }
+	#facebox td{ border-bottom: 0; padding: 0; }
+	#facebox .body{ padding: 0px; background: #fff; width: 720px; }
+	#facebox .content{ padding: 10px; overflow: hidden; }
+	
+	#facebox .facebox_image{ text-align: center; }
+		#facebox img{ margin: 0; }
+
+	#facebox .title{ height: 30px; border-bottom: 1px solid #993214; background-color: #D14414; padding: 0px 10px; margin-bottom: 0px; position: relative; color: #fff; }
+		#facebox .title h2{ height: 30px; line-height: 30px; margin: 0; letter-spacing: 0; font-size: 1em; font-weight: bold; }
+
+		#facebox .title a.close{ position: absolute; top: 0px; right: 6px; display: block; padding: 0 18px; background: url(/images/facebox/close.png) no-repeat center right;
+			text-decoration: none; color: #FFDECC; text-transform: uppercase; line-height: 30px; height: 30px; font-size: .7em; }
+			#facebox .title a.close:hover{ color: #fff; background-image: url(/images/facebox/close_hover.png); }
+
+#facebox, #facebox tr, #facebox td, #facebox th, #facebox .b, #facebox .tl, #facebox .tr, #facebox .bl, #facebox .br{ border: none; }
+#facebox .tl, #facebox .tr, #facebox .bl, #facebox .br{ height: 10px; width: 10px; overflow: hidden; padding: 0; }
+	#facebox .b{ background: url(/images/facebox/b.png); }
+	#facebox .tl{ background: url(/images/facebox/tl.png); }
+	#facebox .tr{ background: url(/images/facebox/tr.png); }
+	#facebox .bl{ background: url(/images/facebox/bl.png); }
+	#facebox .br{ background: url(/images/facebox/br.png); }
+
+/** html #facebox_overlay { position: absolute; height: expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px'); }*/
+
+#facebox{
+    h1,h2,h3,h4,h5,h5 { margin: 1em 0; }
+    ul{ list-style-type: bullet; }
+    ul li{ margin-left: 1em; }
+}

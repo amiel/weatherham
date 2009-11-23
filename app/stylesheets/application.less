@@ -2,13 +2,15 @@
 @import "vendor/_960";
 @import "vendor/_spreadhead";
 @import "vendor/_formtastic";
+@import "vendor/_facebox";
 @import "_formtastic_changes";
 
 .legend td{ padding: 2px;}
 
 #activity{ background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: 20px; }
 
-#footer{ text-align: center; font-size: 80%; color: #999; margin: 1em 0 2em;
-	a{ color: #999; text-decoration: none; }
-	a:hover{ text-decoration: underline; }
+#footer{ .grid_12; text-align: center; font-size: 80%; color: #999; margin: 1em 0 2em;
+	a{ color: #999; text-decoration: none;
+    	:hover{ text-decoration: underline; }
+	}
 }

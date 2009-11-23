@@ -1,6 +1,7 @@
 
 
 * optimize and cache data, everything should be faster now
+* add CHANGELOG
 
 h2. 2009-11-17
 

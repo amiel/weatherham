@@ -17,6 +17,6 @@ class JavascriptsController < ApplicationController
   end
   
   def fresh_options(object)
-    :etag => object, :public => true, :last_modified => object.created_at.utc
+    { :etag => object, :public => true, :last_modified => object.created_at.utc }
   end
 end
