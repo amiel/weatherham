@@ -4,18 +4,19 @@
 en:
   site_name: Bellingham Weather
   slogan: Visualization of recent weather data from Bellingham Coldstorage
-  hi_speed:
-    title: Gusts
-    unit: mph
-  wind_speed:
-    title: Wind Speed
-    unit: mph
-  temp:
-    title: Temperature
-    unit: farenheit
-  barometer:
-    title: Barometer
-    unit: inHg
+  datas:
+    hi_speed:
+      title: Gusts
+      unit: mph
+    wind_speed:
+      title: Wind Speed
+      unit: mph
+    temp:
+      title: Temperature
+      unit: farenheit
+    barometer:
+      title: Barometer
+      unit: inHg
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'
