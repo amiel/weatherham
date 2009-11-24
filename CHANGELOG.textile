@@ -1,8 +1,9 @@
 h2. 2009-11-24
 
-* [NEW] optimize and cache data, everything should be faster now
+* [NEW] re-architected to optimize and cache data, everything should be faster now
 * [NEW] add CHANGELOG
 * [REMOVED] panning support, will be replaced with navigation (coming soon)
+* [REMOVED] tooltips, they will come back!
 
 h2. 2009-11-17
 
@@ -11,7 +12,8 @@ h2. 2009-11-17
 h2. 2009-11-16
 
 * [NEW] tooltip
-* [CHANGED] barometer labels are better
+* [CHANGED] barometer scale and the other side are now fixed to the max and min for the entire dataset
+* [CHANGED] barometer scale is now better
 * [NEW] marking for 1 atmosphere on barometer scale
 
 h2. 2009-11-14

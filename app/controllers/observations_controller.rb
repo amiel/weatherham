@@ -40,6 +40,6 @@ class ObservationsController < ApplicationController
       RedCloth.new(lines.to_s).to_html
     end
     
-    render :text => @changelog
+    cache_for 1.month
   end
 end

@@ -10,9 +10,13 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
   
-  
-  
+  layout :no_layout_for_xhr
+    
   private
+  def no_layout_for_xhr
+    request.xhr? ? nil : 'application'
+  end
+  
   # just to dry up all my public caches
   def cache_for(time)
     expires_in time, :public => true
