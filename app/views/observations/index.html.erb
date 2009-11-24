@@ -1,13 +1,13 @@
 
-<% js_var :observations, @observations.collect(&:to_h) %>
 <% js_var :observation_range_path, range_observations_path(:format => :json) %>
+<% js_var :five_min_path, observation_path(:five_min, :format => :json) %>
 <% js_var :ranges, @ranges %>
 
 
 <div class="container_12">
 	<%= spreadhead "home" %>
 	
-	<h2>Last Observation at <%=l @observations.first.observed_at, :format => :long %></h2>
+	<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
 
 	<div class="grid_12" id="activity"></div>
 	

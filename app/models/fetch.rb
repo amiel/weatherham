@@ -2,7 +2,7 @@ class Fetch < ActiveRecord::Base
 	belongs_to :observation # the most recent observation at this fetch
 	
 	def self.start!
-		return if Fetch.find_by_finish_at nil
+		return if Fetch.find_by_finish_at nil # a fetch hasn't finished? return and let it do its thing
 		create!
 	end
 	

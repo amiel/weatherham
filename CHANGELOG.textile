@@ -1,23 +1,23 @@
 
-
-* optimize and cache data, everything should be faster now
-* add CHANGELOG
+* [NEW] optimize and cache data, everything should be faster now
+* [NEW] add CHANGELOG
+* [REMOVED] panning support, will be replaced with navigation (coming soon)
 
 h2. 2009-11-17
 
-* bhamweather now works in IE
+* [FIXED] bhamweather now works in IE
 
 h2. 2009-11-16
 
-* tooltip
-* barometer labels are better
-* marking for 1 atmosphere on barometer scale
+* [NEW] tooltip
+* [CHANGED] barometer labels are better
+* [NEW] marking for 1 atmosphere on barometer scale
 
 h2. 2009-11-14
 
-* activity indicator
-* panning
+* [NEW] activity indicator
+* [NEW] panning
 
 h2. 2009-11-09
 
-* gather data in the background after a request, this way we stay more up to date
+* [NEW] gather data in the background after a request, this way we stay more up to date

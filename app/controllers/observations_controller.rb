@@ -1,7 +1,10 @@
 class ObservationsController < ApplicationController
+  COUNTS = {
+    :five_min => 1.day / 5.minutes
+  }.with_indifferent_access.freeze
+  
+  
   def index
-    @observations = Observation.paginate :page => params[:page], :per_page => 1.day / 5.minutes, :order => 'id DESC'
-
 		@ranges = {
 			:barometer => {
 				:max => Observation.maximum(:barometer),
@@ -13,6 +16,15 @@ class ObservationsController < ApplicationController
     if Rails.env.production? and Observation.need_fetch? then
       Fetch.start!
       flash.now[:notice] = 'Gathering new datas!'
+    end
+  end
+
+
+  
+  def show
+    if stale?(fresh_options(Observation.last)) then
+      n = COUNTS[params[:id]]
+      @observations = Observation.all :limit => n, :offset => (Observation.count - n)
     end
   end
 
