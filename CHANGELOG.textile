@@ -1,3 +1,4 @@
+h2. 2009-11-24
 
 * [NEW] optimize and cache data, everything should be faster now
 * [NEW] add CHANGELOG
