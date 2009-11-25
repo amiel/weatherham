@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091109183231) do
+ActiveRecord::Schema.define(:version => 20091125200048) do
 
   create_table "fetches", :force => true do |t|
     t.datetime "start_at"
@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(:version => 20091109183231) do
     t.integer  "observation_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "error",          :default => false
   end
 
   create_table "observations", :force => true do |t|
@@ -50,7 +51,7 @@ ActiveRecord::Schema.define(:version => 20091109183231) do
     t.datetime "updated_at"
   end
 
-  add_index "pages", ["url", "id", "published"], :name => "index_pages_on_url_and_id_and_published"
+  add_index "pages", ["id", "published", "url"], :name => "index_pages_on_url_and_id_and_published"
 
   create_table "users", :force => true do |t|
     t.string   "login"
