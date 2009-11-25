@@ -11,7 +11,7 @@ module ObservationsHelper
   end
 
   def check_box_with_label(name)
-    content_tag :label, check_box_tag(name) + t(:"datas.#{name}.title", :default => name.titleize), :for => name
+    content_tag :label, check_box_tag(name) + t(:"attributes.#{name}.title", :default => name.titleize), :for => name
   end
 
 

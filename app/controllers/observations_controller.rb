@@ -15,7 +15,7 @@ class ObservationsController < ApplicationController
 		
     if Rails.env.production? and Observation.need_fetch? then
       Fetch.start!
-      flash.now[:notice] = 'Gathering new datas!'
+      flash.now[:notice] = I18n.t(:gathering_new_datas)
     end
   end
 

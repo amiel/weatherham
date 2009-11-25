@@ -4,7 +4,8 @@
 en:
   site_name: Bellingham Weather
   slogan: Visualization of recent weather data from Bellingham Coldstorage
-  datas:
+  gathering_new_datas: Gathering New Datas!
+  attributes:
     hi_speed:
       title: Gust
       unit: mph
