@@ -12,7 +12,19 @@ module ObservationsHelper
   end
 
 
-  def attribute_for_plot(observations, attribute)
-    observations.collect{|o| o.attribute_for_plot(attribute) }
+  def attribute_pairs_for_plot(observations, attribute)
+    observations.collect{|o| o.attribute_pair_for_plot(attribute) }
+  end
+  
+  def data_for_plot
+    returning data = Hash.new do
+    	data[:plot_pairs] = Observation.displayed_attributes.each_with_object({}) do |attr, hash|
+    		hash[attr] = attribute_pairs_for_plot(@observations, attr)
+    	end
+
+    	data[:times] = @observations.each_with_object({}) do |observation, hash|
+    		hash[observation.observed_at_for_json] = observation.to_h
+    	end
+  	end
   end
 end

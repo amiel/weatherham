@@ -6,7 +6,7 @@ en:
   slogan: Visualization of recent weather data from Bellingham Coldstorage
   datas:
     hi_speed:
-      title: Gusts
+      title: Gust
       unit: mph
     wind_speed:
       title: Wind Speed
@@ -17,6 +17,9 @@ en:
     barometer:
       title: Barometer
       unit: inHg
+    humidity:
+      title: Humidity
+      unit: %
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'

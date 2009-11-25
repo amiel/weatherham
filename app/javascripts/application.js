@@ -31,7 +31,7 @@ $(document).ready(function() {
 	function setup_datasets() {
 		var current_color = 0;
 		function data_with_label_for(attribute) {
-			return { label: label_for(attribute), data: observations[attribute], color: current_color++ };
+			return { label: label_for(attribute), data: observations['plot_pairs'][attribute], color: current_color++, attribute_name: attribute };
 		}
 
 		show_activity();		
@@ -42,8 +42,42 @@ $(document).ready(function() {
 		return datasets;
 	}
 	
-
 	
+	function show_tooltip(x, y, contents) {
+		if ($('#tooltip').length == 0)
+	        $('<div id="tooltip"></div>').appendTo('body');
+		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5, opacity: 0.80 }).fadeIn(200);
+    }
+	
+	var previousPoint = null;
+	placeholder.bind("plothover", function (event, pos, item) {
+		if (item) {
+			if (previousPoint != item.datapoint) {
+				previousPoint = item.datapoint;
+
+				$("#tooltip").stop().hide();
+				var x = item.datapoint[0],
+					y = item.datapoint[1].toFixed(2),
+					attribute = item.series.attribute_name;
+				
+
+				var content = y + ' ' + Base.I18n[attribute].unit;
+				if (/hi_speed|wind_speed/.test(attribute)) {
+					var d = observations['times'][x],
+						correct_dir = /hi_speed/.test(attribute) ? 'hi_dir' : 'wind_dir',
+						dir = d[correct_dir];
+					
+					content += ' ' + dir;
+				}
+				content = '<h2>' + Base.I18n[attribute].title + ': ' + content + '</h2><p>' + new Date(x) + '</p>';
+				show_tooltip(item.pageX, item.pageY, content);
+			}
+		} else {
+			$("#tooltip").stop().fadeOut(200);
+			previousPoint = null;            
+		}
+	});
+
 	function plot(data, options) {
 		var atm = 29.9213,
 			baro_ticks = function(axis) {

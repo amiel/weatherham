@@ -1,5 +1,1 @@
-<%=
-	%w(wind_speed hi_speed temp barometer).each_with_object({}) do |attr, hash|
-		hash[attr] = attribute_for_plot(@observations, attr)
-	end.to_json
-%>
+<%= data_for_plot.to_json %>

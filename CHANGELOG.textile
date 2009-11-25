@@ -1,3 +1,8 @@
+h2. 2009-11-25
+
+* [NEW] tooltips are back! (with wind direction)
+* [NEW] add humidity
+
 h2. 2009-11-24
 
 * [NEW] re-architected to optimize and cache data, everything should be faster now
