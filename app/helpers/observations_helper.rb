@@ -3,8 +3,12 @@ module ObservationsHelper
     content_tag :div, '', :id => name, :style => 'width:940px;height:500px;', :class => 'flot grid_12'
   end
 
-  def metric_toggler(name, grid_size = '2')
-    content_tag :div, check_box_with_label(name), :class => "grid_#{grid_size} metric_toggler"
+  def metric_toggler(name, options = {})
+    options[:grid_size] ||= '2'
+    options[:default] = true if options[:default].nil?
+    options[:class] ||= ''
+    options[:class] << (options[:default] ? " default_on" : " default_off")
+    content_tag :div, check_box_with_label(name), :class => "grid_#{options[:grid_size]} metric_toggler #{options[:class]}"
   end
 
   def check_box_with_label(name)

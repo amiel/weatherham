@@ -40,6 +40,6 @@ class ObservationsController < ApplicationController
       RedCloth.new(lines.to_s).to_html
     end
     
-    cache_for 1.month
+    fresh_when(:etag => Digest::SHA1.hexdigest(@changelog), :public => true)
   end
 end

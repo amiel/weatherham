@@ -120,7 +120,8 @@ $(document).ready(function() {
 	$('.metric_toggler input').change(function() {
 		show_activity();
 		plot_for_checkboxes();
-	}).attr('checked', 'checked');
+	});
+	$('.metric_toggler.default_on input').attr('checked', 'checked');
 	
 	function do_all_the_shit_needed_to_plot() {
 		setup_datasets();
