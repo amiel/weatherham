@@ -1,5 +1,0 @@
-
-== IDEAS
-
-* chunk all data, and put in a getJSON request
-* have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
