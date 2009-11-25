@@ -21,7 +21,11 @@
     .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
 }
 
-#changelog{ height: 400px; overflow-y: scroll; }
+.textile_file{ height: 400px; overflow-y: auto; }
+#changelog{ .textile_file; }
+#todo{ .textile_file;
+    ul{ list-style-type: disc; }
+}
 
 #wrapper{ .container_12; }
 

@@ -1,4 +1,4 @@
-h2. TODO
+h3. TODO
 
 * design and interface (nicole is currently working on a design)
 * have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
@@ -10,3 +10,7 @@ h2. TODO
 ** the interface will have modes for each level of granularity that we have in the database, the less granular, the more history you get
 * fix flot so that the horizontal scale is in PST not UTC
 * display relevant metrics (maxes and mins for interesting things)
+
+h3. CONTRIBUTING
+
+if you would like to help make any of these things happen, please fork this project on "github":http://github.com/amiel/weatherham

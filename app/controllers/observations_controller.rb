@@ -45,7 +45,7 @@ class ObservationsController < ApplicationController
   
   def todo
     @todo ||= begin
-      lines = File.readlines(File.join(Rails.root, 'TODO.textile'))
+      lines = File.readlines(File.join(Rails.root, 'README.textile'))
       RedCloth.new(lines.to_s).to_html
     end
     
