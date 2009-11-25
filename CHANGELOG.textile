@@ -2,6 +2,7 @@ h2. 2009-11-25
 
 * [NEW] tooltips are back! (with wind direction)
 * [NEW] add humidity
+* [CHANGED] checkboxes are now the labels
 
 h2. 2009-11-24
 

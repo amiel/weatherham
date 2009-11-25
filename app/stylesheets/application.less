@@ -5,9 +5,20 @@
 @import "vendor/_facebox";
 @import "_formtastic_changes";
 
-.legend td{ padding: 2px;}
 
 #activity{ background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: 20px; }
+
+.metric_toggler{ padding: 1px 0;
+    label{ display: block; }
+}
+
+.legend td{ padding: 2px;}
+
+#tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
+    h2{ color: #112; }
+        .attribute{ font-weight: normal; }
+    .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
+}
 
 #changelog{ height: 400px; overflow-y: scroll; }
 
@@ -17,6 +28,3 @@
 	}
 }
 
-#tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
-    .time{ font-size: 80%; color: #bbc; margin-top: 0.3em; }
-}

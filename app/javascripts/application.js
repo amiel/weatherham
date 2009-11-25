@@ -13,7 +13,8 @@ $(document).ready(function() {
 	var observations = null,
 		placeholder = $('#weather'),
 		datasets = null,
-		xmin = null, xmax = null;
+		xmin = null, xmax = null,
+		colors = ["#edc240", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"];
 	
 	
 	function show_activity() {
@@ -23,15 +24,11 @@ $(document).ready(function() {
 	function hide_activity() {
 		$('#activity').fadeTo(100, 0);
 	}
-	
-	function label_for(attribute) {
-		return Base.I18n[attribute] ? Base.I18n[attribute].title + ' (' + Base.I18n[attribute].unit + ')' : attribute.titleize();
-	}
-	
+
 	function setup_datasets() {
 		var current_color = 0;
 		function data_with_label_for(attribute) {
-			return { label: label_for(attribute), data: observations['plot_pairs'][attribute], color: current_color++, attribute_name: attribute };
+			return { data: observations['plot_pairs'][attribute], color: colors[current_color++], attribute_name: attribute };
 		}
 
 		show_activity();		
@@ -61,7 +58,7 @@ $(document).ready(function() {
 					attribute = item.series.attribute_name;
 				
 
-				var content = y + ' ' + Base.I18n[attribute].unit;
+				var content = y + Base.I18n[attribute].unit;
 				if (/hi_speed|wind_speed/.test(attribute)) {
 					var d = observations['times'][x],
 						correct_dir = /hi_speed/.test(attribute) ? 'hi_dir' : 'wind_dir',
@@ -69,7 +66,7 @@ $(document).ready(function() {
 					
 					content += ' ' + dir;
 				}
-				content = '<h3>' + Base.I18n[attribute].title + ': ' + content + '</h3><p class="time">' + new Date(x) + '</p>';
+				content = '<h3><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + content + '</span></h3><p class="time">' + new Date(x) + '</p>';
 				show_tooltip(item.pageX, item.pageY, content);
 			}
 		} else {
@@ -120,6 +117,8 @@ $(document).ready(function() {
 	$('.metric_toggler input').change(function() {
 		show_activity();
 		plot_for_checkboxes();
+	}).each(function(index) {
+		$(this).parents('.metric_toggler').css('background-color', colors[index]);
 	});
 	$('.metric_toggler.default_on input').attr('checked', 'checked');
 	

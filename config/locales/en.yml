@@ -13,7 +13,7 @@ en:
       unit: mph
     temp:
       title: Temperature
-      unit: farenheit
+      unit: "&deg;F"
     barometer:
       title: Barometer
       unit: inHg
