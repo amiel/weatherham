@@ -1,3 +1,7 @@
+h2. 2009-11-??
+
+* [CHANGED] optimize load time by not sending unnecessary fields, cutting initial data load in half
+
 h2. 2009-11-25
 
 * [NEW] tooltips are back! (with wind direction)
