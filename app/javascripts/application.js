@@ -69,7 +69,7 @@ $(document).ready(function() {
 					
 					content += ' ' + dir;
 				}
-				content = '<h2>' + Base.I18n[attribute].title + ': ' + content + '</h2><p>' + new Date(x) + '</p>';
+				content = '<h3>' + Base.I18n[attribute].title + ': ' + content + '</h3><p class="time">' + new Date(x) + '</p>';
 				show_tooltip(item.pageX, item.pageY, content);
 			}
 		} else {
