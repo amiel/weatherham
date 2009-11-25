@@ -42,4 +42,13 @@ class ObservationsController < ApplicationController
     
     fresh_when(:etag => Digest::SHA1.hexdigest(@changelog), :public => true)
   end
+  
+  def todo
+    @todo ||= begin
+      lines = File.readlines(File.join(Rails.root, 'TODO.textile'))
+      RedCloth.new(lines.to_s).to_html
+    end
+    
+    fresh_when(:etag => Digest::SHA1.hexdigest(@todo), :public => true)
+  end
 end

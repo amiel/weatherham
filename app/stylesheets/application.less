@@ -6,13 +6,14 @@
 @import "_formtastic_changes";
 
 
-#activity{ background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: 20px; }
+#activity{ .grid_12; background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: 20px; }
 
-.metric_toggler{ padding: 1px 0;
+.metric_toggler{ .grid_2; padding: 1px 0;
     label{ display: block; }
 }
 
-.legend td{ padding: 2px;}
+.flot{ .grid_12; }
+.legend td{ padding: 2px; }
 
 #tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
     h2{ color: #112; }
@@ -21,6 +22,8 @@
 }
 
 #changelog{ height: 400px; overflow-y: scroll; }
+
+#wrapper{ .container_12; }
 
 #footer{ .grid_12; text-align: center; font-size: 80%; color: #999; margin: 1em 0 2em;
 	a{ color: #999; text-decoration: none;

@@ -20,14 +20,13 @@
 </head>
 <body class="<%= body_class %>">
 
-	<%= render 'layouts/flashes' %>
-
-	<%= yield %>
+	<div id="wrapper">
+		<%= render 'layouts/flashes' %>
+		<%= yield %>
 	
-	<div class="container_12">
 		<div id="footer">
 			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
-			Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>. <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox' %>
+			Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>. <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %>. <%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %>
 		</div>
 	</div>
 	<%= render 'layouts/javascript' %>

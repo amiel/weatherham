@@ -4,6 +4,7 @@ ActionController::Routing::Routes.draw do |map|
 
 	map.resources :observations, :collection => { :range => :get }
   map.changelog '/changelog.:format', :controller => 'observations', :action => 'changelog'
+  map.todo '/todo.:format', :controller => 'observations', :action => 'todo'
   
   map.root :controller => 'observations'
 

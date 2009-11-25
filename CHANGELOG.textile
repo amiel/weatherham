@@ -17,7 +17,7 @@ h2. 2009-11-24
 
 h2. 2009-11-17
 
-* [FIXED] bhamweather now works in IE
+* [FIXED] weatherham now works in IE
 
 h2. 2009-11-16
 

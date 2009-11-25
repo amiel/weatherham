@@ -4,23 +4,21 @@
 <% js_var :ranges, @ranges %>
 
 
-<div class="container_12">
-	<%= spreadhead "home" %>
-	
-	<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
+<%= spreadhead "home" %>
 
-	<div class="grid_12" id="activity"></div>
-	
-	<form>
-		<%= metric_toggler 'wind_speed' %>
-		<%= metric_toggler 'hi_speed' %>
-		<%= metric_toggler 'temp' %>
-		<%= metric_toggler 'barometer' %>
-		<%= metric_toggler 'humidity', :default => false %>
+<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
 
-		<div class="clear"></div>
-	</form>
-	
-	<%= plot :weather %>
-</div>
+<div id="activity"></div>
+
+<form>
+	<%= metric_toggler 'wind_speed' %>
+	<%= metric_toggler 'hi_speed' %>
+	<%= metric_toggler 'temp' %>
+	<%= metric_toggler 'barometer' %>
+	<%= metric_toggler 'humidity', :default => false %>
+
+	<div class="clear"></div>
+</form>
+
+<%= plot :weather %>
 

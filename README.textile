@@ -4,6 +4,9 @@ h2. TODO
 * have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
 * navigation for panning. load data with getJSON and append to each of our datasets
 ** make requests in only certain timespan chunks, so that they can be cached
+** indicate "Last Observation" for current panned state
 * write a compression script, that runs on the daily cron
 ** this compression script will take averages of most data and maxes for max based data over certain timespan chunks and put them in another table, and delete old rows from the more granular counterpart
 ** the interface will have modes for each level of granularity that we have in the database, the less granular, the more history you get
+* fix flot so that the horizontal scale is in PST not UTC
+* display relevant metrics (maxes and mins for interesting things)

@@ -1,14 +1,13 @@
 module ObservationsHelper
   def plot name
-    content_tag :div, '', :id => name, :style => 'width:940px;height:500px;', :class => 'flot grid_12'
+    content_tag :div, '', :id => name, :style => 'width:940px;height:500px;', :class => 'flot'
   end
 
   def metric_toggler(name, options = {})
-    options[:grid_size] ||= '2'
     options[:default] = true if options[:default].nil?
     options[:class] ||= ''
     options[:class] << (options[:default] ? " default_on" : " default_off")
-    content_tag :div, check_box_with_label(name), :class => "grid_#{options[:grid_size]} metric_toggler #{options[:class]}"
+    content_tag :div, check_box_with_label(name), :class => "metric_toggler #{options[:class]}"
   end
 
   def check_box_with_label(name)
