@@ -13,13 +13,17 @@
 }
 
 .flot{ .grid_12; }
-.legend td{ padding: 2px; }
+    .legend td{ padding: 2px; }
 
-#tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
-    h2{ color: #112; }
-        .attribute{ font-weight: normal; }
-    .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
-}
+    #tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
+        h2{ color: #112; }
+            .attribute{ font-weight: normal; }
+        .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
+    }
+    
+    .nav_arrow{ height: 500px; width: 190px; background-color: #ccc; position: absolute; top: 0px; z-index: -100; }
+    #left_arrow{ .nav_arrow; left: 0px; }
+    #right_arrow{ .nav_arrow; right: 0px; }
 
 .textile_file{ height: 400px; overflow-y: auto; }
 #changelog{ .textile_file; }

@@ -10,13 +10,11 @@ class Observation < ActiveRecord::Base
     Observation.last.observed_at < 55.minutes.ago
   end
 
-  def observed_at_for_js
+  def observed_at_for_flot
     observed_at.to_i * 1000
   end
-  alias_method :observed_at_for_json, :observed_at_for_js
-
 
   def attribute_pair_for_plot(attribute)
-    [ self.observed_at_for_js, self[attribute] ]
+    [ self.observed_at_for_flot, self[attribute] ]
   end
 end

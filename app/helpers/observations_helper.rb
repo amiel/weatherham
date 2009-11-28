@@ -26,8 +26,10 @@ module ObservationsHelper
     	end
 
     	data[:times] = @observations.each_with_object({}) do |observation, hash|
-    		hash[observation.observed_at_for_json] = observation.attributes.reject{|k,v| ! Observation.other_attributes.include? k }
+    		hash[observation.observed_at_for_flot] = observation.attributes.reject{|k,v| ! Observation.other_attributes.include? k }
     	end
+    	
+    	data[:earliest_point] = @observations.first.observed_at_for_flot
   	end
   end
 end

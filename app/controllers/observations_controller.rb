@@ -29,9 +29,12 @@ class ObservationsController < ApplicationController
   end
 
   def range
-    range = Time.zone.parse(params[:range][:begin]) .. Time.zone.parse(params[:range][:end])
-    logger.debug(range.inspect)
-    @observations = Observation.all :conditions => { :observed_at => range }, :order => 'id DESC'
+    if stale?(:last_modified => Time.zone.parse(params[:range_begin])) then
+      range = Time.zone.parse(params[:range_begin]) .. Time.zone.parse(params[:range_end])
+      logger.debug(range.inspect)
+      @observations = Observation.all :conditions => { :observed_at => range }
+      render :action => 'show'
+    end
   end
 
   def changelog

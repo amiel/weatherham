@@ -10,7 +10,8 @@ $(document).ready(function() {
 	
 	$('a[rel=facebox]').facebox();
 	
-	var observations = null,
+	var flot = null,
+		observations = null,
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
@@ -46,6 +47,41 @@ $(document).ready(function() {
 		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5, opacity: 0.80 }).fadeIn(200);
     }
 	
+	function edge_size() {
+		return (flot.getAxes().xaxis.max - flot.getAxes().xaxis.min) / 5;
+	}
+	
+	function is_left_edge(pos) {
+		var l = flot.getAxes().xaxis.min,
+			r = l + edge_size();
+		return l < pos.x && pos.x < r;
+	}
+	
+	function is_right_edge(pos) {
+		var r = flot.getAxes().xaxis.max,
+			l = r - edge_size();
+		return l < pos.x && pos.x < r;
+	}
+	
+	function show_left_arrow() {
+		if ($('#left_arrow').length == 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
+		$('#left_arrow').stop().fadeTo(50, 0.8);
+	}
+	
+	function show_right_arrow() {
+		if ($('#right_arrow').length == 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
+		$('#right_arrow').stop().fadeTo(50, 0.8);
+	}
+	
+	function hide_left_arrow() {
+		$('#left_arrow').stop().fadeTo(50, 0);
+	}
+	
+	function hide_right_arrow() {
+		$('#right_arrow').stop().fadeTo(50, 0);
+	}
+	
+	
 	var previousPoint = null;
 	placeholder.bind("plothover", function (event, pos, item) {
 		if (item) {
@@ -71,7 +107,52 @@ $(document).ready(function() {
 			}
 		} else {
 			$("#tooltip").stop().fadeOut(200);
-			previousPoint = null;            
+			previousPoint = null;
+			
+			
+			if (is_left_edge(pos)) {
+				show_left_arrow();
+				hide_right_arrow();
+			} else if (is_right_edge(pos)) {
+				show_right_arrow();
+				hide_left_arrow();
+			} else {
+				hide_right_arrow();
+				hide_left_arrow();
+			}
+			
+		}
+	});
+	
+	function merge_datas(data) {
+		$.extend(observations.times, data.times);
+		for (name in observations.plot_pairs) {
+			if (data.earliest_point < observations.earliest_point) {
+				observations.plot_pairs[name] = data.plot_pairs[name].concat(observations.plot_pairs[name]);
+			}
+		}
+		
+		observations.earliest_point = Math.min(observations.earliest_point, data.earliest_point);
+		setup_datasets();
+	}
+	
+	placeholder.bind("plotclick", function (event, pos, item) {
+		if (!item) {
+			if (is_left_edge(pos)) {
+				var left_edge = flot.getAxes().xaxis.min,
+					diff = 2 * (1000 * 60 * 60), // hours
+					new_left_edge = left_edge - diff;
+				xmin = new_left_edge; xmax = flot.getAxes().xaxis.max - diff;
+				if (new_left_edge < observations.earliest_point) {
+					var range_begin = new Date(xmin - (xmin % (diff * 2.5))),
+						range_end = new Date(observations.earliest_point - 1000),
+						url = "/observations/range/" + range_begin + "/" + range_end + ".json";
+					$.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); });
+				} else {
+					plot_for_checkboxes();
+				}
+			} else if (is_right_edge(pos)) {
+			}
 		}
 	});
 
@@ -86,7 +167,7 @@ $(document).ready(function() {
 				return res;
 			};
 		
-		$.plot(placeholder, data, {
+		flot = $.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
 			yaxis: { min: 0, max: Base.ranges.max },
 			y2axis: {
