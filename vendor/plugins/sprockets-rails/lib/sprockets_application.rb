@@ -33,10 +33,11 @@ class SprocketsApplication
 	end
 	
 	def concatenation_with_google_closure_compiler
-    GoogleClosureCompiler::Javascript.new(concatenation_without_google_closure_compiler).compiled
+	  self.class.use_google_closure_compiler ?
+	    GoogleClosureCompiler::Javascript.new(concatenation_without_google_closure_compiler).compiled :
+	    concatenation_without_google_closure_compiler
   end
-  alias_method_chain :concatenation, :google_closure_compiler if use_google_closure_compiler and defined? GoogleClosureCompiler
-
+  alias_method_chain :concatenation, :google_closure_compiler if defined? GoogleClosureCompiler
 
 	def source_is_unchanged?
 		previous_source_last_modified, @source_last_modified = 
