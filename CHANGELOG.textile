@@ -1,6 +1,7 @@
-h2. 2009-11-??
+h2. 2009-11-29
 
 * [CHANGED] optimize load time by not sending unnecessary fields, cutting initial data load in half
+* [NEW] you can now pan to earlier times by clicking near the edge of the graph
 
 h2. 2009-11-25
 

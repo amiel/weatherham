@@ -129,6 +129,8 @@ $(document).ready(function() {
 		for (name in observations.plot_pairs) {
 			if (data.earliest_point < observations.earliest_point) {
 				observations.plot_pairs[name] = data.plot_pairs[name].concat(observations.plot_pairs[name]);
+			} else if (observations.latest_point < data.latest_point) {
+				
 			}
 		}
 		
@@ -138,20 +140,28 @@ $(document).ready(function() {
 	
 	placeholder.bind("plotclick", function (event, pos, item) {
 		if (!item) {
+			var panning_distance = 4 * (1000 * 60 * 60); // hours
 			if (is_left_edge(pos)) {
 				var left_edge = flot.getAxes().xaxis.min,
-					diff = 2 * (1000 * 60 * 60), // hours
-					new_left_edge = left_edge - diff;
-				xmin = new_left_edge; xmax = flot.getAxes().xaxis.max - diff;
+					new_left_edge = left_edge - panning_distance;
+				xmin = new_left_edge; xmax = flot.getAxes().xaxis.max - panning_distance;
 				if (new_left_edge < observations.earliest_point) {
-					var range_begin = new Date(xmin - (xmin % (diff * 2.5))),
-						range_end = new Date(observations.earliest_point - 1000),
+					var range_begin = +new Date(xmin - (xmin % (panning_distance * 3))),
+						range_end = +new Date(observations.earliest_point - 1000),
 						url = "/observations/range/" + range_begin + "/" + range_end + ".json";
 					$.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); });
 				} else {
 					plot_for_checkboxes();
 				}
 			} else if (is_right_edge(pos)) {
+				var right_edge = flot.getAxes().xaxis.max,
+					new_right_edge = right_edge + panning_distance;
+				if (new_right_edge > observations.latest_point) {
+
+				} else { // only pan if there is data
+					xmin = flot.getAxes().xaxis.min + panning_distance; xmax = new_right_edge;
+					plot_for_checkboxes();
+				}
 			}
 		}
 	});
@@ -191,12 +201,12 @@ $(document).ready(function() {
 	}
 	
 	function plot_for_checkboxes() {
+		show_activity();
 		plot($('.metric_toggler input:checked').map(function(){ return datasets[this.id]; }));
 	}
 	
 	
 	$('.metric_toggler input').change(function() {
-		show_activity();
 		plot_for_checkboxes();
 	}).each(function(index) {
 		$(this).parents('.metric_toggler').css('background-color', colors[index]);

@@ -30,6 +30,7 @@ module ObservationsHelper
     	end
     	
     	data[:earliest_point] = @observations.first.observed_at_for_flot
+    	data[:latest_point] = @observations.last.observed_at_for_flot
   	end
   end
 end
