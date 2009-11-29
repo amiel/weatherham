@@ -6,6 +6,7 @@ h3. TODO
 ** indicate "Last Observation" for current panned state
 ** icons for hover in panning areas
 ** indication of current day
+** only allow one ajax request at a time
 * write a compression script, that runs on the daily cron
 ** this compression script will take averages of most data and maxes for max based data over certain timespan chunks and put them in another table, and delete old rows from the more granular counterpart
 ** the interface will have modes for each level of granularity that we have in the database, the less granular, the more history you get

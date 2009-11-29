@@ -6,7 +6,8 @@
 @import "_formtastic_changes";
 
 
-#activity{ .grid_12; background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: 20px; }
+@flot_height: 500px;
+@flot_width: 940px;
 
 .metric_toggler{ .grid_2; padding: 1px 0;
     label{ display: block; }
@@ -21,7 +22,9 @@
         .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
     }
     
-    .nav_arrow{ height: 500px; width: 190px; position: absolute; top: 0px; z-index: -100; }
+    .flot_object{ position: absolute; top: 0px; z-index: -100; }
+    #activity{ .flot_object; background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; }
+    .nav_arrow{ .flot_object; height: @flot_height; width: @flot_width / 5; }
     #left_arrow{ .nav_arrow; left: 0px; }
     #right_arrow{ .nav_arrow; right: 0px; }
 

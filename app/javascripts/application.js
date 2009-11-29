@@ -19,6 +19,7 @@ $(document).ready(function() {
 	
 	
 	function show_activity() {
+		if ($('#activity').length == 0) $('<div id="activity"></div>').appendTo(placeholder);
 		$('#activity').fadeTo(100, 0.8);
 	}
 	
@@ -149,6 +150,7 @@ $(document).ready(function() {
 					var range_begin = +new Date(xmin - (xmin % (panning_distance * 3))),
 						range_end = +new Date(observations.earliest_point - 1000),
 						url = "/observations/range/" + range_begin + "/" + range_end + ".json";
+					show_activity();
 					$.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); });
 				} else {
 					plot_for_checkboxes();
