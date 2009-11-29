@@ -15,7 +15,10 @@ $(document).ready(function() {
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
-		colors = ["#edc240", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"];
+		colors = ["#edc240", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"],
+		panning_distance = 4 * (1000 * 60 * 60), // hours
+		panning_modulo_chunk = panning_distance * 3,
+		current_ajax_request = null;
 	
 	
 	function show_activity() {
@@ -141,17 +144,17 @@ $(document).ready(function() {
 	
 	placeholder.bind("plotclick", function (event, pos, item) {
 		if (!item) {
-			var panning_distance = 4 * (1000 * 60 * 60); // hours
+			if (current_ajax_request) { Base.log('double click?', current_ajax_request); return; }
 			if (is_left_edge(pos)) {
 				var left_edge = flot.getAxes().xaxis.min,
 					new_left_edge = left_edge - panning_distance;
 				xmin = new_left_edge; xmax = flot.getAxes().xaxis.max - panning_distance;
 				if (new_left_edge < observations.earliest_point) {
-					var range_begin = +new Date(xmin - (xmin % (panning_distance * 3))),
-						range_end = +new Date(observations.earliest_point - 1000),
+					var range_begin = +new Date(xmin - (xmin % panning_modulo_chunk)),
+						range_end = +new Date(observations.earliest_point - 1000), // subtract one second from query so that we don't get the same result we already have back
 						url = "/observations/range/" + range_begin + "/" + range_end + ".json";
 					show_activity();
-					$.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); });
+					current_ajax_request = $.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); current_ajax_request = null; });
 				} else {
 					plot_for_checkboxes();
 				}
@@ -159,7 +162,7 @@ $(document).ready(function() {
 				var right_edge = flot.getAxes().xaxis.max,
 					new_right_edge = right_edge + panning_distance;
 				if (new_right_edge > observations.latest_point) {
-
+					// we could check if there is new datas to load, but maybe we should poll or something and load that automatically...4
 				} else { // only pan if there is data
 					xmin = flot.getAxes().xaxis.min + panning_distance; xmax = new_right_edge;
 					plot_for_checkboxes();
