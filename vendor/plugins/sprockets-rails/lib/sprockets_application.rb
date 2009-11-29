@@ -1,6 +1,7 @@
 class SprocketsApplication
-	cattr_accessor :use_page_caching
-	self.use_page_caching = true
+	cattr_accessor :use_page_caching, :use_google_closure_compiler
+	self.use_page_caching = true  
+	self.use_google_closure_compiler = Rails.env.production?
 
 	def initialize(name = nil)
 		@name = name.blank? ? nil : name
@@ -30,6 +31,11 @@ class SprocketsApplication
 		secretary.reset! unless source_is_unchanged?
 		secretary.concatenation
 	end
+	
+	def concatenation_with_google_closure_compiler
+    GoogleClosureCompiler::Javascript.new(concatenation_without_google_closure_compiler).compiled
+  end
+  alias_method_chain :concatenation, :google_closure_compiler if use_google_closure_compiler and defined? GoogleClosureCompiler
 
 
 	def source_is_unchanged?

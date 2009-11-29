@@ -29,6 +29,8 @@ Here's a walkthrough of the installation process:
 
 6. NEW: As always, calling `<%= sprockets_include_tag %>` will give you the concatenation of all files specified in config.yml as :source_files. However, calling `<%= sprockets_include_tag 'file' %>` will look for 'file.js' in your :load_path, and just give you its concatenation.
 
+7. NEW: Sprockets will use GoogleClosureCompiler if it is available (use SprocketsApplication.use_google_closure_compiler = false to turn this behavior off)
+
 Once `sprockets-rails` is installed, you can check out Sprockets plugins into the `vendor/sprockets/` directory. By default, `sprockets-rails` configures Sprockets' load path to search `vendor/sprockets/*/src/`, as well as `vendor/plugins/*/javascripts/`. This means that the `javascripts/` directories of Rails plugins are automatically installed into your Sprockets load path.
 
 ## License
