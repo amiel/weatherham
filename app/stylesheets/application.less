@@ -9,21 +9,34 @@
 @flot_height: 500px;
 @flot_width: 940px;
 
+@primary_color: #f26522;
+@secondary_color: #fff;
+@background_color: #4e6e8d;
+
+// Bellgothic bold
+body{ background: @background_color; color: @primary_color; font: Helvetica, sans-serif; }
+
+#header{ .container_12;
+    h1{ text-indent: -999em; background: url(/images/weatherham.png) no-repeat 0 60px; height: 110px; border-bottom: 1px solid @primary_color; }
+}
+
+#wrapper{ .container_12; }
+
 .metric_toggler{ .grid_2; padding: 1px 0;
-    label{ display: block; }
+    label{ display: block; color: #000; }
 }
 
 .flot{ .grid_12; }
     .legend td{ padding: 2px; }
 
-    #tooltip{ position: absolute; display: none; border: 1px solid #fdd; padding: 2px; background-color: #fee;
-        h2{ color: #112; }
+    #tooltip{ position: absolute; display: none; padding: 2px; background-color: #fff;
+        h3{ color: #fff; }
             .attribute{ font-weight: normal; }
-        .time{ font-size: 80%; color: #223; margin-top: 0.3em; }
+        .time{ font-size: 80%; color: #eee; margin-top: 0.3em; }
     }
     
     .flot_object{ position: absolute; top: 0px; z-index: -100; }
-    #activity{ .flot_object; background: #fff url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; }
+    #activity{ .flot_object; background: transparent url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; }
     .nav_arrow{ .flot_object; height: @flot_height; width: @flot_width / 5; }
     #left_arrow{ .nav_arrow; left: 0px; }
     #right_arrow{ .nav_arrow; right: 0px; }
@@ -35,8 +48,6 @@
         ul{ list-style-type: circle; }
     }
 }
-
-#wrapper{ .container_12; }
 
 #footer{ .grid_12; text-align: center; font-size: 80%; color: #999; margin: 1em 0 2em;
 	a{ color: #999; text-decoration: none;

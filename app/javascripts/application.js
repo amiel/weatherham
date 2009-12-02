@@ -45,9 +45,10 @@ $(document).ready(function() {
 	}
 	
 	
-	function show_tooltip(x, y, contents) {
+	function show_tooltip(x, y, contents, color) {
 		if ($('#tooltip').length == 0)
 	        $('<div id="tooltip"></div>').appendTo('body');
+		if (color) $('#tooltip').css('background-color', color);
 		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5, opacity: 0.80 }).fadeIn(200);
     }
 	
@@ -107,7 +108,7 @@ $(document).ready(function() {
 					content += ' ' + dir;
 				}
 				content = '<h3><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + content + '</span></h3><p class="time">' + new Date(x) + '</p>';
-				show_tooltip(item.pageX, item.pageY, content);
+				show_tooltip(item.pageX, item.pageY, content, item.series.color);
 			}
 		} else {
 			$("#tooltip").stop().fadeOut(200);

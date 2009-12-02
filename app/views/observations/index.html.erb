@@ -2,13 +2,11 @@
 <% js_var :five_min_path, observation_path(:five_min, :format => :json) %>
 <% js_var :ranges, @ranges %>
 
-
 <%= spreadhead "home" %>
 
 <h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
 
-<!-- <div id="activity"></div> -->
-
+<%= plot :weather %>
 <form>
 	<%= metric_toggler 'wind_speed' %>
 	<%= metric_toggler 'hi_speed' %>
@@ -19,5 +17,4 @@
 	<div class="clear"></div>
 </form>
 
-<%= plot :weather %>
 
