@@ -1,5 +1,6 @@
 h3. TODO
 
+* wind direction graphs
 * design and interface (nicole is currently working on a design)
 * have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
 * Panning
@@ -13,6 +14,7 @@ h3. TODO
 * fix flot so that the horizontal scale is in PST not UTC
 * display relevant metrics (maxes and mins for interesting things)
 * the entire javascript could use a refactor
+* rain fall? (if bellcold fixes it)
 
 h3. CONTRIBUTING
 

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091125200048) do
+ActiveRecord::Schema.define(:version => 20091202064439) do
 
   create_table "fetches", :force => true do |t|
     t.datetime "start_at"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20091125200048) do
     t.float    "barometer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "rain"
   end
 
   create_table "pages", :force => true do |t|
