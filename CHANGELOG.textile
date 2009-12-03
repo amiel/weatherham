@@ -1,6 +1,6 @@
 h2. 2009-12-03
 
-* [NEW] a design
+* [NEW] weatherham now has a design
 
 h2. 2009-11-29
 
