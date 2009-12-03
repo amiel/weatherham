@@ -1,10 +1,10 @@
 //= require <facebox>
 //= require <base>
 //= require <core_ext>
+//= require <date.format>
 
 //= require <flot/jquery.flot.min.js>
 //= require <flot/jquery.flot.navigate.min.js>
-// //= require <flot/jquery.flot.image.min.js>
 
 $(document).ready(function() {
 	
@@ -17,8 +17,8 @@ $(document).ready(function() {
 		xmin = null, xmax = null,
 		colors = [
 			"#24f7f2", // wind
-			"#f26522", // gust
-			"#b1ec10", // temp
+			"#b1ec10", // gust
+			"#f26522", // temp
 			"#ffffff", // baro
 			"#ffffff"  // humidity
 		],
@@ -115,7 +115,8 @@ $(document).ready(function() {
 					
 					content += ' ' + dir;
 				}
-				content = '<h3><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + content + '</span></h3><p class="time">' + new Date(x) + '</p>';
+				content = '<h3><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + content + '</span></h3>' +
+						  '<p class="time">' + (new Date(x)).format('ddd, mmm d, yyyy"<br/>" h:MM TT Z') + '</p>';
 				show_tooltip(item.pageX, item.pageY, content, item.series.color);
 			}
 		} else {
@@ -207,6 +208,7 @@ $(document).ready(function() {
 			grid: {
 				borderColor: primary_color, borderWidth: 1,
 				backgroundColor: 'rgba(0, 0, 0, 0.4)',
+				labelMargin: 10,
 				tickColor: background_color,
 				markings: [ { y2axis: { from: atm, to: atm }, color: background_color } ], // 1 atmosphere line
 				hoverable: true, clickable: true
@@ -227,7 +229,7 @@ $(document).ready(function() {
 	$('.metric_toggler input').change(function() {
 		plot_for_checkboxes();
 	}).each(function(index) {
-		$(this).parents('.metric_toggler').css('background-color', colors[index]);
+		$(this).parents('.metric_toggler').find('label').css('background-color', colors[index]);
 	});
 	$('.metric_toggler.default_on input').attr('checked', 'checked');
 	

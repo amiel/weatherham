@@ -14,7 +14,7 @@
 @background_color: #4e6e8d;
 
 // Bellgothic bold
-body{ background: @background_color url(/images/background.jpg) repeat-x; color: @primary_color; font: Helvetica, sans-serif; }
+body{ background: @background_color url(/images/background.jpg) repeat-x; color: @primary_color; font: "Helvetica Neue", sans-serif; letter-spacing: 0.05em; }
 
 #header{ .container_12;
     h1{ .grid_12; text-indent: -999em; background: url(/images/weatherham.png) no-repeat 0 40px; height: 90px; border-bottom: 1px solid @primary_color; }
@@ -32,16 +32,17 @@ a{ color: @primary_color;
 .metric_toggler{ padding: 1px 0; margin: 1em; .grid_2;
     label{ display: block; color: #000; }
 }
+.metric_toggler.first{ .prefix_1; }
 
 .flot{ .grid_12; }
-    .tickLabel{ color: @primary_color; }
+    .tickLabel{ color: @primary_color; letter-spacing: 0; }
     .legend td{ padding: 2px; }
 
 /*    .baro_label{ color: @secondary_color; }*/
-    #tooltip{ position: absolute; display: none; padding: 2px; background-color: #fff;
-        h3{ color: #000; }
+    #tooltip{ position: absolute; display: none; padding: 5px; background-color: #fff;
+        h3{ color: #000; margin-bottom: 0.5em; }
             .attribute{ font-weight: normal; }
-        .time{ font-size: 80%; color: #111; margin-top: 0.3em; }
+        .time{ font-size: 80%; color: #111; line-height: 1.5em; }
     }
     
     .flot_object{ position: absolute; top: 0px; z-index: -100; }
