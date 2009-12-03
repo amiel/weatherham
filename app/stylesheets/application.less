@@ -20,6 +20,10 @@ body{ background: @background_color url(/images/background.jpg) repeat-x; color:
     h1{ .grid_12; text-indent: -999em; background: url(/images/weatherham.png) no-repeat 0 40px; height: 90px; border-bottom: 1px solid @primary_color; }
 }
 
+a{ color: @primary_color;
+    :hover{ color: @secondary_color; }
+}
+
 
 #wrapper{ .container_12; }
 
@@ -33,6 +37,7 @@ body{ background: @background_color url(/images/background.jpg) repeat-x; color:
     .tickLabel{ color: @primary_color; }
     .legend td{ padding: 2px; }
 
+/*    .baro_label{ color: @secondary_color; }*/
     #tooltip{ position: absolute; display: none; padding: 2px; background-color: #fff;
         h3{ color: #000; }
             .attribute{ font-weight: normal; }
@@ -45,6 +50,8 @@ body{ background: @background_color url(/images/background.jpg) repeat-x; color:
     #left_arrow{ .nav_arrow; left: 0px; }
     #right_arrow{ .nav_arrow; right: 0px; }
 
+
+#facebox{ color: #000; }
 .textile_file{ height: 400px; overflow-y: auto; }
 #changelog{ .textile_file; }
 #todo{ .textile_file;
@@ -53,8 +60,8 @@ body{ background: @background_color url(/images/background.jpg) repeat-x; color:
     }
 }
 
-#footer{ .grid_12; text-align: center; font-size: 80%; color: #999; margin: 1em 0 2em;
-	a{ color: #999; text-decoration: none;
+#footer{ .grid_12; text-align: center; font-size: 80%; color: @primary_color; margin: 1em 0 2em;
+	a{ color: @primary_color; text-decoration: none;
     	:hover{ text-decoration: underline; }
 	}
 }

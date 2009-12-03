@@ -15,8 +15,14 @@ $(document).ready(function() {
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
-		colors = ["#24f7f2", "#ffffff", "#f26522", "#b1ec10", "#ffffff"],
-		primary_color = colors[2],
+		colors = [
+			"#24f7f2", // wind
+			"#f26522", // gust
+			"#b1ec10", // temp
+			"#ffffff", // baro
+			"#ffffff"  // humidity
+		],
+		primary_color = "#f26522",
 		background_color = '#4e6e8d',
 		panning_distance = 4 * (1000 * 60 * 60), // hours
 		panning_modulo_chunk = panning_distance * 3,
@@ -178,9 +184,9 @@ $(document).ready(function() {
 	function plot(data, options) {
 		var atm = 29.9213,
 			baro_ticks = function(axis) {
-				var res = [[atm, '1 atm']], i = Math.ceil(axis.min * 5) / 5;
+				var res = [[atm, '<span class="baro_label">1 atm</span>']], i = Math.ceil(axis.min * 5) / 5;
 				do {
-					res.push([i, Math.round(i*5)/5 + ' ' + Base.I18n.barometer.unit]);
+					res.push([i, '<span class="baro_label">' + Math.round(i*5)/5 + ' ' + Base.I18n.barometer.unit + '</span>']);
 					i += 1/5;
 				} while (i < axis.max);
 				return res;

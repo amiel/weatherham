@@ -47,7 +47,7 @@ module Gather
 		hash[:hi_dir] = data[11]
 		hash[:wind_chill] = data[12]
 		hash[:barometer] = data[15]
-		hash[:rain] = data[16]
+    # hash[:rain] = data[16]
 
 		return hash
 	end
