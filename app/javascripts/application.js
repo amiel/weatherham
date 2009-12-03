@@ -15,7 +15,9 @@ $(document).ready(function() {
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
-		colors = ["#edc240", "#afd8f8", "#cb4b4b", "#4da74d", "#9440ed"],
+		colors = ["#24f7f2", "#ffffff", "#f26522", "#b1ec10", "#ffffff"],
+		primary_color = colors[2],
+		background_color = '#4e6e8d',
 		panning_distance = 4 * (1000 * 60 * 60), // hours
 		panning_modulo_chunk = panning_distance * 3,
 		current_ajax_request = null;
@@ -49,7 +51,7 @@ $(document).ready(function() {
 		if ($('#tooltip').length == 0)
 	        $('<div id="tooltip"></div>').appendTo('body');
 		if (color) $('#tooltip').css('background-color', color);
-		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5, opacity: 0.80 }).fadeIn(200);
+		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 0.8);
     }
 	
 	function edge_size() {
@@ -111,7 +113,7 @@ $(document).ready(function() {
 				show_tooltip(item.pageX, item.pageY, content, item.series.color);
 			}
 		} else {
-			$("#tooltip").stop().fadeOut(200);
+			$("#tooltip").stop().fadeTo(200, 0);
 			previousPoint = null;
 			
 			
@@ -172,6 +174,7 @@ $(document).ready(function() {
 		}
 	});
 
+
 	function plot(data, options) {
 		var atm = 29.9213,
 			baro_ticks = function(axis) {
@@ -196,7 +199,10 @@ $(document).ready(function() {
 				margin: [ 10, 5 ]
 			},
 			grid: {
-				markings: [ { y2axis: { from: atm, to: atm } } ], // 1 atmosphere line
+				borderColor: primary_color, borderWidth: 1,
+				backgroundColor: 'rgba(0, 0, 0, 0.4)',
+				tickColor: background_color,
+				markings: [ { y2axis: { from: atm, to: atm }, color: background_color } ], // 1 atmosphere line
 				hoverable: true, clickable: true
 			},
             series: {

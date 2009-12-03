@@ -1,3 +1,7 @@
+h2. 2009-12-??
+
+* [NEW] a design
+
 h2. 2009-11-29
 
 * [CHANGED] optimize load time by not sending unnecessary fields, cutting initial data load in half

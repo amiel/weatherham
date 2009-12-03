@@ -2,9 +2,12 @@
 <% js_var :five_min_path, observation_path(:five_min, :format => :json) %>
 <% js_var :ranges, @ranges %>
 
-<%= spreadhead "home" %>
-
-<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
+<div id="top_copy">
+	<p>Here you can see a visualization of weather patterns from <a href="http://bellcold.com">Bellingham Cold Storage</a>.</p>
+	<p>We&#8217;re on twitter: <a href="http://twitter.com/weatherham">@weatherham</a></p>
+	
+	<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
+</div>
 
 <%= plot :weather %>
 <form>
