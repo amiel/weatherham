@@ -16,11 +16,11 @@ $(document).ready(function() {
 		datasets = null,
 		xmin = null, xmax = null,
 		colors = [
-			"#24f7f2", // wind
+			"#EEB92E", // wind
 			"#b1ec10", // gust
 			"#f26522", // temp
 			"#ffffff", // baro
-			"#EEB92E"  // humidity
+			"#24f7f2"  // humidity
 		],
 		primary_color = "#f26522",
 		background_color = '#4e6e8d',
