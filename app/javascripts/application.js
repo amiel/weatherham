@@ -20,7 +20,7 @@ $(document).ready(function() {
 			"#b1ec10", // gust
 			"#f26522", // temp
 			"#ffffff", // baro
-			"#ffffff"  // humidity
+			"#EEB92E"  // humidity
 		],
 		primary_color = "#f26522",
 		background_color = '#4e6e8d',
