@@ -4,7 +4,7 @@
 en:
   site_name: Bellingham Weather
   slogan: Visualization of recent weather data from Bellingham Coldstorage
-  gathering_new_datas: Gathering New Datas!
+  gathering_new_datas: Now retreiving more recent data!
   attributes:
     hi_speed:
       title: Gust
