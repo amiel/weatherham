@@ -5,8 +5,8 @@ class Gather
 	  new.gather!
 	end
 	
+	# TODO, double check robustness
 	def gather!
-	  @calls = 0
     @observations = get_datas!
     @last_observation_at = Observation.last(:select => :observed_at).observed_at
     only_the_ones_we_care_about.each do |observation|
@@ -15,6 +15,7 @@ class Gather
     end
   end
 
+  # binary search, this is entirely unnecessary, but I just wanted to write a binary search
   def only_the_ones_we_care_about(left = 0, right = @observations.size)
     pos = ((right - left) / 2) + left
     if @last_observation_at == @observations[left][:observed_at] then
