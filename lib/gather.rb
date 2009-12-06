@@ -1,20 +1,46 @@
 require 'time'
 require 'open-uri'
-module Gather
+class Gather
 	def self.bellingham_coldstorage_observations!
-
-		open 'http://www.bellcold.com/download.txt' do |f|
-			f.each do |line|
-				datas = parse_weather(line)
-				next unless datas
-				tolerance_range = (datas[:observed_at] - 1.minute)..(datas[:observed_at] + 1.minute)
-				next if Observation.first :conditions => { :observed_at => tolerance_range }
-				o = Observation.create datas
-				Observation.logger.info "created #{o.inspect}"
-			end
-		end
+	  new.gather!
 	end
+	
+	def gather!
+	  @calls = 0
+    @observations = get_datas!
+    @last_observation_at = Observation.last(:select => :observed_at).observed_at
+    only_the_ones_we_care_about.each do |observation|
+      o = Observation.create observation
+      Observation.logger.info "created #{o.inspect}"
+    end
+  end
 
+  def only_the_ones_we_care_about(left = 0, right = @observations.size)
+    pos = ((right - left) / 2) + left
+    if @last_observation_at == @observations[left][:observed_at] then
+      @observations[(left+1)..-1]
+    elsif @observations[pos][:observed_at] <= @last_observation_at then
+      only_the_ones_we_care_about pos, right
+    else
+      only_the_ones_we_care_about left, pos
+    end
+  end
+
+        # next unless datas
+        # tolerance_range = (datas[:observed_at] - 1.minute)..(datas[:observed_at] + 1.minute)
+        # next if Observation.first :conditions => { :observed_at => tolerance_range }
+        # o = Observation.create datas
+        # Observation.logger.info "created #{o.inspect}"
+        
+
+  def get_datas!
+    returning datas = [] do
+  		open 'http://www.bellcold.com/download.txt' do |f|
+  			f.each{ |line| datas << self.class.parse_weather(line) }
+  		end
+  		datas.compact!
+		end
+  end
 
 	def self.parse_weather line
 		data = line.split

@@ -1,3 +1,7 @@
+h2. 2009-12-05
+
+* [CHANGED] optimized data gather, gathering data should be faster by a couple of orders of magnitude
+
 h2. 2009-12-03
 
 * [NEW] weatherham now has a design
