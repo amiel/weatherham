@@ -26,9 +26,10 @@ module ObservationsHelper
     	end
 
     	data[:times] = @observations.each_with_object({}) do |observation, hash|
-    		hash[observation.observed_at_for_flot] = observation.attributes.reject{|k,v| ! Observation.other_attributes.include? k }
+    		hash[observation.observed_at_for_flot] = observation.attributes.reject{|k,v| ! Observation.other_attributes.values.include? k.to_sym }
     	end
     	
+    	data[:mappings] = Observation.other_attributes
     	data[:earliest_point] = @observations.first.observed_at_for_flot
     	data[:latest_point] = @observations.last.observed_at_for_flot
   	end

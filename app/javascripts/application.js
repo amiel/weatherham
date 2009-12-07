@@ -94,6 +94,10 @@ $(document).ready(function() {
 		$('#right_arrow').stop().fadeTo(50, 0);
 	}
 	
+	function make_tooltip_for_attribute(tag, attribute, value) {
+		return '<' + tag + '><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + value + Base.I18n[attribute].unit + '</span></' + tag + '>';
+	}
+	
 	
 	var previousPoint = null;
 	placeholder.bind("plothover", function (event, pos, item) {
@@ -104,19 +108,15 @@ $(document).ready(function() {
 				$("#tooltip").stop().hide();
 				var x = item.datapoint[0],
 					y = item.datapoint[1].toFixed(2),
-					attribute = item.series.attribute_name;
-				
-
-				var content = y + Base.I18n[attribute].unit;
-				if (/hi_speed|wind_speed/.test(attribute)) {
-					var d = observations['times'][x],
-						correct_dir = /hi_speed/.test(attribute) ? 'hi_dir' : 'wind_dir',
-						dir = d[correct_dir];
+					attribute = item.series.attribute_name,
+					mapping = observations.mappings[attribute],
 					
-					content += ' ' + dir;
-				}
-				content = '<h3><span class="attribute">' + Base.I18n[attribute].title + ':</span> <span class="value">' + content + '</span></h3>' +
-						  '<p class="time">' + (new Date(x)).format('ddd, mmm d, yyyy"<br/>" h:MM TT Z') + '</p>';
+					content = make_tooltip_for_attribute('h3', attribute, y),
+					formatted_date = (new Date(x)).format('ddd, mmm d, yyyy"<br/>" h:MM TT Z');
+				
+				if (mapping) content += make_tooltip_for_attribute('h4', mapping, observations.times[x][mapping]);
+
+				content += '<p class="time">' + formatted_date + '</p>';
 				show_tooltip(item.pageX, item.pageY, content, item.series.color);
 			}
 		} else {

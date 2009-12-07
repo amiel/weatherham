@@ -6,11 +6,11 @@ en:
   slogan: Visualization of recent weather data from Bellingham Coldstorage
   gathering_new_datas: Now retreiving more recent data!
   attributes:
-    hi_speed:
-      title: Gust
-      unit: mph
     wind_speed:
       title: Wind Speed
+      unit: mph
+    hi_speed:
+      title: Gust
       unit: mph
     temp:
       title: Temperature
@@ -21,6 +21,15 @@ en:
     humidity:
       title: Humidity
       unit: %
+    wind_dir:
+      title: Direction
+      unit: ''
+    hi_dir:
+      title: Direction
+      unit: ''
+    wind_chill:
+      title: Wind Chill
+      unit: "&deg;F"
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'
