@@ -11,7 +11,9 @@ class Fetch < ActiveRecord::Base
 
   after_create :spawn_and_fetch
   def spawn_and_fetch
+    logger.error('STARTING SPAWN')
     spawn do
+      logger.error("SPAWN STARTED: #{Time.current}")
       self.update_attribute :start_at, Time.current
 
       Gather.bellingham_coldstorage_observations!
