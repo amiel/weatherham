@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Weatherham</title>
+        <% javascript 'jqtouch' %>
+        <% stylesheet 'vendor/jqtouch.css' %>      
+        <% stylesheet 'vendor/jqtouch.theme.css' %>             
+        
+        <%= yield :head %>
+        <%= yield :javascript %>        
+        <script type="text/javascript">
+        $.jQTouch({
+            icon: '/images/jqtouch/jqtouch.png'
+        });
+        </script>
+    </head>
+    <body>
+      <%= yield %>
+    </body>
+</html>

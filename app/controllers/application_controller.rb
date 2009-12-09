@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include AuthenticationHandling
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  responds_to_iphone
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
