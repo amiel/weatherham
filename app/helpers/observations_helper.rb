@@ -34,4 +34,14 @@ module ObservationsHelper
     	data[:latest_point] = @observations.last.observed_at_for_flot
   	end
   end
+  
+  def iphone_observation(field, options = {})
+    content_tag(:li,
+      content_tag(:span, options[:label] || t(:"attributes.#{field}.title"), :class => 'label') +
+      content_tag(:small,
+        @last_observation.send(field).to_s +
+        content_tag(:span, t(:"attributes.#{field}.unit"), :class => 'conter_label'),
+      :class => 'counter')
+    )
+  end
 end

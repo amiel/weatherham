@@ -2,17 +2,17 @@
     <div class="toolbar">
         <h1>Weatherham</h1>
     </div>
-    <h2>Right Now</h2>
+    <h2><%=l @last_observation.observed_at, :format => :long %></h2>
     <ul class="rounded">
 				<% %w(temp wind_speed barometer).each do |field| %>	
-	        <li><span class="label"><%=t :"attributes.#{field}.title" %></span> <small class="counter"><%= @last_observation.send(field) %><span class="counter_label"><%=t :"attributes.#{field}.unit" %></span></small></li>
+					<%= iphone_observation(field) %>
 				<% end %>
     </ul>
     <h2>More Information</h2>
     <ul class="rounded">
         <li class="arrow"><a href="#current">Current Conditions</a></li>
-        <li class="arrow"><a href="#current">Hourly</a></li>
-        <li class="arrow"><a href="#current">Today</a></li>        
+        <!-- <li class="arrow"><a href="#current">Hourly</a></li>
+        <li class="arrow"><a href="#current">Today</a></li> -->     
     </ul>    
     <div class="info">
 			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
@@ -26,12 +26,12 @@
     </div>
     <ul class="edgetoedge">
       <li class="sep">Temperature</li>
-      <li><span class="label">Ambient</span> <small class="counter">20<span class="counter_label">&deg;</span></small></li>
-      <li><span class="label">Wind Chill</span> <small class="counter">12<span class="counter_label">&deg;</span></small></li>
+			<%= iphone_observation :temp, :label => 'Ambient' %>
+			<%= iphone_observation :wind_chill %>
       <li class="sep">Wind</li>
-      <li><span class="label">Speed</span> <small class="counter">17<span class="counter_label">mph</span></small></li>
-      <li><span class="label">Gust</span> <small class="counter">23<span class="counter_label">mph</span></small></li>
-      <li><span class="label">Direction</span> <small class="counter">NNW</small></li>
+			<%= iphone_observation :wind_speed, :label => 'Speed' %>
+			<%= iphone_observation :hi_speed %>
+			<%= iphone_observation :wind_dir %>
     </ul>
     <div class="info">
 			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
