@@ -4,9 +4,9 @@
     </div>
     <h2>Right Now</h2>
     <ul class="rounded">
-        <li><span class="label">Temperature</span> <small class="counter">20<span class="counter_label">&deg;</span></small></li>
-        <li><span class="label">Wind</span> <small class="counter">7<span class="counter_label">mph</span></small></li>         
-        <li><span class="label">Barometer</span> <small class="counter">30.2</small></li>       
+				<% %w(temp wind_speed barometer).each do |field| %>	
+	        <li><span class="label"><%=t :"attributes.#{field}.title" %></span> <small class="counter"><%= @last_observation.send(field) %><span class="counter_label"><%=t :"attributes.#{field}.unit" %></span></small></li>
+				<% end %>
     </ul>
     <h2>More Information</h2>
     <ul class="rounded">
