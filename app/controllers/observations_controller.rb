@@ -13,6 +13,8 @@ class ObservationsController < ApplicationController
 			:max => %w( hi_speed temp humidity ).collect{|a| Observation.maximum a }.max
 		}
 		
+		@last_observation = Observation.last
+		
     if Rails.env.production? and Observation.need_fetch? then
       Fetch.start!
       flash.now[:notice] = I18n.t(:gathering_new_datas)
