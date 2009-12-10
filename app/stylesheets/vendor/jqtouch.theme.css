@@ -155,7 +155,7 @@ ul li.forward {
     background-repeat: no-repeat;
 }
 /* universal links on list */
-ul li a, li.img a + a {
+ul li a, li.img a + a, span.label {
     color: #fff;
     text-decoration: none;
     text-overflow: ellipsis;
@@ -525,3 +525,6 @@ ul.metal li.arrow a small {
     line-height: 17px;
 }
 /* @end */
+/* nathan's custom */
+.counter_label{ color: #888; font-weight: normal; }
+.info a{ color: #248; }

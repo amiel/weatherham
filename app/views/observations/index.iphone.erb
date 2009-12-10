@@ -2,15 +2,39 @@
     <div class="toolbar">
         <h1>Weatherham</h1>
     </div>
+    <h2>Right Now</h2>
     <ul class="rounded">
-        <li><a href="#ui">Current Temperature</a> <small class="counter">42&deg;</small></li>
-        <li><a href="#animations">Animations</a> <small class="counter">42</small></li>
-        <li><a href="#ajax">AJAX</a> <small class="counter">3</small></li>
-        <li><a href="#callbacks">Callback Events</a> <small class="counter">3</small></li>
-        <li><a href="#extensions">Extensions</a> <small class="counter">4</small></li>
-        <li><a href="#demos">Demos</a> <small class="counter">2</small></li>
+        <li><span class="label">Temperature</span> <small class="counter">20<span class="counter_label">&deg;</span></small></li>
+        <li><span class="label">Wind</span> <small class="counter">7<span class="counter_label">mph</span></small></li>         
+        <li><span class="label">Barometer</span> <small class="counter">30.2</small></li>       
+    </ul>
+    <h2>More Information</h2>
+    <ul class="rounded">
+        <li class="arrow"><a href="#current">Current Conditions</a></li>
+        <li class="arrow"><a href="#current">Hourly</a></li>
+        <li class="arrow"><a href="#current">Today</a></li>        
+    </ul>    
+    <div class="info">
+			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
+			Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/' %>.
+		</div>
+</div>
+<div id="current">
+    <div class="toolbar">
+        <h1>Current</h1>
+        <a class="back" href="#home">Back</a>
+    </div>
+    <ul class="edgetoedge">
+      <li class="sep">Temperature</li>
+      <li><span class="label">Ambient</span> <small class="counter">20<span class="counter_label">&deg;</span></small></li>
+      <li><span class="label">Wind Chill</span> <small class="counter">12<span class="counter_label">&deg;</span></small></li>
+      <li class="sep">Wind</li>
+      <li><span class="label">Speed</span> <small class="counter">17<span class="counter_label">mph</span></small></li>
+      <li><span class="label">Gust</span> <small class="counter">23<span class="counter_label">mph</span></small></li>
+      <li><span class="label">Direction</span> <small class="counter">NNW</small></li>
     </ul>
     <div class="info">
 			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
 			Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>.
+		</div>
 </div>
