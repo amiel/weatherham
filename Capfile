@@ -30,7 +30,7 @@ task :rollback do
     puts `git push -f heroku #{previous_release}:master`
     puts "Deleting rollbacked release '#{current_release}' ..."
     puts `git tag -d #{current_release}`
-    puts `git push heroku :refs/tags/#{current_release}`
+    puts `git -f push heroku :refs/tags/#{current_release}`
     puts 'All done!'
   else
     puts "No release tags found - can't roll back!"
