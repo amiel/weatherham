@@ -40,7 +40,7 @@ module ObservationsHelper
       content_tag(:span, options[:label] || t(:"attributes.#{field}.title"), :class => 'label') +
       content_tag(:small,
         @last_observation.send(field).to_s +
-        content_tag(:span, options[:unit] || t(:"attributes.#{field}.unit"), :class => 'conter_label'),
+        content_tag(:span, options[:unit] || t(:"attributes.#{field}.unit"), :class => 'counter_label'),
       :class => 'counter')
     )
   end
