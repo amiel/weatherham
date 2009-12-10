@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include AuthenticationHandling
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
-  responds_to_iphone
+  responds_to_iphone! :if => :mobile_domain?
 
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password, :password_confirmation
@@ -25,5 +25,9 @@ class ApplicationController < ActionController::Base
   
   def fresh_options(object)
     { :etag => object, :public => true, :last_modified => object.created_at.utc }
+  end
+  
+  def mobile_domain?
+    %w(m mobile).include? request.subdomains.first
   end
 end
