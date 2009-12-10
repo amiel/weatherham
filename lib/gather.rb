@@ -8,8 +8,9 @@ class Gather
 	# TODO, double check robustness
 	def gather!
     @observations = get_datas!
-    @last_observation_at = Observation.last(:select => :observed_at).observed_at
-    only_the_ones_we_care_about.each do |observation|
+    @last_observation_at = Observation.last(:select => :observed_at).try(:observed_at)
+    collection = @last_observation_at.nil? ? @observations : only_the_ones_we_care_about
+    collection.each do |observation|
       o = Observation.create observation
       Observation.logger.info "created #{o.inspect}"
     end

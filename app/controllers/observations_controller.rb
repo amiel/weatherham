@@ -5,6 +5,13 @@ class ObservationsController < ApplicationController
   
   
   def index
+    if Observation.need_fetch? then
+      Fetch.start!
+      flash.now[:notice] = I18n.t(:gathering_new_datas)
+    end
+    
+    return render(:inline => 'gathering datas') if Observation.first.nil?
+    
 		@ranges = {
 			:barometer => {
 				:max => Observation.maximum(:barometer),
@@ -15,11 +22,6 @@ class ObservationsController < ApplicationController
 		
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction
-		
-    if Rails.env.production? and Observation.need_fetch? then
-      Fetch.start!
-      flash.now[:notice] = I18n.t(:gathering_new_datas)
-    end
   end
 
 
