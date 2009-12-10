@@ -4,15 +4,15 @@
     </div>
     <h2><%=l @last_observation.observed_at, :format => :long %></h2>
     <ul class="rounded">
-				<% %w(temp wind_speed barometer).each do |field| %>	
-					<%= iphone_observation(field) %>
-				<% end %>
+				<%= iphone_observation :temp %>
+				<%= iphone_observation :wind_speed %>
+				<%= iphone_observation :barometer, :unit => direction_to_html(@barometer_direction) %>
     </ul>
     <h2>More Information</h2>
     <ul class="rounded">
         <li class="arrow"><a href="#current">Current Conditions</a></li>
         <!-- <li class="arrow"><a href="#current">Hourly</a></li>
-        <li class="arrow"><a href="#current">Today</a></li> -->     
+        <li class="arrow"><a href="#current">Today</a></li> -->
     </ul>    
     <div class="info">
 			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.

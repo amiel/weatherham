@@ -40,8 +40,15 @@ module ObservationsHelper
       content_tag(:span, options[:label] || t(:"attributes.#{field}.title"), :class => 'label') +
       content_tag(:small,
         @last_observation.send(field).to_s +
-        content_tag(:span, t(:"attributes.#{field}.unit"), :class => 'conter_label'),
+        content_tag(:span, options[:unit] || t(:"attributes.#{field}.unit"), :class => 'conter_label'),
       :class => 'counter')
     )
+  end
+  
+  def direction_to_html(direction)
+    case direction
+    when :up   : '&uarr;'
+    when :down : '&darr;'
+    end
   end
 end
