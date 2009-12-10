@@ -5,7 +5,7 @@
 <div id="top_copy">
 	<p>Here you can see a visualization of weather patterns from <a href="http://bellcold.com">Bellingham Cold Storage</a>.</p>
 	
-	<p>Last Observation at <strong><%=l Observation.last.observed_at, :format => :long %></strong></p>
+	<p>Last Observation at <strong><%=l @last_observation.observed_at, :format => :long %></strong>. Barometer: <%= @last_observation.barometer %> <%= direction_to_html @barometer_direction %></p>
 </div>
 
 <%= plot :weather %>

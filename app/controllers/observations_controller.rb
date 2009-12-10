@@ -13,17 +13,13 @@ class ObservationsController < ApplicationController
 			:max => %w( hi_speed temp humidity ).collect{|a| Observation.maximum a }.max
 		}
 		
+    @last_observation = Observation.last
+    @barometer_direction = Observation.current_barometer_direction
+		    
     if Rails.env.production? and Observation.need_fetch? then
       Fetch.start!
       flash.now[:notice] = I18n.t(:gathering_new_datas)
     end
-		respond_to do |format|
-		  format.html
-		  format.iphone { # extra datas for iphone
-		    @last_observation = Observation.last
-		    @barometer_direction = Observation.current_barometer_direction
-	    }
-		end
   end
 
 
