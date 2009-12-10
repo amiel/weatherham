@@ -1,3 +1,8 @@
+h2. 2009-12-09
+
+* [CHANGED] Wind Chill is in the graph now
+* [NEW] prototype of mobile site at http://m.weatherham.com
+
 h2. 2009-12-07
 
 * [NEW] Wind Chill in temp tooltip
