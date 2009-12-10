@@ -5,7 +5,7 @@ class Observation < ActiveRecord::Base
   @@other_attributes = { :wind_speed => :wind_dir, :hi_speed => :hi_dir }
 
   def self.current_barometer_direction
-    recent_barometer_average = average :barometer, :conditions => { :observed_at => (last.observed_at - 2.hours)..last.observed_at }
+    recent_barometer_average = average :barometer, :conditions => { :observed_at => (last.observed_at - 12.hours)..last.observed_at }
     last.barometer < recent_barometer_average ? :down : :up
   end
 
