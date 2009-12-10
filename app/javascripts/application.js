@@ -19,11 +19,12 @@ $(document).ready(function() {
 			"#EEB92E", // wind
 			"#b1ec10", // gust
 			"#f26522", // temp
+			"#f26522", // wind chill
 			"#ffffff", // baro
 			"#24f7f2"  // humidity
 		],
 		primary_color = "#f26522",
-		background_color = '#4e6e8d',
+		tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
 		panning_distance = 4 * (1000 * 60 * 60), // hours
 		panning_modulo_chunk = panning_distance * 3,
 		current_ajax_request = null;
@@ -209,8 +210,8 @@ $(document).ready(function() {
 				borderColor: primary_color, borderWidth: 1,
 				backgroundColor: 'rgba(0, 0, 0, 0.4)',
 				labelMargin: 10,
-				tickColor: background_color,
-				markings: [ { y2axis: { from: atm, to: atm }, color: background_color } ], // 1 atmosphere line
+				tickColor: tick_color,
+				markings: [ { y2axis: { from: atm, to: atm }, color: tick_color } ], // 1 atmosphere line
 				hoverable: true, clickable: true
 			},
             series: {

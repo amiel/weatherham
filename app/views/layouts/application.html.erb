@@ -21,7 +21,7 @@
 <body class="<%= body_class %>">
 
 	<div id="header">
-		<h1>Weatherham.com</h1>
+		<h1><%= link_to 'Weatherham.com', root_path %></h1>
 	</div>
 
 	<div id="wrapper">
@@ -29,8 +29,16 @@
 		<%= yield %>
 	
 		<div id="footer">
-			Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
-			Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>. <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %>. <%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %>
+			<p>
+				Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
+				Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>.
+			</p>
+			<p>
+				<%= link_to 'About Weatherham', '/about' %>.
+				<%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %>.
+				<%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %>
+			</p>
+			<!-- <p><%= link_to 'mobile site' %></p> -->
 		</div>
 	</div>
 	<%= render 'layouts/javascript' %>

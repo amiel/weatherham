@@ -4,16 +4,16 @@
 
 <div id="top_copy">
 	<p>Here you can see a visualization of weather patterns from <a href="http://bellcold.com">Bellingham Cold Storage</a>.</p>
-	<p>We&#8217;re on twitter: <a href="http://twitter.com/weatherham">@weatherham</a></p>
 	
-	<h2>Last Observation at <%=l Observation.last.observed_at, :format => :long %></h2>
+	<p>Last Observation at <strong><%=l Observation.last.observed_at, :format => :long %></strong></p>
 </div>
 
 <%= plot :weather %>
 <form>
 	<%= metric_toggler 'wind_speed', :class => 'first' %>
-	<%= metric_toggler 'hi_speed' %>
+	<%= metric_toggler 'hi_speed', :default => false %>
 	<%= metric_toggler 'temp' %>
+	<%= metric_toggler 'wind_chill', :default => false %>
 	<%= metric_toggler 'barometer' %>
 	<%= metric_toggler 'humidity', :default => false %>
 
