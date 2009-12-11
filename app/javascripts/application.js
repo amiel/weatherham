@@ -17,11 +17,12 @@ $(document).ready(function() {
 		xmin = null, xmax = null,
 		colors = [
 			"#EEB92E", // wind
-			"#b1ec10", // gust
+			"#EEB92E", // gust
 			"#f26522", // temp
 			"#f26522", // wind chill
 			"#ffffff", // baro
-			"#24f7f2"  // humidity
+			"#24f7f2", // humidity
+			"#b1ec10"  // dew_point
 		],
 		primary_color = "#f26522",
 		tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',

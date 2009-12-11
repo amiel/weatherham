@@ -1,7 +1,7 @@
 class Observation < ActiveRecord::Base
   validates_presence_of :observed_at
   cattr_accessor :displayed_attributes, :other_attributes
-  @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill )
+  @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill dew_point )
   @@other_attributes = { :wind_speed => :wind_dir, :hi_speed => :hi_dir }
 
   def self.current_barometer_direction

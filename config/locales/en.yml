@@ -30,6 +30,9 @@ en:
     wind_chill:
       title: Wind Chill
       unit: "&deg;F"
+    dew_point:
+      title: Dew Point
+      unit: "&deg;F"
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'

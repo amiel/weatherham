@@ -15,9 +15,11 @@
 	<%= metric_toggler 'temp' %>
 	<%= metric_toggler 'wind_chill', :default => false %>
 	<%= metric_toggler 'barometer' %>
-	<%= metric_toggler 'humidity', :default => false %>
-
 	<div class="clear"></div>
+	
+	<%= metric_toggler 'humidity', :default => false %>
+	<%= metric_toggler 'dew_point', :default => false, :class => 'first' %>
+	<div class="clear">
 </form>
 
 

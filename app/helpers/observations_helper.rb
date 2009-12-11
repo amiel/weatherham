@@ -6,6 +6,7 @@ module ObservationsHelper
   def metric_toggler(name, options = {})
     options[:default] = true if options[:default].nil?
     options[:class] ||= ''
+    options[:class] << ' ' + name.to_s
     options[:class] << (options[:default] ? " default_on" : " default_off")
     content_tag :div, check_box_with_label(name), :class => "metric_toggler #{options[:class]}"
   end
