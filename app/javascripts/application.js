@@ -28,7 +28,8 @@ $(document).ready(function() {
 		tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
 		panning_distance = 4 * (1000 * 60 * 60), // hours
 		panning_modulo_chunk = panning_distance * 3,
-		current_ajax_request = null;
+		current_ajax_request = null,
+		tooltip_hiding = false, tooltip_showing = false;
 	
 	
 	function show_activity() {
@@ -56,11 +57,20 @@ $(document).ready(function() {
 	
 	
 	function show_tooltip(x, y, contents, color) {
+		tooltip_hiding = false;
 		if ($('#tooltip').length == 0)
 	        $('<div id="tooltip"></div>').appendTo('body');
 		if (color) $('#tooltip').css('background-color', color);
 		$('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 0.8);
     }
+
+	function hide_tooltip() {
+		if (tooltip_hiding) return; tooltip_hiding = true;
+		$("#tooltip").stop().fadeTo(200, 0, function() {
+			$('#tooltip').hide();
+			tooltip_hiding = false;
+		});
+	}
 	
 	function edge_size() {
 		return (flot.getAxes().xaxis.max - flot.getAxes().xaxis.min) / 5;
@@ -107,7 +117,6 @@ $(document).ready(function() {
 			if (previousPoint != item.datapoint) {
 				previousPoint = item.datapoint;
 
-				$("#tooltip").stop().hide();
 				var x = item.datapoint[0],
 					y = item.datapoint[1].toFixed(2),
 					attribute = item.series.attribute_name,
@@ -122,10 +131,8 @@ $(document).ready(function() {
 				show_tooltip(item.pageX, item.pageY, content, item.series.color);
 			}
 		} else {
-			$("#tooltip").stop().fadeTo(200, 0);
 			previousPoint = null;
-			
-			
+			hide_tooltip();
 			if (is_left_edge(pos)) {
 				show_left_arrow();
 				hide_right_arrow();
