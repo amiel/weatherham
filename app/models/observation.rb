@@ -10,8 +10,8 @@ class Observation < ActiveRecord::Base
   end
 
   def self.need_fetch?
-    return true unless Observation.first
-    Observation.last.observed_at < 35.minutes.ago
+    return true unless Observation.first :select => 'id'
+    Observation.last(:select => 'id, observed_at').observed_at < 35.minutes.ago
   end
 
   def observed_at_for_flot
