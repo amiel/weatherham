@@ -13,6 +13,14 @@
 	<p>Last Observation at <strong><%=l @last_observation.observed_at, :format => :long %></strong>. Barometer: <%= @last_observation.barometer %> <%= direction_to_html @barometer_direction %></p>
 </div>
 
+<form class="granularity_switcher">
+	<select>
+		<option value="five_min">Day</option>
+		<option value="hourly">Week</option>
+	</select>
+</form>
+
+
 <%= plot :weather %>
 <form>
 	<%= metric_toggler 'wind_speed', :class => 'first' %>
@@ -24,6 +32,6 @@
 	
 	<%= metric_toggler 'humidity', :default => false %>
 	<%= metric_toggler 'dew_point', :default => false, :class => 'first' %>
-	<div class="clear">
+	<div class="clear"></div>
 </form>
 

@@ -1,5 +1,5 @@
 class ObservationCompressor
-  CLASSES = [ Observation, HourlyObservation ]
+  CLASSES = [ Observation, HourlyObservation, SixHourObservation, DailyObservation ]
   extend MapReduceMethods
   
   REDUCE_METHODS = map_reduce_methods do

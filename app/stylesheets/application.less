@@ -28,13 +28,16 @@ p{ font-size: 0.9em; }
 #wrapper{ .container_12; }
 .full_width{ .grid_12; margin-top: 1em; }
 
-#flash_panel, #top_copy{ margin-top: 1em; .grid_12; }
+#flash_panel, #top_copy{ margin-top: 1em; .grid_10; }
+
+.granularity_switcher{ .grid_2; }
 
 .metric_toggler{ padding: 1px 0; margin: 1em; .grid_2;
     label{ display: block; color: #000; }
 }
-.metric_toggler.wind_speed{ .prefix_1; }
-.metric_toggler.humidity{ .prefix_4; }
+
+    .metric_toggler.wind_speed{ .prefix_1; }
+    .metric_toggler.humidity{ .prefix_4; }
 
 .flot{ .grid_12; margin-top: 1em; }
     .tickLabel{ color: @primary_color; letter-spacing: 0; }

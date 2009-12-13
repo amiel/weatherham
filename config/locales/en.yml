@@ -5,6 +5,11 @@ en:
   site_name: Bellingham Weather
   slogan: Visualization of recent weather data from Bellingham Coldstorage
   gathering_new_datas: Now retreiving more recent data!
+  granularities:
+    five_min: Day
+    hourly: Week
+    six_hour: Month
+    daily: Year
   attributes:
     wind_speed:
       title: Wind Speed
