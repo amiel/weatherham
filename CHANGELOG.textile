@@ -1,3 +1,8 @@
+h2. 2009-12
+
+* [NEW] Day, Week and Month views
+* [FIXED] gathering bug, hopefully
+
 h2. 2009-12-09
 
 * [CHANGED] Wind Chill is in the graph now
