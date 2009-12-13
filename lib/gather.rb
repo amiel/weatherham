@@ -1,6 +1,8 @@
 require 'time'
 require 'open-uri'
 class Gather
+  # these methods are poorly named, as this entire class is very specific to BCS
+  # but it reads very nicely in the cron file :)
 	def self.bellingham_coldstorage_observations!
 	  new.gather!
 	end
@@ -64,8 +66,6 @@ class Gather
 		hash[:observed_at] = time
 
 		hash[:temp] = data[2]
-		hash[:hi_temp] = data[3]
-		hash[:low_temp] = data[4]
 		hash[:humidity] = data[5]
 		hash[:dew_point] = data[6]
 		hash[:wind_speed] = data[7]
