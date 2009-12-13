@@ -17,8 +17,8 @@ class ObservationCompressor
 
   
   def self.run!
-    CLASSES.inject do |prev, this|
-      new(prev, this).run unless prev.nil?
+    CLASSES.inject(nil) do |prev, this|
+      new(prev, this).compress!.prune! unless prev.nil?
       next this
     end
   end
@@ -29,13 +29,20 @@ class ObservationCompressor
     @start = latest_compressed.nil? ? from.observed_at.first : latest_compressed + @from.period
   end
   
-  def run
+  def compress!
     a, b = @start, @start + @to.period - @from.period
     until b > @from.observed_at(:last)
       compressed = @from.first :conditions => { :observed_at => [a,b] }, :select => REDUCE_METHODS.values.join(', ')
-      @to.create compressed.attributes.merge(:observed_at => a)
-      # TODO delete old @from
+      @to.create! compressed.attributes.merge(:observed_at => a)
+      
+      a, b = a + @to.period, b + @to.period
     end
+    return self
+  end
+  
+  def prune!
+    # TODO delete old @from
+    return self
   end
   
 end
