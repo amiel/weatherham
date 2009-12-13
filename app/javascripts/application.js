@@ -242,10 +242,7 @@ $(document).ready(function() {
 	});
 	$('.metric_toggler.default_on input').attr('checked', 'checked');
 	
-	$('.granularity_switcher select').change(function() {
-		do_the_damn_graph_thing($(this).val());
-	}).change(); // HEY, YOU, lookie here, this is the first actual call to action
-	
+
 	function do_all_the_shit_needed_to_plot() {
 		setup_datasets();
 		plot_for_checkboxes();
@@ -260,5 +257,6 @@ $(document).ready(function() {
 		});
 	}
 	$.weatherham = do_the_damn_graph_thing;
+	$.weatherham('five_min');
 });
 

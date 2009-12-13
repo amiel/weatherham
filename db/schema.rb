@@ -9,7 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091213072607) do
+ActiveRecord::Schema.define(:version => 20091213194932) do
+
+  create_table "daily_observations", :force => true do |t|
+    t.datetime "observed_at"
+    t.float    "temp"
+    t.integer  "humidity"
+    t.float    "dew_point"
+    t.float    "wind_speed"
+    t.string   "wind_dir"
+    t.float    "wind_run"
+    t.float    "hi_speed"
+    t.string   "hi_dir"
+    t.float    "wind_chill"
+    t.float    "barometer"
+  end
 
   create_table "fetches", :force => true do |t|
     t.datetime "start_at"
@@ -63,6 +77,20 @@ ActiveRecord::Schema.define(:version => 20091213072607) do
   end
 
   add_index "pages", ["id", "published", "url"], :name => "index_pages_on_url_and_id_and_published"
+
+  create_table "six_hour_observations", :force => true do |t|
+    t.datetime "observed_at"
+    t.float    "temp"
+    t.integer  "humidity"
+    t.float    "dew_point"
+    t.float    "wind_speed"
+    t.string   "wind_dir"
+    t.float    "wind_run"
+    t.float    "hi_speed"
+    t.string   "hi_dir"
+    t.float    "wind_chill"
+    t.float    "barometer"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "login"

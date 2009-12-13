@@ -2,6 +2,8 @@ class ObservationsController < ApplicationController
   GRANULARITIES = {
     :five_min => Observation,
     :hourly => HourlyObservation,
+    :six_hour => SixHourObservation,
+    :daily => DailyObservation,
   }.with_indifferent_access.freeze
   
   
@@ -32,7 +34,7 @@ class ObservationsController < ApplicationController
     klass = GRANULARITIES[params[:id]]
     if stale?(fresh_options(klass.last)) then
       n = klass.zoom / klass.period
-      @observations = klass.all :limit => n, :offset => (klass.count - n)
+      @observations = klass.all :limit => n, :offset => ([klass.count - n, 0].max)
     end
   end
 
