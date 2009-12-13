@@ -23,7 +23,7 @@ module ObservationMixin
     
     def period(p = nil)
       # act as a setter if p isn't nil
-      p.nil? ? @@periad : @@period = p
+      p.nil? ? @@period : @@period = p
     end
   end
   

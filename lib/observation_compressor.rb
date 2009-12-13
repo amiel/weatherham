@@ -23,10 +23,10 @@ class ObservationCompressor
     end
   end
   
-  def intialize(from, to)
+  def initialize(from, to)
     @from, @to = from, to
-    latest_compressed = to.observed_at.first
-    @start = latest_compressed.nil? ? from.observed_at.first : latest_compressed + @from.period
+    latest_compressed = to.observed_at :first
+    @start = latest_compressed.nil? ? from.observed_at(:first) : latest_compressed + @from.period
   end
   
   def compress!
