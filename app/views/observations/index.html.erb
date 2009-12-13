@@ -1,5 +1,10 @@
 
-<% js_var :five_min_path, observation_path(:five_min, :format => :json) %>
+<% js_vars_with_scope :paths do %>
+	<% @granularities.each do |granularity| %>
+		<% js_var granularity, observation_path(granularity, :format => :json) %>
+	<% end %>
+<% end %>
+
 <% js_var :ranges, @ranges %>
 
 <div id="top_copy">
@@ -21,5 +26,4 @@
 	<%= metric_toggler 'dew_point', :default => false, :class => 'first' %>
 	<div class="clear">
 </form>
-
 

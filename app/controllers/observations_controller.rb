@@ -1,6 +1,7 @@
 class ObservationsController < ApplicationController
   COUNTS = {
-    :five_min => 1.day / 5.minutes
+    :five_min => 1.day / 5.minutes,
+    :hourly => 1.day / 1.hour,
   }.with_indifferent_access.freeze
   
   
@@ -22,6 +23,7 @@ class ObservationsController < ApplicationController
 		
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction
+    @granularities = COUNTS.keys
   end
 
 

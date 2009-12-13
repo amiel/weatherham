@@ -247,9 +247,13 @@ $(document).ready(function() {
 		plot_for_checkboxes();
 	}
 	
-	show_activity();
-	$.getJSON(Base.five_min_path, function(data) {
-		observations = data;
-		do_all_the_shit_needed_to_plot();
-	});
+	function do_the_damn_graph_thing(granularity) {
+		show_activity();
+		Base.info(Base.paths[granularity], 'is the path Im agonna do');
+		$.getJSON(Base.paths[granularity], function(data) {
+			observations = data;
+			do_all_the_shit_needed_to_plot();
+		});
+	}
+	$.weatherham = do_the_damn_graph_thing;
 });
