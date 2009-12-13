@@ -1,7 +1,7 @@
 class ObservationsController < ApplicationController
-  COUNTS = {
-    :five_min => 1.day / 5.minutes,
-    :hourly => 1.day / 1.hour,
+  GRANULARITIES = {
+    :five_min => Observation,
+    :hourly => HourlyObservation,
   }.with_indifferent_access.freeze
   
   
@@ -23,15 +23,16 @@ class ObservationsController < ApplicationController
 		
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction
-    @granularities = COUNTS.keys
+    @granularities = GRANULARITIES.keys
   end
 
 
   
   def show
-    if stale?(fresh_options(Observation.last)) then
-      n = COUNTS[params[:id]]
-      @observations = Observation.all :limit => n, :offset => (Observation.count - n)
+    klass = GRANULARITIES[params[:id]]
+    if stale?(fresh_options(klass.last)) then
+      n = klass.zoom / klass.period
+      @observations = klass.all :limit => n, :offset => (klass.count - n)
     end
   end
 

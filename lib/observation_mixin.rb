@@ -20,10 +20,15 @@ module ObservationMixin
     def observed_at(where, options = {})
       only_time.send(where, options).try(:observed_at)
     end
+
+    # class setter getters
     
     def period(p = nil)
-      # act as a setter if p isn't nil
-      p.nil? ? @@period : @@period = p
+      p.nil? ? @@period ||= nil : @@period = p
+    end
+    
+    def zoom(t = nil)
+      t.nil? ? @@zoom ||= nil : @@zoom = t
     end
   end
   

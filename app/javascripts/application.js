@@ -153,7 +153,7 @@ $(document).ready(function() {
 			if (data.earliest_point < observations.earliest_point) {
 				observations.plot_pairs[name] = data.plot_pairs[name].concat(observations.plot_pairs[name]);
 			} else if (observations.latest_point < data.latest_point) {
-				
+				// forward looking doesn't work yet
 			}
 		}
 		
@@ -249,11 +249,13 @@ $(document).ready(function() {
 	
 	function do_the_damn_graph_thing(granularity) {
 		show_activity();
-		Base.info(Base.paths[granularity], 'is the path Im agonna do');
 		$.getJSON(Base.paths[granularity], function(data) {
+			xmax = null; xmin = null;
 			observations = data;
 			do_all_the_shit_needed_to_plot();
 		});
 	}
 	$.weatherham = do_the_damn_graph_thing;
+	$.weatherham('five_min');
 });
+

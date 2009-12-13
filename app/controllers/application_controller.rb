@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
   
   def fresh_options(object)
-    { :etag => object, :public => true, :last_modified => object.created_at.utc }
+    { :etag => object, :public => true, :last_modified => object.observed_at.utc }
   end
   
   def mobile_domain?

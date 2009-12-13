@@ -1,6 +1,7 @@
 class Observation < ActiveRecord::Base
   include ObservationMixin
   period 5.minutes
+  zoom 1.day
   
   cattr_accessor :displayed_attributes, :other_attributes
   @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill dew_point )
