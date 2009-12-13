@@ -24,11 +24,11 @@ module ObservationMixin
     # class setter getters
     
     def period(p = nil)
-      p.nil? ? @@period ||= nil : @@period = p
+      p.nil? ? @period : @period = p
     end
     
     def zoom(t = nil)
-      t.nil? ? @@zoom ||= nil : @@zoom = t
+      t.nil? ? @zoom : @zoom = t
     end
   end
   
