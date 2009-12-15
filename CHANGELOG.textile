@@ -1,3 +1,8 @@
+h2. 2009-12-15
+
+* [FIXED] a bug wherein fetching new data just didn't work
+* [FIXED] a bug with the tooltip. now the tooltip actually goes away instead of staying hidden, and being in the way
+
 h2. 2009-12-09
 
 * [CHANGED] Wind Chill is in the graph now
