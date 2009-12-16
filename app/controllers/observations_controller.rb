@@ -39,9 +39,10 @@ class ObservationsController < ApplicationController
   end
 
   def range
+    klass = GRANULARITIES[params[:granularity]]
     range = Time.from_json(params[:range_begin]) .. Time.from_json(params[:range_end])
-    if stale?(:last_modified => range.first) then
-      @observations = Observation.all :conditions => { :observed_at => range }
+    if stale?(:etag => Digest::SHA1.hexdigest("#{klass}/#{range}")) then
+      @observations = klass.all :conditions => { :observed_at => range }
       render :action => 'show'
     end
   end

@@ -3,7 +3,10 @@ ActionController::Routing::Routes.draw do |map|
   map.javascript '/javascripts/:action.js', :controller => 'javascripts', :format => :js
 
 	map.resources :observations
-	map.range '/observations/range/:range_begin/:range_end.:format', :controller => 'observations', :action => 'range'
+	map.range '/observations/range/:range_begin/:range_end/:granularity.:format',
+	  :controller => 'observations',
+	  :action => 'range',
+	  :requirements => { :granularity => /#{ObservationsController::GRANULARITIES.keys.join('|')}/ }
   map.changelog '/changelog.:format', :controller => 'observations', :action => 'changelog'
   map.todo '/todo.:format', :controller => 'observations', :action => 'todo'
   

@@ -4,7 +4,7 @@ class ObservationCompressor
   
   REDUCE_METHODS = map_reduce_methods do
     wind_speed  round(avg, 1)
-    hi_speed    max  
+    hi_speed    max
     temp        round(avg, 1)
     humidity    round(avg, 1)
     dew_point   round(avg, 2)

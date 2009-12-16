@@ -12,6 +12,7 @@ $(document).ready(function() {
 	
 	var flot = null,
 		observations = null,
+		current_granularity = null,
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
@@ -26,8 +27,8 @@ $(document).ready(function() {
 		],
 		primary_color = "#f26522",
 		tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
-		panning_distance = 4 * (1000 * 60 * 60), // hours
-		panning_modulo_chunk = panning_distance * 3,
+		// panning_distance = 4 * (1000 * 60 * 60), // hours
+		// panning_modulo_chunk = panning_distance * 3,
 		current_ajax_request = null,
 		tooltip_hiding = false, tooltip_showing = false;
 	
@@ -40,21 +41,6 @@ $(document).ready(function() {
 	function hide_activity() {
 		$('#activity').fadeTo(100, 0);
 	}
-
-	function setup_datasets() {
-		var current_color = 0;
-		function data_with_label_for(attribute) {
-			return { data: observations['plot_pairs'][attribute], color: colors[current_color++], attribute_name: attribute };
-		}
-
-		show_activity();		
-		datasets = {};
-		$('.metric_toggler input').each(function(){ datasets[this.id] = data_with_label_for(this.id); });
-		
-		datasets.barometer.yaxis = 2;
-		return datasets;
-	}
-	
 	
 	function show_tooltip(x, y, contents, color) {
 		tooltip_hiding = false;
@@ -161,19 +147,34 @@ $(document).ready(function() {
 		setup_datasets();
 	}
 	
+	function calculate_panning_distance() {
+		return (xmax - xmin) / 4;
+	}
+	
+	function calculate_panning_modulo_chunk() {
+		return calculate_panning_distance() * 3;
+	}
+	
 	placeholder.bind("plotclick", function (event, pos, item) {
 		if (!item) {
-			if (current_ajax_request) { Base.log('double click?', current_ajax_request); return; }
+			var panning_distance = calculate_panning_distance(),
+				panning_modulo_chunk = calculate_panning_modulo_chunk();
+			if (current_ajax_request) return;
 			if (is_left_edge(pos)) {
 				var left_edge = flot.getAxes().xaxis.min,
 					new_left_edge = left_edge - panning_distance;
 				xmin = new_left_edge; xmax = flot.getAxes().xaxis.max - panning_distance;
+				
 				if (new_left_edge < observations.earliest_point) {
 					var range_begin = +new Date(xmin - (xmin % panning_modulo_chunk)),
 						range_end = +new Date(observations.earliest_point - 1000), // subtract one second from query so that we don't get the same result we already have back
-						url = "/observations/range/" + range_begin + "/" + range_end + ".json";
+						url = "/observations/range/" + range_begin + "/" + range_end + "/" + current_granularity + ".json";
 					show_activity();
-					current_ajax_request = $.getJSON(url, function(data) { merge_datas(data); plot_for_checkboxes(); current_ajax_request = null; });
+					current_ajax_request = $.getJSON(url, function(data) {
+						merge_datas(data);
+						plot_for_checkboxes();
+						current_ajax_request = null;
+					});
 				} else {
 					plot_for_checkboxes();
 				}
@@ -242,16 +243,32 @@ $(document).ready(function() {
 	});
 	$('.metric_toggler.default_on input').attr('checked', 'checked');
 	
+	
+	function setup_datasets() {
+		var current_color = 0;
+		function data_with_label_for(attribute) {
+			return { data: observations['plot_pairs'][attribute], color: colors[current_color++], attribute_name: attribute };
+		}
+
+		show_activity();		
+		datasets = {};
+		$('.metric_toggler input').each(function(){ datasets[this.id] = data_with_label_for(this.id); });
+		
+		datasets.barometer.yaxis = 2;
+		return datasets;
+	}
+	
 
 	function do_all_the_shit_needed_to_plot() {
 		setup_datasets();
 		plot_for_checkboxes();
 	}
-	
+		
 	function do_the_damn_graph_thing(granularity) {
 		show_activity();
 		$.getJSON(Base.paths[granularity], function(data) {
 			xmax = null; xmin = null;
+			current_granularity = granularity;
 			observations = data;
 			do_all_the_shit_needed_to_plot();
 		});
