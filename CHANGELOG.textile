@@ -1,3 +1,7 @@
+h2. 2009-12-16
+
+* [CHANGED] design tweaks (thanks nicole)
+
 h2. 2009-12-15
 
 * [FIXED] a bug wherein fetching new data just didn't work

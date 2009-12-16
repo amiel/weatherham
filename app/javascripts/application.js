@@ -16,13 +16,13 @@ $(document).ready(function() {
 		datasets = null,
 		xmin = null, xmax = null,
 		colors = [
-			"#EEB92E", // wind
-			"#EEB92E", // gust
+			"#b1ec10", // wind
+			"#749D20", // gust
 			"#f26522", // temp
-			"#f26522", // wind chill
+			"#CD8050", // wind chill
 			"#ffffff", // baro
 			"#24f7f2", // humidity
-			"#b1ec10"  // dew_point
+			"#EEB92E"  // dew_point
 		],
 		primary_color = "#f26522",
 		tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
@@ -90,20 +90,20 @@ $(document).ready(function() {
 	
 	function show_left_arrow() {
 		if ($('#left_arrow').length == 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#left_arrow').stop().fadeTo(50, 0.8);
+		$('#left_arrow').stop().fadeTo(500, 0.8);
 	}
 	
 	function show_right_arrow() {
 		if ($('#right_arrow').length == 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#right_arrow').stop().fadeTo(50, 0.8);
+		$('#right_arrow').stop().fadeTo(500, 0.8);
 	}
 	
 	function hide_left_arrow() {
-		$('#left_arrow').stop().fadeTo(50, 0);
+		$('#left_arrow').stop().fadeTo(500, 0);
 	}
 	
 	function hide_right_arrow() {
-		$('#right_arrow').stop().fadeTo(50, 0);
+		$('#right_arrow').stop().fadeTo(500, 0);
 	}
 	
 	function make_tooltip_for_attribute(tag, attribute, value) {

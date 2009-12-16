@@ -30,7 +30,7 @@ p{ font-size: 0.9em; }
 
 #flash_panel, #top_copy{ margin-top: 1em; .grid_12; }
 
-.metric_toggler{ padding: 1px 0; margin: 1em; .grid_2;
+.metric_toggler{ padding: 1px 0; margin: 1em; .grid_2; text-transform: uppercase; font-size: 0.8em;
     label{ display: block; color: #000; }
 }
 .metric_toggler.wind_speed{ .prefix_1; }
@@ -41,18 +41,13 @@ p{ font-size: 0.9em; }
     .legend td{ padding: 2px; }
 
 /*    .baro_label{ color: @secondary_color; }*/
-    #tooltip{ position: absolute; display: none; padding: 5px; background-color: #fff;
-        h3, h4{ color: #000; margin-bottom: 0.5em; }
-        h4{ font-size: 90%; }
-            .attribute{ font-weight: normal; }
-        .time{ font-size: 80%; color: #111; line-height: 1.5em; }
-    }
+    #tooltip{ position: absolute; display: none; padding: 14px; background-color: #fff; letter-spacing: 0.01em; font-size: 0.8em; color: #000; line-height: 1.1em; }
     
     .flot_object{ position: absolute; top: 0px; z-index: -100; }
     #activity{ .flot_object; background: transparent url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; }
     .nav_arrow{ .flot_object; height: @flot_height; width: @flot_width / 5; }
-    #left_arrow{ .nav_arrow; left: 0px; }
-    #right_arrow{ .nav_arrow; right: 0px; }
+    #left_arrow{ .nav_arrow; left: 0px; background: url(/images/arrow-left-black.png) no-repeat center center; }
+    #right_arrow{ .nav_arrow; right: 0px; background: url(/images/arrow-right-black.png) no-repeat center center; }
 
 
 #utc_warning{ .grid_11; .prefix_1; font-size: 0.8em; margin-top: 1em; }
