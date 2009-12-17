@@ -1,17 +1,4 @@
 
-namespace :heroku do
-  desc "Commit pre-deployment changes"
-  task :commit do
-    puts 'Committing deployment changes'
-    system "git add . && git commit -m 'Prepare for heroku deployment'"
-  end
-
-  task :commit_lack_of_assets do
-    puts 'Committing deletion of assets'
-    system "git commit -m'clean up assets after deploy'"
-  end
-end
-
 namespace :assets do
 
     desc "Compiles and concatenates javascripts"
