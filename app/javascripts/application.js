@@ -15,6 +15,7 @@ $(document).ready(function() {
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
+		activity_timer = null,
 		colors = [
 			"#b1ec10", // wind
 			"#749D20", // gust
@@ -29,16 +30,23 @@ $(document).ready(function() {
 		panning_distance = 4 * (1000 * 60 * 60), // hours
 		panning_modulo_chunk = panning_distance * 3,
 		current_ajax_request = null,
-		tooltip_hiding = false, tooltip_showing = false;
+		tooltip_hiding = false, tooltip_showing = false,
+		tooltip_date_format = 'ddd, mmm d, yyyy"<br/>" h:MM TT Z',
+		date_format = 'ddd, mmm d, yyyy h:MM TT Z';
 	
 	
 	function show_activity() {
 		if ($('#activity').length == 0) $('<div id="activity"></div>').appendTo(placeholder);
-		$('#activity').fadeTo(100, 0.8);
+		$('#activity').fadeTo(100, 0.9);
+		setTimeout(function() {
+			$('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
+		}, 3500);
 	}
 	
 	function hide_activity() {
-		$('#activity').fadeTo(100, 0);
+		$('#activity').fadeTo(100, 0, function() {
+			$('#activity').empty();
+		});
 	}
 
 	function setup_datasets() {
@@ -90,12 +98,12 @@ $(document).ready(function() {
 	
 	function show_left_arrow() {
 		if ($('#left_arrow').length == 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#left_arrow').stop().fadeTo(400, 0.8);
+		$('#left_arrow').stop().fadeTo(400, 0.35);
 	}
 	
 	function show_right_arrow() {
 		if ($('#right_arrow').length == 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#right_arrow').stop().fadeTo(400, 0.8);
+		$('#right_arrow').stop().fadeTo(400, 0.35);
 	}
 	
 	function hide_left_arrow() {
@@ -123,7 +131,7 @@ $(document).ready(function() {
 					mapping = observations.mappings[attribute],
 					
 					content = make_tooltip_for_attribute('h3', attribute, y),
-					formatted_date = (new Date(x)).format('ddd, mmm d, yyyy"<br/>" h:MM TT Z');
+					formatted_date = (new Date(x)).format(tooltip_date_format);
 				
 				if (mapping) content += make_tooltip_for_attribute('h4', mapping, observations.times[x][mapping]);
 
@@ -248,8 +256,9 @@ $(document).ready(function() {
 	}
 	
 	show_activity();
-	$.getJSON(Base.five_min_path, function(data) {
-		observations = data;
-		do_all_the_shit_needed_to_plot();
-	});
+		$.getJSON(Base.five_min_path, function(data) {
+			observations = data;
+			$('#last_observation').html((new Date(observations.latest_point)).format(date_format));
+			do_all_the_shit_needed_to_plot();
+		});
 });

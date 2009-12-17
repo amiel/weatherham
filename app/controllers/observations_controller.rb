@@ -5,11 +5,6 @@ class ObservationsController < ApplicationController
   
   
   def index
-    if Observation.need_fetch? and Rails.env.production? then
-      Fetch.start!
-      # flash.now[:notice] = I18n.t(:gathering_new_datas)
-    end
-    
     return render(:inline => 'gathering datas') if Observation.first.nil?
     
 		@ranges = {
@@ -24,9 +19,11 @@ class ObservationsController < ApplicationController
     @barometer_direction = Observation.current_barometer_direction
   end
 
-
-  
   def show
+    if Observation.need_fetch? and Rails.env.production? then
+      Fetch.start!
+    end
+    
     if stale?(fresh_options(Observation.last)) then
       n = COUNTS[params[:id]]
       @observations = Observation.all :limit => n, :offset => (Observation.count - n)
