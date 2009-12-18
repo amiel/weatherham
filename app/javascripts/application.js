@@ -40,7 +40,7 @@ $(document).ready(function() {
 		$('#activity').fadeTo(100, 0.9);
 		setTimeout(function() {
 			$('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
-		}, 3500);
+		}, 1500);
 	}
 	
 	function hide_activity() {
