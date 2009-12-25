@@ -33,7 +33,8 @@ class ObservationCompressor
     a, b = @start, @start + @to.period - @from.period
     until b > @from.observed_at(:last)
       compressed = @from.first :conditions => { :observed_at => [a,b] }, :select => REDUCE_METHODS.values.join(', ')
-      @to.create! compressed.attributes.merge(:observed_at => a)
+      compressed_attributes = compressed.attributes.merge(:observed_at => a)
+      @to.create! compressed_attributes unless compressed_attributes.all?{|k,v| v.blank? }
       
       a, b = a + @to.period, b + @to.period
     end
