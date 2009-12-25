@@ -4,7 +4,6 @@
 //= require <date.format>
 
 //= require <flot/jquery.flot.min.js>
-//= require <flot/jquery.flot.navigate.min.js>
 
 $(document).ready(function() {
 	
@@ -274,7 +273,7 @@ $(document).ready(function() {
 	}
 		
 	function do_the_damn_graph_thing(granularity) {
-		show_activity();
+		show_activity(true);
 		$.getJSON(Base.paths[granularity], function(data) {
 			xmax = null; xmin = null;
 			current_granularity = granularity;
@@ -285,7 +284,6 @@ $(document).ready(function() {
 	}
 	
 	$.weatherham = do_the_damn_graph_thing;
-	show_activity(true);
 	$.weatherham('five_min');
 });
 
