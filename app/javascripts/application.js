@@ -35,12 +35,13 @@ $(document).ready(function() {
 		date_format = 'ddd, mmm d, yyyy h:MM TT Z';
 	
 	
-	function show_activity() {
+	function show_activity(show_hint) {
 		if ($('#activity').length == 0) $('<div id="activity"></div>').appendTo(placeholder);
 		$('#activity').fadeTo(100, 0.9);
-		setTimeout(function() {
-			$('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
-		}, 1500);
+		if (show_hint)
+			setTimeout(function() {
+				$('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
+			}, 1500);
 	}
 	
 	function hide_activity() {
@@ -255,7 +256,7 @@ $(document).ready(function() {
 		plot_for_checkboxes();
 	}
 	
-	show_activity();
+	show_activity(true);
 		$.getJSON(Base.five_min_path, function(data) {
 			observations = data;
 			$('#last_observation').html((new Date(observations.latest_point)).format(date_format));
