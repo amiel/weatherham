@@ -23,21 +23,26 @@ Base.register_variable = function(key, value, scope) {
 };
 Base.reg = Base.register_variable;
 
-// TODO: write Base.flash
-// This is from Emmanuel Gomez, thanks
-// JS response type on the server puts flash messages as JSON in X-JSON-FLASH
-// Global AJAX config to display AJAX flash:
-$(window).ajaxComplete(function(e, xhr) {
-  var flash_messages = xhr.getResponseHeader("X-JSON-FLASH");
-  if (flash_messages) {
-    // FIXME: shouldn't be so naive about eval'ing server response header
-    //  'correct' solution is probably to use json2.js from json.org
-    flash_messages = window.eval("("+ flash_messages +")");
-    $.each(flash_messages, function(status, msg) {
-      Base.flash(msg, status);
-    });
-  }
-});
+Base.initializers = {};
+
+Base.init = function() {
+	if (arguments.length == 1) {
+		var to_init = arguments[0],
+			scope = $(to_init).not('.initialized').addClass('initialized');
+		$.each(Base.initializers[to_init], function(i, f) { f.apply(scope); });
+	} else {
+		var collection = (arguments.length == 0) ? Base.initializers : arguments;
+		$.each(collection, function(i, e) { if (typeof i === 'string') Base.init(i); else Base.init(e); });
+	}
+};
+
+Base.register_initializer = function(scope, lambda) {
+	if (!Base.initializers[scope]) Base.initializers[scope] = [];
+	Base.initializers[scope].push(lambda);
+};
+
+$(function(){ Base.init(); });
+
 
 
 // the following section provides an abstraction to the Firebug console
@@ -50,7 +55,7 @@ $(window).ajaxComplete(function(e, xhr) {
 // log to the firebug console if window.console is available
 Base.console = function(method) {
 	if (Base.DEBUG && window.console && window.console[method])
-		window.console[method].apply(null, Array.prototype.slice.apply(arguments, [1]));
+		$.browser.mozilla ? window.console[method].apply(null, Array.prototype.slice.apply(arguments, [1])) : window.console[method](arguments);
 };
 
 // methods for logging
@@ -77,4 +82,4 @@ Base.console = function(method) {
 
 
 // trace ajax operations when "App.DEBUG == true"
-$(window).bind("ajaxStart ajaxSend ajaxComplete ajaxSuccess", Base.debug);
+if (Base.DEBUG) $(window).bind("ajaxStart ajaxSend ajaxComplete ajaxSuccess", Base.debug);
