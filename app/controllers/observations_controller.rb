@@ -8,11 +8,6 @@ class ObservationsController < ApplicationController
   
   
   def index
-    if Rails.env.production? and Observation.need_fetch? then
-      Fetch.start!
-      flash.now[:notice] = I18n.t(:gathering_new_datas)
-    end
-    
     return render(:inline => 'gathering datas') if Observation.first.nil?
     
 		@ranges = {
@@ -28,9 +23,11 @@ class ObservationsController < ApplicationController
     @granularities = GRANULARITIES.keys
   end
 
-
-  
   def show
+    if Observation.need_fetch? and Rails.env.production? then
+      Fetch.start!
+    end
+    
     klass = GRANULARITIES[params[:id]]
     if stale?(fresh_options(klass.last)) then
       n = klass.zoom / klass.period

@@ -32,7 +32,7 @@ p{ font-size: 0.9em; }
 
 .granularity_switcher{ margin-top: 1em; .grid_3; }
 
-.metric_toggler{ padding: 1px 0; margin: 1em; .grid_2;
+.metric_toggler{ padding: 1px 0; margin: 1em; .grid_2; text-transform: uppercase; font-size: 0.8em;
     label{ display: block; color: #000; }
 }
 
@@ -44,19 +44,17 @@ p{ font-size: 0.9em; }
     .legend td{ padding: 2px; }
 
 /*    .baro_label{ color: @secondary_color; }*/
-    #tooltip{ position: absolute; display: none; padding: 5px; background-color: #fff;
-        h3, h4{ color: #000; margin-bottom: 0.5em; }
-        h4{ font-size: 90%; }
-            .attribute{ font-weight: normal; }
-        .time{ font-size: 80%; color: #111; line-height: 1.5em; }
-    }
+    #tooltip{ position: absolute; display: none; padding: 14px; background-color: #fff; letter-spacing: 0.01em; font-size: 0.8em; color: #000; line-height: 1.1em; }
     
     .flot_object{ position: absolute; top: 0px; z-index: -100; }
-    #activity{ .flot_object; background: transparent url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; }
+    #activity{ .flot_object; background: transparent url(/images/ajax-loader.gif) no-repeat center center; height: @flot_height; width: @flot_width; text-align: center; line-height: @flot_height + 60px; }
+    
     .nav_arrow{ .flot_object; height: @flot_height; width: @flot_width / 5; }
-    #left_arrow{ .nav_arrow; left: 0px; background-color: rgba(0,0,0, 0.5); }
-    #right_arrow{ .nav_arrow; right: 0px; }
 
+    #left_arrow{ .nav_arrow; left: 0px; background: url(/images/arrow-left-white.png) no-repeat center center; }
+    #right_arrow{ .nav_arrow; right: 0px; background: url(/images/arrow-right-white.png) no-repeat center center; }
+
+#utc_warning{ .grid_11; .prefix_1; font-size: 0.8em; margin-top: 1em; }
 
 #facebox{ color: #000; }
 .textile_file{ height: 400px; overflow-y: auto; }

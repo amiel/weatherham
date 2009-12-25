@@ -1,6 +1,5 @@
 class SprocketsApplication
-	cattr_accessor :use_page_caching, :use_google_closure_compiler
-	self.use_page_caching = true  
+	cattr_accessor :use_google_closure_compiler
 	self.use_google_closure_compiler = Rails.env.production?
 
 	def initialize(name = nil)
@@ -33,11 +32,10 @@ class SprocketsApplication
 	end
 	
 	def concatenation_with_google_closure_compiler
-	  self.class.use_google_closure_compiler ?
-	    GoogleClosureCompiler::Javascript.new(concatenation_without_google_closure_compiler).compiled :
-	    concatenation_without_google_closure_compiler
+    GoogleClosureCompiler::Javascript.new(concatenation_without_google_closure_compiler).compiled
   end
-  alias_method_chain :concatenation, :google_closure_compiler if defined? GoogleClosureCompiler
+  alias_method_chain :concatenation, :google_closure_compiler if use_google_closure_compiler and defined? GoogleClosureCompiler
+
 
 	def source_is_unchanged?
 		previous_source_last_modified, @source_last_modified = 
@@ -50,5 +48,22 @@ class SprocketsApplication
 		def routes(map)
 			map.resources(:sprockets)
 		end
+		
+    # blatently ripped from 'more'
+		def use_page_caching?
+      (not heroku?) && page_cache_enabled_in_environment_configuration?
+		end
+
+    # blatently ripped from 'more'		    
+    def page_cache_enabled_in_environment_configuration?
+      Rails.configuration.action_controller.perform_caching
+    end
+		
+		# Returns true if the app is running on Heroku. When +heroku?+ is true,
+    # +use_page_caching?+ will always be false.
+    # blatently ripped from 'more'
+    def heroku?
+      !!ENV["HEROKU_ENV"]
+    end
 	end
 end

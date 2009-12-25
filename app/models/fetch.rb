@@ -6,14 +6,11 @@ class Fetch < ActiveRecord::Base
 
   def self.start!
     return if Fetch.unfinished.without_error.first # a fetch hasn't finished? return and let it do its thing
-    create!
+    create! # ie, call do_fetch
   end
 
-  after_create :spawn_and_fetch
-  def spawn_and_fetch
-    logger.error('STARTING SPAWN')
-    spawn do
-      logger.error("SPAWN STARTED: #{Time.current}")
+  after_create :do_fetch
+  def do_fetch
       self.start_at = Time.current
       self.save
 
@@ -22,6 +19,5 @@ class Fetch < ActiveRecord::Base
       self.finish_at = Time.current
       self.observation = Observation.last
       self.save
-    end
   end
 end

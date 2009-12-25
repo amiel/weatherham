@@ -1,7 +1,15 @@
 h2. 2009-12
 
 * [NEW] Day, Week and Month views
-* [FIXED] gathering bug, hopefully
+
+h2. 2009-12-16
+
+* [CHANGED] design tweaks (thanks nicole)
+
+h2. 2009-12-15
+
+* [FIXED] a bug wherein fetching new data just didn't work
+* [FIXED] a bug with the tooltip. now the tooltip actually goes away instead of staying hidden, and being in the way
 
 h2. 2009-12-09
 

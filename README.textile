@@ -1,19 +1,18 @@
 h3. TODO
 
-* write a compression script, that runs on the daily cron, done, but the following fixes will be needed
+* wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
 ** fix times output in tooltips
 ** yearly is having problems, does it reveal a bug that the others have as well?
 ** fix panning
 ** make perty buttons
 
 
+* left and right arrows should only show up when data is available, etc
 * wind direction graphs
 * have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
 * Panning
 ** indicate "Last Observation" for current panned state
-** icons for hover in panning areas
 ** indication of current day
-** only allow one ajax request at a time
 * fix flot so that the horizontal scale is in PST not UTC
 * display relevant metrics (maxes and mins for interesting things)
 * the entire javascript could use a refactor
