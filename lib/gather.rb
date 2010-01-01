@@ -48,7 +48,7 @@ class Gather
 
 	def self.parse_weather line
 		data = line.split
-		return nil unless data[0].match %r{^\d{2}/\d{2}/\d{2}$}
+		return nil unless data[0].match %r{^\d{1,2}/\d{2}/\d{2}$}
 
 
 		hash = Hash.new
