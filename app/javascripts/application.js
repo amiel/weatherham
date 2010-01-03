@@ -31,7 +31,11 @@ $(document).ready(function() {
 		// panning_modulo_chunk = panning_distance * 3,
 		current_ajax_request = null,
 		tooltip_hiding = false, tooltip_showing = false,
-		tooltip_date_format = 'ddd, mmm d, yyyy"<br/>" h:MM TT Z',
+		tooltip_date_formats = {
+			five_min: 'ddd, mmm d, yyyy"<br/>" h:MM TT Z',
+			hourly: 'ddd, mmm d, yyyy"<br/>" h TT Z',
+			six_hour: 'ddd, mmm d, yyyy TT'
+		},
 		date_format = 'ddd, mmm d, yyyy h:MM TT Z';
 	
 	
@@ -117,7 +121,7 @@ $(document).ready(function() {
 					mapping = observations.mappings[attribute],
 					
 					content = make_tooltip_for_attribute('h3', attribute, y),
-					formatted_date = (new Date(x)).format(tooltip_date_format);
+					formatted_date = (new Date(x)).format(tooltip_date_formats[current_granularity]);
 				
 				if (mapping) content += make_tooltip_for_attribute('h4', mapping, observations.times[x][mapping]);
 
