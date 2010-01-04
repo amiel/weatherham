@@ -88,20 +88,20 @@ $(document).ready(function() {
 	
 	function show_left_arrow() {
 		if ($('#left_arrow').length == 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#left_arrow').stop().fadeTo(400, 0.35);
+		$('#left_arrow').stop().fadeTo(250, 0.35);
 	}
 	
 	function show_right_arrow() {
 		if ($('#right_arrow').length == 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-		$('#right_arrow').stop().fadeTo(400, 0.35);
+		$('#right_arrow').stop().fadeTo(250, 0.35);
 	}
 	
 	function hide_left_arrow() {
-		$('#left_arrow').stop().fadeTo(250, 0);
+		$('#left_arrow').stop().fadeTo(150, 0);
 	}
 	
 	function hide_right_arrow() {
-		$('#right_arrow').stop().fadeTo(250, 0);
+		$('#right_arrow').stop().fadeTo(150, 0);
 	}
 	
 	function make_tooltip_for_attribute(tag, attribute, value) {
@@ -112,6 +112,8 @@ $(document).ready(function() {
 	var previousPoint = null;
 	placeholder.bind("plothover", function (event, pos, item) {
 		if (item) {
+			hide_right_arrow();
+			hide_left_arrow();
 			if (previousPoint != item.datapoint) {
 				previousPoint = item.datapoint;
 
@@ -131,10 +133,11 @@ $(document).ready(function() {
 		} else {
 			previousPoint = null;
 			hide_tooltip();
+			Base.log(xmax, observations.latest_point);
 			if (is_left_edge(pos)) {
 				show_left_arrow();
 				hide_right_arrow();
-			} else if (is_right_edge(pos)) {
+			} else if (is_right_edge(pos) && !(xmax == null || xmax == observations.latest_point)) {
 				show_right_arrow();
 				hide_left_arrow();
 			} else {
