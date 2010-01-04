@@ -35,6 +35,8 @@ module ObservationsHelper
     	data[:mappings] = Observation.other_attributes
     	data[:earliest_point] = @observations.first.observed_at_for_flot
     	data[:latest_point] = @observations.last.observed_at_for_flot
+    	data[:yaxis_ranges] = @ranges
+    	p data.keys, data[:yaxis_ranges]
   	end
   end
   

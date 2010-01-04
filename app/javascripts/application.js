@@ -4,7 +4,7 @@
 //= require <date.format>
 
 //= require <flot/jquery.flot.min.js>
-
+var weatherham_observations;
 $(document).ready(function() {
 	
 	$('a[rel=facebox]').facebox();
@@ -15,6 +15,7 @@ $(document).ready(function() {
 		placeholder = $('#weather'),
 		datasets = null,
 		xmin = null, xmax = null,
+		yaxis_ranges = null,
 		activity_timer = null,
 		colors = [
 			"#b1ec10", // wind
@@ -133,7 +134,6 @@ $(document).ready(function() {
 		} else {
 			previousPoint = null;
 			hide_tooltip();
-			Base.log(xmax, observations.latest_point);
 			if (is_left_edge(pos)) {
 				show_left_arrow();
 				hide_right_arrow();
@@ -220,10 +220,10 @@ $(document).ready(function() {
 		
 		flot = $.plot(placeholder, data, {
 			xaxis: { mode: 'time', min: xmin, max: xmax },
-			yaxis: { min: 0, max: Base.ranges.max },
+			yaxis: { min: 0, max: yaxis_ranges.max },
 			y2axis: {
-				min: Base.ranges.barometer.min,
-				max: Base.ranges.barometer.max,
+				min: yaxis_ranges.barometer.min,
+				max: yaxis_ranges.barometer.max,
 				ticks: baro_ticks
 			},
 			legend: {
@@ -235,7 +235,7 @@ $(document).ready(function() {
 				backgroundColor: 'rgba(0, 0, 0, 0.4)',
 				labelMargin: 10,
 				tickColor: tick_color,
-				markings: [ { y2axis: { from: atm, to: atm }, color: tick_color } ], // 1 atmosphere line
+				// markings: [ { y2axis: { from: atm, to: atm }, color: tick_color } ], // 1 atmosphere line
 				hoverable: true, clickable: true
 			},
             series: {
@@ -282,9 +282,12 @@ $(document).ready(function() {
 	function do_the_damn_graph_thing(granularity) {
 		show_activity(true);
 		$.getJSON(Base.paths[granularity], function(data) {
+
 			xmax = null; xmin = null;
 			current_granularity = granularity;
 			observations = data;
+			yaxis_ranges = observations.yaxis_ranges;
+			weatherham_observations = observations;
 			$('#last_observation').html((new Date(observations.latest_point)).format(date_format));
 			do_all_the_shit_needed_to_plot();
 		});

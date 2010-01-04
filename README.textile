@@ -1,11 +1,8 @@
 h3. TODO
 
 * wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
-** fix times output in tooltips
 ** yearly is having problems, does it reveal a bug that the others have as well?
-** fix panning
 ** make perty buttons
-
 
 * left and right arrows should only show up when data is available, etc
 * wind direction graphs

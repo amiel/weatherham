@@ -9,19 +9,12 @@ class ObservationsController < ApplicationController
   
   def index
     return render(:inline => 'gathering datas') if Observation.first.nil?
-    
-		@ranges = {
-			:barometer => {
-				:max => Observation.maximum(:barometer),
-				:min => Observation.minimum(:barometer)
-			},
-			:max => %w( hi_speed temp humidity ).collect{|a| Observation.maximum a }.max
-		}
 		
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction
     @granularities = GRANULARITIES.keys
   end
+
 
   def show
     if Observation.need_fetch? and Rails.env.production? then
@@ -30,6 +23,15 @@ class ObservationsController < ApplicationController
     
     klass = GRANULARITIES[params[:id]]
     if stale?(fresh_options(klass.last)) then
+      
+      @ranges = {
+  			:barometer => {
+  				:max => klass.maximum(:barometer),
+  				:min => klass.minimum(:barometer)
+  			},
+  			:max => %w( hi_speed temp humidity ).collect{|a| klass.maximum a }.max
+  		}
+      
       n = klass.zoom / klass.period
       @observations = klass.all :limit => n, :offset => ([klass.count - n, 0].max)
     end
