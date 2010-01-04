@@ -32,11 +32,11 @@ $(document).ready(function() {
 		current_ajax_request = null,
 		tooltip_hiding = false, tooltip_showing = false,
 		tooltip_date_formats = {
-			five_min: 'ddd, mmm d, yyyy"<br/>" h:MM TT Z',
-			hourly: 'ddd, mmm d, yyyy"<br/>" h TT Z',
-			six_hour: 'ddd, mmm d, yyyy TT'
+			five_min: 'ddd, mmm d, yyyy"<br/>" h:MM tt Z',
+			hourly: 'ddd, mmm d, yyyy"<br/>" htt Z',
+			six_hour: 'ddd, mmm d, yyyy tt'
 		},
-		date_format = 'ddd, mmm d, yyyy h:MM TT Z';
+		date_format = 'ddd, mmm d, yyyy h:MMtt Z';
 	
 	
 	function show_activity(show_hint) {
@@ -169,9 +169,9 @@ $(document).ready(function() {
 	
 	placeholder.bind("plotclick", function (event, pos, item) {
 		if (!item) {
+			if (current_ajax_request) return;
 			var panning_distance = calculate_panning_distance(),
 				panning_modulo_chunk = calculate_panning_modulo_chunk();
-			if (current_ajax_request) return;
 			if (is_left_edge(pos)) {
 				var left_edge = flot.getAxes().xaxis.min,
 					new_left_edge = left_edge - panning_distance;
@@ -183,7 +183,7 @@ $(document).ready(function() {
 						url = "/observations/range/" + range_begin + "/" + range_end + "/" + current_granularity + ".json";
 					show_activity();
 					current_ajax_request = $.getJSON(url, function(data) {
-						merge_datas(data);
+						if (data) merge_datas(data);
 						plot_for_checkboxes();
 						current_ajax_request = null;
 					});

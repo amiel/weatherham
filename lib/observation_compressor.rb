@@ -1,5 +1,7 @@
 class ObservationCompressor
   CLASSES = [ Observation, HourlyObservation, SixHourObservation, DailyObservation ]
+  PRUNE_TO = proc{|from,to| from.observed_at(:last) - (to.zoom * 3) }
+  
   extend MapReduceMethods
   
   REDUCE_METHODS = map_reduce_methods do
@@ -25,7 +27,7 @@ class ObservationCompressor
   
   def initialize(from, to)
     @from, @to = from, to
-    latest_compressed = to.observed_at :first
+    latest_compressed = to.observed_at :last
     @start = latest_compressed.nil? ? from.observed_at(:first) : latest_compressed + @from.period
   end
   
@@ -38,12 +40,12 @@ class ObservationCompressor
       
       a, b = a + @to.period, b + @to.period
     end
-    return self
+    return self # allow chaining
   end
   
   def prune!
-    # TODO delete old @from
-    return self
+    @from.delete_all [ 'observed_at < ?', PRUNE_TO.call(@from,@to) ]
+    return self # allow chaining
   end
   
 end

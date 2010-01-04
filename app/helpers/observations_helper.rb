@@ -22,6 +22,8 @@ module ObservationsHelper
   
   def data_for_plot
     returning data = Hash.new do
+      return nil if @observations.size.zero?
+      
     	data[:plot_pairs] = Observation.displayed_attributes.each_with_object({}) do |attr, hash|
     		hash[attr] = attribute_pairs_for_plot(@observations, attr)
     	end
