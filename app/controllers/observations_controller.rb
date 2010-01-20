@@ -8,7 +8,7 @@ class ObservationsController < ApplicationController
   
   
   def index
-    return render(:inline => 'gathering datas') if Observation.first.nil?
+    Fetch.start! if Observation.first.nil?
 		
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction

@@ -1,6 +1,6 @@
 class ObservationCompressor
   CLASSES = [ Observation, HourlyObservation, SixHourObservation, DailyObservation ]
-  PRUNE_TO = proc{|from,to| from.observed_at(:last) - (to.zoom * 3) }
+  PRUNE_TO = proc{|from,to| from.observed_at(:last) - (to.zoom * 2) }
   
   extend MapReduceMethods
   

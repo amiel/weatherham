@@ -44,6 +44,8 @@ class Gather
 
   def get_datas!
     returning datas = [] do
+      # http://www.bellcold.com/weather-history/history_2010.txt
+      # http://www.bellcold.com/download.txt
   		open 'http://www.bellcold.com/download.txt' do |f|
   			f.each{ |line| datas << self.class.parse_weather(line) }
   		end
