@@ -19,15 +19,20 @@ class Gather
   end
 
   # binary search, this is entirely unnecessary, but I just wanted to write a binary search
-  def only_the_ones_we_care_about(left = 0, right = @observations.size)
-    pos = ((right - left) / 2) + left
-    if @last_observation_at == @observations[left][:observed_at] then
-      @observations[(left+1)..-1]
-    elsif @observations[pos][:observed_at] <= @last_observation_at then
-      only_the_ones_we_care_about pos, right
-    else
-      only_the_ones_we_care_about left, pos
-    end
+  # def only_the_ones_we_care_about(left = 0, right = @observations.size)
+  #   pos = ((right - left) / 2) + left
+  #   if @last_observation_at == @observations[left][:observed_at] then
+  #     @observations[(left+1)..-1]
+  #   elsif @observations[pos][:observed_at] <= @last_observation_at then
+  #     only_the_ones_we_care_about pos, right
+  #   else
+  #     only_the_ones_we_care_about left, pos
+  #   end
+  # end
+
+  def only_the_ones_we_care_about
+    @observations.shift while @observations.first[:observed_at] <= @last_observation_at
+    return @observations
   end
 
         # next unless datas

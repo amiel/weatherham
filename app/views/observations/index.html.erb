@@ -27,15 +27,15 @@
 </div>
 
 <form action="/">
-	<%= metric_toggler 'wind_speed', :class => 'first' %>
-	<%= metric_toggler 'hi_speed', :default => false %>
+	<%= metric_toggler 'wind_speed' %>
+	<%= metric_toggler 'hi_speed' %>
 	<%= metric_toggler 'temp' %>
 	<%= metric_toggler 'wind_chill', :default => false %>
 	<%= metric_toggler 'barometer' %>
 	<div class="clear"></div>
 	
 	<%= metric_toggler 'humidity', :default => false %>
-	<%= metric_toggler 'dew_point', :default => false, :class => 'first' %>
+	<%= metric_toggler 'dew_point', :default => false %>
 	<div class="clear"></div>
 </form>
 

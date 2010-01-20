@@ -6,6 +6,6 @@ task :gather => :environment do
 end
 
 task :compress => :environment do
-  # ObservationCompressor.run!
+  ObservationCompressor.run!
 end
 
