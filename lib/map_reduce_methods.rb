@@ -26,7 +26,12 @@ module MapReduceMethods
     end
 
     def c.round(other_proc, precision)
-      proc { |field| "round(#{other_proc.call(field)}, #{precision})" }
+      case ActiveRecord::Base.connection.adapter_name
+        when 'PostgreSQL'
+        proc { |field| "round(CAST (#{other_proc.call(field)} AS numeric), #{precision})" }
+      else
+        proc { |field| "round(#{other_proc.call(field)}, #{precision})" }
+      end
     end
 
     def c.method_missing(method, arg)

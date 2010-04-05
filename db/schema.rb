@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.datetime "updated_at"
   end
 
-  add_index "pages", ["id", "published", "url"], :name => "index_pages_on_url_and_id_and_published"
+  add_index "pages", ["url", "id", "published"], :name => "index_pages_on_url_and_id_and_published"
 
   create_table "six_hour_observations", :force => true do |t|
     t.datetime "observed_at"
