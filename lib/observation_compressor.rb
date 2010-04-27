@@ -36,7 +36,11 @@ class ObservationCompressor
     until b > @from.observed_at(:last)
       compressed = @from.first :conditions => { :observed_at => [a,b] }, :select => REDUCE_METHODS.values.join(', ')
       compressed_attributes = compressed.attributes.merge(:observed_at => a)
-      @to.create! compressed_attributes unless compressed.attributes.all?{|k,v| v.blank? }
+      unless compressed.attributes.all?{|k,v| v.blank? }
+        @to.create! compressed_attributes
+      else
+        @to.logger.error("didn't create compressed_attributes (#{compressed.inspect}) (#{@from.first(:conditions => { :observed_at => [a,b] }).inspect})")
+      end
       
       a, b = a + @to.period, b + @to.period
     end
@@ -44,7 +48,7 @@ class ObservationCompressor
   end
   
   def prune!
-    @from.delete_all [ 'observed_at < ?', PRUNE_TO.call(@from,@to) ]
+    # @from.delete_all [ 'observed_at < ?', PRUNE_TO.call(@from,@to) ]
     return self # allow chaining
   end
   
