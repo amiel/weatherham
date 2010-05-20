@@ -10,8 +10,8 @@ class ObservationCompressor
     temp        round(avg, 1)
     humidity    round(avg, 1)
     dew_point   round(avg, 2)
-    wind_dir    first
-    hi_dir      first
+    wind_dir    any
+    hi_dir      any
     wind_run    round(sum, 3)
     wind_chill  round(avg, 1)
     barometer   round(avg, 3)

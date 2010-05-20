@@ -46,6 +46,16 @@ class ObservationsController < ApplicationController
     end
   end
 
+  def statistics
+    # {"observation":{"wind_dir":"SSE","temp":54.2,"low_temp":null,"hi_speed":27.0,"observed_at":"2010-04-27T11:10:00-07:00","humidity":71,"created_at":"2010-04-27T11:14:47-07:00","barometer":29.378,"updated_at":"2010-04-27T11:14:47-07:00","wind_chill":47.6,"wind_speed":16.0,"id":33531,"hi_dir":"SSE","wind_run":1.33,"hi_temp":null,"dew_point":45.0}}
+    @statistics = Observation.statistics
+    respond_to do |with|
+      with.xml { render :xml => @statistics }
+      with.json { render :json => @statistics }
+    end
+  end
+
+
   def changelog
     @changelog ||= begin
       lines = File.readlines(File.join(Rails.root, 'CHANGELOG.textile'))

@@ -21,8 +21,8 @@ module MapReduceMethods
       proc {|field| "sum(#{field})" }
     end
 
-    def c.first
-      proc {|field| field.to_s }
+    def c.any
+      proc {|field| "ANY(#{field})" }
     end
 
     def c.round(other_proc, precision)
