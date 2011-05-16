@@ -1,10 +1,8 @@
 h3. TODO
 
-* wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
-** yearly and monthly are having problems, do they reveal a bug that the others have as well?
-** make perty buttons
+* Some usage copy (hover over lines for more information and correct timezone...)
 
-* left and right arrows should only show up when data is available, etc
+
 * wind direction graphs
 * have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
 * Panning
@@ -14,6 +12,9 @@ h3. TODO
 * display relevant metrics (maxes and mins for interesting things)
 * the entire javascript could use a refactor
 * rain fall? (if bellcold fixes it)
+* wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
+** yearly and monthly are having problems, do they reveal a bug that the others have as well?
+** make perty buttons
 
 h3. CONTRIBUTING
 
