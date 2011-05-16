@@ -1,47 +1,47 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-	<title><%= render_title %></title>
-	<meta name="Description" content="<%= yield :description -%>" />
-	<meta name="Keywords" content="<%= yield :keywords -%>" />
+  <title><%= render_title %></title>
+  <meta name="Description" content="<%= yield :description -%>" />
+  <meta name="Keywords" content="<%= yield :keywords -%>" />
 
 
-	<%= render 'layouts/unobtrusive_hack' %>
-	<%= stylesheet_link_tag 'application' %>
-	<%= stylesheet_link_tag 'print', :media => 'print' %>
+  <%= render 'layouts/unobtrusive_hack' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
 
-	<%= yield :head %>
+  <%= yield :head %>
 
-	<meta http-equiv="X-UA-Compatible" content="IE=7" />
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
 </head>
 <body class="<%= body_class %>">
 
-	<div id="header">
-		<h1><%= link_to 'Weatherham.com', root_path %></h1>
-	</div>
+  <div id="header">
+    <h1><%= link_to 'Weatherham.com', root_path %></h1>
+  </div>
 
-	<div id="wrapper">
-		<%= render 'layouts/flashes' %>
-		<%= yield %>
-	
-		<div id="footer">
-			<p>
-				Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
-				Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt' %>.
-			</p>
-			<p>
-				<%= link_to 'About Weatherham', '/about' %> |
-				<%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %> |
-				<%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %> |
-				<%= link_to 'mobile site', 'http://m.weatherham.com' %>
-			</p>
-		</div>
-	</div>
-	<%= render 'layouts/javascript' %>
+  <div id="wrapper">
+    <%= render 'layouts/flashes' %>
+    <%= yield %>
 
+    <div id="footer">
+      <p>
+        Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
+        Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
+      </p>
+      <p>
+        <%= link_to 'About Weatherham', '/about' %> |
+        <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %> |
+        <%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %> |
+        <%= link_to 'mobile site', 'http://m.weatherham.com' %> |
+        <%= link_to 'code', 'http://github.com/amiel/weatherham', :rel => 'external' %>
+      </p>
+    </div>
+  </div>
+  <%= render 'layouts/javascript' %>
 </body>
 </html>
