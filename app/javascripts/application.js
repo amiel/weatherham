@@ -210,7 +210,8 @@ $(document).ready(function() {
     function plot(data, options) {
         var atm = 29.9213;
         var baro_ticks = function(axis) {
-            var res = [[atm, '<span class="baro_label">1 atm</span>']], i = Math.ceil(axis.min * 5) / 5;
+            var res = [[atm, '<span class="baro_label">1 atm</span>']],
+                i = Math.ceil(axis.min * 5) / 5;
             do {
                 res.push([i, '<span class="baro_label">' + Math.round(i*5)/5 + ' ' + Base.I18n.barometer.unit + '</span>']);
                 i += 1/5;
@@ -218,9 +219,19 @@ $(document).ready(function() {
             return res;
         };
 
+        var y_ticks = function(axis) {
+            var res = [[32, '<span class="freezing">32</span>']],
+                i = axis.min;
+            do {
+                res.push([i, i]);
+                i += 10;
+            } while (i < axis.max);
+            return res;
+        };
+
         flot = $.plot(placeholder, data, {
             xaxis: { mode: 'time', min: xmin, max: xmax },
-            yaxis: { min: 0, max: yaxis_ranges.max },
+            yaxis: { min: 0, max: yaxis_ranges.max, ticks: y_ticks },
             y2axis: {
                 min: yaxis_ranges.barometer.min,
                 max: yaxis_ranges.barometer.max,
