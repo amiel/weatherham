@@ -208,8 +208,8 @@ $(document).ready(function() {
 
 
     function plot(data, options) {
-        var atm = 29.9213,
-        baro_ticks = function(axis) {
+        var atm = 29.9213;
+        var baro_ticks = function(axis) {
             var res = [[atm, '<span class="baro_label">1 atm</span>']], i = Math.ceil(axis.min * 5) / 5;
             do {
                 res.push([i, '<span class="baro_label">' + Math.round(i*5)/5 + ' ' + Base.I18n.barometer.unit + '</span>']);
