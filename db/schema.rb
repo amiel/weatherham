@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091213194932) do
+ActiveRecord::Schema.define(:version => 20120125002006) do
 
   create_table "daily_observations", :force => true do |t|
     t.datetime "observed_at"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.string   "hi_dir"
     t.float    "wind_chill"
     t.float    "barometer"
+    t.float    "rain"
   end
 
   create_table "fetches", :force => true do |t|
@@ -46,11 +47,14 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.string   "hi_dir"
     t.float    "wind_chill"
     t.float    "barometer"
+    t.float    "rain"
   end
 
   create_table "observations", :force => true do |t|
     t.datetime "observed_at"
     t.float    "temp"
+    t.float    "hi_temp"
+    t.float    "low_temp"
     t.integer  "humidity"
     t.float    "dew_point"
     t.float    "wind_speed"
@@ -61,6 +65,8 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.float    "wind_chill"
     t.float    "barometer"
     t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "rain"
   end
 
   create_table "pages", :force => true do |t|
@@ -76,7 +82,7 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.datetime "updated_at"
   end
 
-  add_index "pages", ["url", "id", "published"], :name => "index_pages_on_url_and_id_and_published"
+  add_index "pages", ["id", "published", "url"], :name => "index_pages_on_url_and_id_and_published"
 
   create_table "six_hour_observations", :force => true do |t|
     t.datetime "observed_at"
@@ -90,6 +96,7 @@ ActiveRecord::Schema.define(:version => 20091213194932) do
     t.string   "hi_dir"
     t.float    "wind_chill"
     t.float    "barometer"
+    t.float    "rain"
   end
 
   create_table "users", :force => true do |t|

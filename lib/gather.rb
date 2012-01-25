@@ -43,7 +43,7 @@ class Gather
 
 
   def get_datas!
-    returning datas = [] do
+    [].tap do |datas|
       # http://www.bellcold.com/weather-history/history_2010.txt
       # http://www.bellcold.com/download.txt
       open 'http://www.bellcold.com/download.txt' do |f|
@@ -82,7 +82,7 @@ class Gather
     hash[:hi_dir] = data[11]
     hash[:wind_chill] = data[12]
     hash[:barometer] = data[15]
-    # hash[:rain] = data[16]
+    hash[:rain] = data[17]
 
     return hash
   end
