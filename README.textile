@@ -11,7 +11,6 @@ h3. TODO
 * fix flot so that the horizontal scale is in PST not UTC
 * display relevant metrics (maxes and mins for interesting things)
 * the entire javascript could use a refactor
-* rain fall? (if bellcold fixes it)
 * wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
 ** yearly and monthly are having problems, do they reveal a bug that the others have as well?
 ** make perty buttons

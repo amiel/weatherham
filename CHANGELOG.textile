@@ -2,6 +2,14 @@
 
 <!-- * [NEW] Day, Week and Month views -->
 
+h2. 2012-01-25
+
+* [ADD] Starting today weatherham will graph "Rain Rate". The units are tiny, I'll probably end up multiplying it by 10.
+
+h2. 2012-01-24
+
+* [ADD] A line at 32 to represent freezing.
+
 h2. 2010-01-01
 
 * [FIXED] New Years data gather bug
