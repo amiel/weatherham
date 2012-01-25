@@ -5,11 +5,11 @@ class ObservationsController < ApplicationController
     :six_hour => SixHourObservation,
     :daily => DailyObservation,
   }.with_indifferent_access.freeze
-  
-  
+
+
   def index
     Fetch.start! if Observation.first.nil?
-		
+
     @last_observation = Observation.last
     @barometer_direction = Observation.current_barometer_direction
     @granularities = GRANULARITIES.keys
@@ -20,18 +20,18 @@ class ObservationsController < ApplicationController
     if Observation.need_fetch? and Rails.env.production? then
       Fetch.start!
     end
-    
+
     klass = GRANULARITIES[params[:id]]
     if stale?(fresh_options(klass.last)) then
-      
+
       @ranges = {
-  			:barometer => {
-  				:max => klass.maximum(:barometer),
-  				:min => klass.minimum(:barometer)
-  			},
-  			:max => %w( hi_speed temp humidity ).collect{|a| klass.maximum a }.max
-  		}
-      
+        :barometer => {
+          :max => klass.maximum(:barometer),
+          :min => klass.minimum(:barometer)
+        },
+        :max => %w( hi_speed temp humidity ).collect{|a| klass.maximum a }.max
+      }
+
       n = klass.zoom / klass.period
       @observations = klass.all :limit => n, :offset => ([klass.count - n, 0].max)
     end
@@ -61,16 +61,16 @@ class ObservationsController < ApplicationController
       lines = File.readlines(File.join(Rails.root, 'CHANGELOG.textile'))
       RedCloth.new(lines.to_s).to_html
     end
-    
+
     fresh_when(:etag => Digest::SHA1.hexdigest(@changelog), :public => true)
   end
-  
+
   def todo
     @todo ||= begin
       lines = File.readlines(File.join(Rails.root, 'README.textile'))
       RedCloth.new(lines.to_s).to_html
     end
-    
+
     fresh_when(:etag => Digest::SHA1.hexdigest(@todo), :public => true)
   end
 
