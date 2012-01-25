@@ -2,9 +2,9 @@ class Observation < ActiveRecord::Base
   include ObservationMixin
   period 5.minutes
   zoom 1.day
-  
+
   cattr_accessor :displayed_attributes, :other_attributes
-  @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill dew_point )
+  @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill dew_point rain )
   @@other_attributes = { :wind_speed => :wind_dir, :hi_speed => :hi_dir }
 
   def self.current_barometer_direction
