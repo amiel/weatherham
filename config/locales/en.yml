@@ -38,6 +38,9 @@ en:
     dew_point:
       title: Dew Point
       unit: "&deg;F"
+    rain:
+      title: Rain Rate
+      unit: in # " in &times; 10"
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'
