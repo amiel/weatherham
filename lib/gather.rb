@@ -3,12 +3,12 @@ require 'open-uri'
 class Gather
   # these methods are poorly named, as this entire class is very specific to BCS
   # but it reads very nicely in the cron file :)
-	def self.bellingham_coldstorage_observations!
-	  new.gather!
-	end
-	
-	# TODO, double check robustness
-	def gather!
+  def self.bellingham_coldstorage_observations!
+    new.gather!
+  end
+
+  # TODO, double check robustness
+  def gather!
     @observations = get_datas!
     @last_observation_at = Observation.last(:select => :observed_at).try(:observed_at)
     collection = @last_observation_at.nil? ? @observations : only_the_ones_we_care_about
@@ -40,51 +40,51 @@ class Gather
         # next if Observation.first :conditions => { :observed_at => tolerance_range }
         # o = Observation.create datas
         # Observation.logger.info "created #{o.inspect}"
-        
+
 
   def get_datas!
     returning datas = [] do
       # http://www.bellcold.com/weather-history/history_2010.txt
       # http://www.bellcold.com/download.txt
-  		open 'http://www.bellcold.com/download.txt' do |f|
-  			f.each{ |line| datas << self.class.parse_weather(line) }
-  		end
-  		datas.compact!
-		end
+      open 'http://www.bellcold.com/download.txt' do |f|
+        f.each{ |line| datas << self.class.parse_weather(line) }
+      end
+      datas.compact!
+    end
   end
 
-	def self.parse_weather line
-		data = line.split
-		return nil unless data[0].match %r{^\d{1,2}/\d{2}/\d{2}$}
+  def self.parse_weather line
+    data = line.split
+    return nil unless data[0].match %r{^\d{1,2}/\d{2}/\d{2}$}
 
 
-		hash = Hash.new
+    hash = Hash.new
 
-		time = begin
-			Time.zone.parse(
-			data[0..1].join(' ') + # date and time
-			'm' # turn 'p' into 'pm' and 'a' into 'am'
-			)
-		rescue ArgumentError, TypeError => e
-			return nil
-		end
-		return nil if time.nil?
+    time = begin
+      Time.zone.parse(
+      data[0..1].join(' ') + # date and time
+      'm' # turn 'p' into 'pm' and 'a' into 'am'
+      )
+    rescue ArgumentError, TypeError => e
+      return nil
+    end
+    return nil if time.nil?
 
-		hash[:observed_at] = time
+    hash[:observed_at] = time
 
-		hash[:temp] = data[2]
-		hash[:humidity] = data[5]
-		hash[:dew_point] = data[6]
-		hash[:wind_speed] = data[7]
-		hash[:wind_dir] = data[8]
-		hash[:wind_run] = data[9]
-		hash[:hi_speed] = data[10]
-		hash[:hi_dir] = data[11]
-		hash[:wind_chill] = data[12]
-		hash[:barometer] = data[15]
+    hash[:temp] = data[2]
+    hash[:humidity] = data[5]
+    hash[:dew_point] = data[6]
+    hash[:wind_speed] = data[7]
+    hash[:wind_dir] = data[8]
+    hash[:wind_run] = data[9]
+    hash[:hi_speed] = data[10]
+    hash[:hi_dir] = data[11]
+    hash[:wind_chill] = data[12]
+    hash[:barometer] = data[15]
     # hash[:rain] = data[16]
 
-		return hash
-	end
+    return hash
+  end
 end
 
