@@ -19,27 +19,27 @@ module ObservationsHelper
   def attribute_pairs_for_plot(observations, attribute)
     observations.collect{|o| o.attribute_pair_for_plot(attribute) }
   end
-  
+
   def data_for_plot
     returning data = Hash.new do
       return nil if @observations.size.zero?
-      
-    	data[:plot_pairs] = Observation.displayed_attributes.each_with_object({}) do |attr, hash|
-    		hash[attr] = attribute_pairs_for_plot(@observations, attr)
-    	end
 
-    	data[:times] = @observations.each_with_object({}) do |observation, hash|
-    		hash[observation.observed_at_for_flot] = observation.attributes.reject{|k,v| ! Observation.other_attributes.values.include? k.to_sym }
-    	end
-    	
-    	data[:mappings] = Observation.other_attributes
-    	data[:earliest_point] = @observations.first.observed_at_for_flot
-    	data[:latest_point] = @observations.last.observed_at_for_flot
-    	data[:yaxis_ranges] = @ranges
-    	p data.keys, data[:yaxis_ranges]
-  	end
+      data[:plot_pairs] = Observation.displayed_attributes.each_with_object({}) do |attr, hash|
+        hash[attr] = attribute_pairs_for_plot(@observations, attr)
+      end
+
+      data[:times] = @observations.each_with_object({}) do |observation, hash|
+        hash[observation.observed_at_for_flot] = observation.attributes.reject{|k,v| ! Observation.other_attributes.values.include? k.to_sym }
+      end
+
+      data[:mappings] = Observation.other_attributes
+      data[:earliest_point] = @observations.first.observed_at_for_flot
+      data[:latest_point] = @observations.last.observed_at_for_flot
+      data[:yaxis_ranges] = @ranges
+      p data.keys, data[:yaxis_ranges]
+    end
   end
-  
+
   def iphone_observation(field, options = {})
     content_tag(:li,
       content_tag(:span, options[:label] || t(:"attributes.#{field}.title"), :class => 'label') +
@@ -49,7 +49,7 @@ module ObservationsHelper
       :class => 'counter')
     )
   end
-  
+
   def direction_to_html(direction)
     case direction
     when :up   : '&uarr;'
