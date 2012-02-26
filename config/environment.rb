@@ -4,6 +4,8 @@
 # RAILS_GEM_VERSION = '2.3.11' unless defined? RAILS_GEM_VERSION
 RAILS_GEM_VERSION = '2.3.5' unless defined? RAILS_GEM_VERSION
 
+# I think rails 2.3.11 is working fine locally , but they only haz 2.3.5 on the herokus
+
 # https://makandracards.com/makandra/1109-fixing-undefined-local-variable-or-method-version_requirements-for-rails-gemdependency-0x-nameerror
 # or http://excid3.com/blog/undefined-local-variable-or-method-version_requirements-for-nameerror/
 # or https://gist.github.com/807008#gistcomment-20117
