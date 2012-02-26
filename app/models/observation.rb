@@ -16,4 +16,9 @@ class Observation < ActiveRecord::Base
     return true unless Observation.first :select => 'id'
     Observation.last(:select => 'id, observed_at').observed_at < 35.minutes.ago
   end
+
+  def rain
+    r = read_attribute(:rain)
+    r * 25.4 if r # To MM
+  end
 end

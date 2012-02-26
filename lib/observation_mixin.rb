@@ -38,6 +38,6 @@ module ObservationMixin
   end
 
   def attribute_pair_for_plot(attribute)
-    [ self.observed_at_for_flot, self[attribute] ]
+    [ self.observed_at_for_flot, self.send(attribute) ]
   end
 end

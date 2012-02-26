@@ -40,7 +40,7 @@ en:
       unit: "&deg;F"
     rain:
       title: Rain Rate
-      unit: in # " in &times; 10"
+      unit: mm # " in &times; 10"
   time:
     formats:
       long: '%a, %b %d, %Y %H:%M %Z'
