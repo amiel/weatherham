@@ -1,14 +1,47 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-  <title>Weatherham</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+  <title><%= render_title %></title>
+  <meta name="Description" content="<%= yield :description -%>" />
+  <meta name="Keywords" content="<%= yield :keywords -%>" />
+
+
+  <%= render 'unobtrusive_hack' %>
+  <%= stylesheet_link_tag 'application' %>
+  <%= stylesheet_link_tag 'print', :media => 'print' %>
+
+  <%= yield :head %>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=7" />
 </head>
-<body>
+<body class="<%= body_class %>">
 
-<%= yield %>
+  <div id="header">
+    <h1><%= link_to 'Weatherham.com', root_path %></h1>
+  </div>
 
+  <div id="wrapper">
+    <%= render 'flashes' %>
+    <%= yield %>
+
+    <div id="footer">
+      <p>
+        Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
+        Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
+      </p>
+      <p>
+        <%= link_to 'About Weatherham', '/about' %> |
+        <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %> |
+        <%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %> |
+        <%= link_to 'mobile site', 'http://m.weatherham.com' %> |
+        <%= link_to 'code', 'http://github.com/amiel/weatherham', :rel => 'external' %>
+      </p>
+    </div>
+  </div>
+  <%= render 'javascript' %>
 </body>
 </html>

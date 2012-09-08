@@ -1,5 +1,46 @@
 # Sample localization file for English. Add more files in this directory for other locales.
-# See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  site_name: Bellingham Weather
+  slogan: Visualization of recent weather data from Bellingham Coldstorage
+  gathering_new_datas: Now retreiving more recent data!
+  granularities:
+    five_min: Day
+    hourly: Week
+    six_hour: Month
+    daily: Year
+  attributes:
+    wind_speed:
+      title: Wind Speed
+      unit: mph
+    hi_speed:
+      title: Gust
+      unit: mph
+    temp:
+      title: Temperature
+      unit: "&deg;F"
+    barometer:
+      title: Barometer
+      unit: inHg
+    humidity:
+      title: Humidity
+      unit: "%"
+    wind_dir:
+      title: Direction
+      unit: ''
+    hi_dir:
+      title: Direction
+      unit: ''
+    wind_chill:
+      title: Wind Chill
+      unit: "&deg;F"
+    dew_point:
+      title: Dew Point
+      unit: "&deg;F"
+    rain:
+      title: Rain Rate
+      unit: mm # " in &times; 10"
+  time:
+    formats:
+      long: '%a, %b %d, %Y %H:%M %Z'

@@ -1,0 +1,32 @@
+<%= javascript_include_tag(Rails.env.production? ? 'http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js' : '/javascripts/jquery.js') %>
+<!--[if IE]><%= javascript_include_tag 'excanvas' %><![endif]-->
+<%= javascript_include_tag 'application' %>
+
+
+<% js_var :DEBUG, !Rails.env.production? %>
+<% js_var :authenticity_token, form_authenticity_token %>
+<%= javascript_include_tag 'i18n' %>
+
+<%= yield :javascript %>
+
+<%- if @content_for_dom_ready or @content_for_in_javascript -%>
+  <script type="text/javascript">
+  //<![CDATA[
+    $(function() { <%= yield :dom_ready %> });
+    <%= yield :in_javascript %>
+  //]]>
+  </script>
+<% end %>
+
+
+<% if Rails.env.production? then %>
+  <script type="text/javascript">
+  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+  </script>
+  <script type="text/javascript">
+  try {
+  var pageTracker = _gat._getTracker("UA-1309955-12");
+  pageTracker._trackPageview();
+  } catch(err) {}</script>
+<% end %>
