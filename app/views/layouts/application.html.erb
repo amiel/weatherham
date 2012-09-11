@@ -33,10 +33,9 @@
         Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
       </p>
       <p>
-        <%= link_to 'About Weatherham', '/about' %> |
-        <%= link_to 'CHANGELOG', changelog_path, :rel => 'facebox', :title => 'CHANGELOG' %> |
-        <%= link_to 'TODO', todo_path, :rel => 'facebox', :title => 'TODO' %> |
-        <%= link_to 'mobile site', 'http://m.weatherham.com' %> |
+        <%= link_to 'About Weatherham', about_path %> |
+        <%= link_to 'CHANGELOG', changelog_path, rel: 'facebox', title: 'CHANGELOG' %> |
+        <%= link_to 'TODO', todo_path, rel: 'facebox', title: 'TODO' %> |
         <%= link_to 'code', 'http://github.com/amiel/weatherham', :rel => 'external' %>
       </p>
     </div>

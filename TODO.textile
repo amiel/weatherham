@@ -1,0 +1,21 @@
+h3. TODO
+
+* Some usage copy (hover over lines for more information and correct timezone...)
+
+
+* wind direction graphs
+* have a global that represents the next update time, it can be displayed to the user, and all js assets can expire at that time
+* Panning
+** indicate "Last Observation" for current panned state
+** indication of current day
+* fix flot so that the horizontal scale is in PST not UTC
+* display relevant metrics (maxes and mins for interesting things)
+* the entire javascript could use a refactor
+* wrote a compression script, that runs on the daily cron, done, but the following fixes will be needed
+** yearly and monthly are having problems, do they reveal a bug that the others have as well?
+** make perty buttons
+
+
+h3. CONTRIBUTING
+
+if you would like to help make any of these things happen, please fork this project on "github":http://github.com/amiel/weatherham

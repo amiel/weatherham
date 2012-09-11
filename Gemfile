@@ -24,6 +24,7 @@ gem 'jquery-rails'
 gem 'thin'
 gem 'pg'
 gem 'draper'
+gem 'RedCloth'
 
 group :development do
   gem 'pry-rails'

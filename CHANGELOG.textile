@@ -1,0 +1,81 @@
+h2. 2012-09-10
+
+* [OPS] Upgrad to Rails 3 for Heroku
+
+h2. 2012-01-25
+
+* [ADD] Starting today weatherham will graph "Rain Rate". The units are tiny, I'll probably end up multiplying it by 10.
+
+h2. 2012-01-24
+
+* [ADD] A line at 32 to represent freezing.
+
+h2. 2010-01-01
+
+* [FIXED] New Years data gather bug
+
+h2. 2009-12-16
+
+* [CHANGED] design tweaks (thanks nicole)
+
+h2. 2009-12-15
+
+* [FIXED] a bug wherein fetching new data just didn't work
+* [FIXED] a bug with the tooltip. now the tooltip actually goes away instead of staying hidden, and being in the way
+
+h2. 2009-12-09
+
+* [CHANGED] Wind Chill is in the graph now
+* [NEW] prototype of mobile site at http://m.weatherham.com
+* [NEW] trying out barometer direction
+
+h2. 2009-12-07
+
+* [NEW] Wind Chill in temp tooltip
+
+h2. 2009-12-05
+
+* [CHANGED] optimized data gather, gathering data should be faster by a couple of orders of magnitude
+
+h2. 2009-12-03
+
+* [NEW] weatherham now has a design
+
+h2. 2009-11-29
+
+* [CHANGED] optimize load time by not sending unnecessary fields, cutting initial data load in half
+* [NEW] you can now pan to earlier times by clicking near the edge of the graph
+* [CHANGED] better activity indicator
+
+h2. 2009-11-25
+
+* [NEW] tooltips are back! (with wind direction)
+* [NEW] add humidity
+* [CHANGED] checkboxes are now the labels
+
+h2. 2009-11-24
+
+* [NEW] re-architected to optimize and cache data, everything should be faster now
+* [NEW] add CHANGELOG
+* [REMOVED] panning support, will be replaced with navigation (coming soon)
+* [REMOVED] tooltips, they will come back!
+
+h2. 2009-11-17
+
+* [FIXED] weatherham now works in IE
+
+h2. 2009-11-16
+
+* [NEW] tooltip
+* [CHANGED] barometer scale and the other side are now fixed to the max and min for the entire dataset
+* [CHANGED] barometer scale is now better
+* [NEW] marking for 1 atmosphere on barometer scale
+
+h2. 2009-11-14
+
+* [NEW] activity indicator
+* [NEW] panning
+
+h2. 2009-11-09
+
+* [NEW] gather data in the background after a request, this way we stay more up to date
