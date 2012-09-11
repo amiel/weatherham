@@ -47,7 +47,7 @@ class BellinghamColdstorage
       # http://www.bellcold.com/weather-history/history_2010.txt
       # http://www.bellcold.com/download.txt
       open 'http://www.bellcold.com/download.txt' do |f|
-        f.each{ |line| datas << self.class.parse_weather(line) }
+        f.each { |line| datas << self.class.parse_weather(line) }
       end
       datas.compact!
     end
@@ -61,9 +61,10 @@ class BellinghamColdstorage
     hash = Hash.new
 
     time = begin
+      m = data[0].match %r{^(\d{1,2})/(\d{2})/(\d{2})$}
       Time.zone.parse(
-      data[0..1].join(' ') + # date and time
-      'm' # turn 'p' into 'pm' and 'a' into 'am'
+        "20#{m[3]}-#{m[1]}-#{m[2]} #{data[1]}m"
+        # the "m" turns 'p' into 'pm' and 'a' into 'am'
       )
     rescue ArgumentError, TypeError => e
       return nil
