@@ -5,7 +5,7 @@
 
 <% js_var :DEBUG, !Rails.env.production? %>
 <% js_var :authenticity_token, form_authenticity_token %>
-<%= javascript_include_tag 'i18n' %>
+
 
 <%= yield :javascript %>
 
@@ -13,6 +13,8 @@
 //<![CDATA[
   $(function() { <%= yield :dom_ready %> });
   <%= yield :in_javascript %>
+
+  Base.reg('I18n', <%= raw I18n.t(:attributes).to_json %>);
 //]]>
 </script>
 
