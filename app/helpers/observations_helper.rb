@@ -21,7 +21,7 @@ module ObservationsHelper
   end
 
   def data_for_plot
-    returning data = Hash.new do
+    Hash.new.tap do |data|
       return nil if @observations.size.zero?
 
       data[:plot_pairs] = Observation.displayed_attributes.each_with_object({}) do |attr, hash|
@@ -51,11 +51,11 @@ module ObservationsHelper
   end
 
   def direction_to_html(direction)
-    case direction
-    when :up
-      '&uarr;'
-    when :down
-      '&darr;'
-    end
+    @_direction_entities ||= {
+      up: '&uarr;',
+      down: '&darr;',
+    }
+
+    @_direction_entities.fetch(direction, '').html_safe
   end
 end

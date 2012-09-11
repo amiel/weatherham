@@ -21,7 +21,7 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'thin'
 gem 'pg'
 gem 'draper'
 
