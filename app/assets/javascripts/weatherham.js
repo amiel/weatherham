@@ -35,7 +35,7 @@ $(document).ready(function() {
 
 
     function show_activity(show_hint) {
-        if ($('#activity').length == 0) $('<div id="activity"></div>').appendTo(placeholder);
+        if ($('#activity').length === 0) $('<div id="activity"></div>').appendTo(placeholder);
         $('#activity').fadeTo(100, 0.9);
         if (show_hint)
             setTimeout(function() {
@@ -51,7 +51,7 @@ $(document).ready(function() {
 
     function show_tooltip(x, y, contents, color) {
         tooltip_hiding = false;
-        if ($('#tooltip').length == 0)
+        if ($('#tooltip').length === 0)
             $('<div id="tooltip"></div>').appendTo('body');
         if (color) $('#tooltip').css('background-color', color);
         $('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 0.8);
@@ -82,12 +82,12 @@ $(document).ready(function() {
     }
 
     function show_left_arrow() {
-        if ($('#left_arrow').length == 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
+        if ($('#left_arrow').length === 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
         $('#left_arrow').stop().fadeTo(250, 0.35);
     }
 
     function show_right_arrow() {
-        if ($('#right_arrow').length == 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
+        if ($('#right_arrow').length === 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
         $('#right_arrow').stop().fadeTo(250, 0.35);
     }
 
@@ -131,7 +131,7 @@ $(document).ready(function() {
             if (is_left_edge(pos)) {
                 show_left_arrow();
                 hide_right_arrow();
-            } else if (is_right_edge(pos) && !(xmax == null || xmax == observations.latest_point)) {
+            } else if (is_right_edge(pos) && !(xmax === null || xmax == observations.latest_point)) {
                 show_right_arrow();
                 hide_left_arrow();
             } else {
@@ -144,7 +144,7 @@ $(document).ready(function() {
 
     function merge_datas(data) {
         $.extend(observations.times, data.times);
-        for (name in observations.plot_pairs) {
+        for (var name in observations.plot_pairs) {
             if (data.earliest_point < observations.earliest_point) {
                 observations.plot_pairs[name] = data.plot_pairs[name].concat(observations.plot_pairs[name]);
             } else if (observations.latest_point < data.latest_point) {
