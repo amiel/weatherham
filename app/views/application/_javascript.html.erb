@@ -9,14 +9,12 @@
 
 <%= yield :javascript %>
 
-<%- if @content_for_dom_ready or @content_for_in_javascript -%>
-  <script type="text/javascript">
-  //<![CDATA[
-    $(function() { <%= yield :dom_ready %> });
-    <%= yield :in_javascript %>
-  //]]>
-  </script>
-<% end %>
+<script type="text/javascript">
+//<![CDATA[
+  $(function() { <%= yield :dom_ready %> });
+  <%= yield :in_javascript %>
+//]]>
+</script>
 
 
 <% if Rails.env.production? then %>
