@@ -10,4 +10,12 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
-//= require jquery_ujs
+//= require facebox
+//= require lib/base
+//= require lib/core_ext
+//= require date.format
+//= require flot/jquery.flot.min.js
+//= require weatherham
+
+
+// require jquery_ujs
