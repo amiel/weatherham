@@ -13,7 +13,7 @@ class Observation < ActiveRecord::Base
 
   def self.need_fetch?
     return true unless Observation.any?
-    Observation.select('id, observed_at').last.observed_at < 35.minutes.ago
+    Observation.select('id, observed_at').last.observed_at < 7.minutes.ago
   end
 
   def rain
