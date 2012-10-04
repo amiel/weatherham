@@ -1,6 +1,13 @@
 class Observation < ActiveRecord::Base
   attr_accessible :barometer, :created_at, :dew_point, :hi_dir, :hi_speed, :hi_temp, :humidity, :low_temp, :observed_at, :rain, :temp, :updated_at, :wind_chill, :wind_dir, :wind_run, :wind_speed
 
+  def self.prune!
+    max = 9000
+    if count > max
+      # Trust regular order
+      Observation.limit(count - max).destroy_all
+    end
+  end
 
   cattr_accessor :displayed_attributes, :other_attributes
   @@displayed_attributes = %w( wind_speed hi_speed temp barometer humidity wind_chill dew_point rain )

@@ -9,6 +9,8 @@ class BellinghamColdstorage
 
   # TODO, double check robustness
   def gather!
+    Observation.prune!
+
     @observations = get_datas!
     @last_observation_at = Observation.select(:observed_at).last.try(:observed_at)
     collection = @last_observation_at.nil? ? @observations : only_the_ones_we_care_about
