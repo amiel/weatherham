@@ -33,7 +33,7 @@ class ObservationsController < ApplicationController
       }
 
       n = klass.zoom / klass.period
-      @observations = klass.limit(n).offset([klass.count - n, 0].max).all
+      @observations = klass.ordered.limit(n).offset([klass.count - n, 0].max).all
     end
   end
 
