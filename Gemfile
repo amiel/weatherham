@@ -32,6 +32,8 @@ group :development do
   gem 'powder'
   gem 'hirb'
   gem 'heroku'
+  gem 'taps'
+  gem 'sqlite3'
 end
 
 group :test do
