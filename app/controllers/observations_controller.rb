@@ -17,12 +17,13 @@ class ObservationsController < ApplicationController
 
 
   def show
-    if Observation.need_fetch? and Rails.env.production? then
+    if Observation.need_fetch? && Rails.env.production?
+      Rails.logger.critical("Needing a fetch now")
       Fetch.start!
     end
 
     klass = GRANULARITIES[params[:id]]
-    if stale?(fresh_options(klass.last)) then
+    if stale?(fresh_options(klass.last))
 
       @ranges = {
         barometer: {
@@ -40,7 +41,7 @@ class ObservationsController < ApplicationController
   def range
     klass = GRANULARITIES[params[:granularity]]
     range = Time.from_json(params[:range_begin]) .. Time.from_json(params[:range_end])
-    if stale?(etag: Digest::SHA1.hexdigest("#{klass}/#{range}")) then
+    if stale?(etag: Digest::SHA1.hexdigest("#{klass}/#{range}"))
       @observations = klass.where(observed_at: range).all
       render 'show'
     end
