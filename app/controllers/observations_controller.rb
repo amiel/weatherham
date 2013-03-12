@@ -20,6 +20,8 @@ class ObservationsController < ApplicationController
     if Observation.need_fetch? && Rails.env.production?
       Rails.logger.critical("Needing a fetch now")
       Fetch.start!
+    else
+      Rails.logger.critical("No need for a fetch, just server up the db")
     end
 
     klass = GRANULARITIES[params[:id]]
