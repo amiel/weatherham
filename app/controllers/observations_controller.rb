@@ -19,6 +19,7 @@ class ObservationsController < ApplicationController
   def show
     if Observation.need_fetch? && Rails.env.production?
       Rails.logger.warn("Needing a fetch now")
+      Observation.prune! # We should just prune all the time
       Fetch.start!
     else
       Rails.logger.warn("No need for a fetch, just server up the db")
