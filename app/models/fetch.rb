@@ -7,10 +7,10 @@ class Fetch < ActiveRecord::Base
 
 
   def self.start!
+    first.destroy if count > 100
+
     # Return and let it do its thing if there is an unfinished fetch
     return if Fetch.unfinished.without_error.first
-
-    first.destroy if count > 100
 
     create!.tap(&:do_fetch)
   end
