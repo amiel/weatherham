@@ -18,7 +18,8 @@ $(document).ready(function() {
         "#CD8050", // wind chill
         "#ffffff", // baro
         "#24f7f2", // humidity
-        "#EEB92E"  // dew_point
+        "#EEB92E", // dew_point
+        "#0BA0E5"  // rain rate
         ],
         primary_color = "#f26522",
         tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
