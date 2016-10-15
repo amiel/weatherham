@@ -1,8 +1,8 @@
 // Bellgothic bold
-body{ background: $background_color image-path("background.jpg") repeat-x; color: $primary_color; font-family: "Helvetica Neue", sans-serif; letter-spacing: 0.05em; line-height: 1.1em; }
+body{ background: $background_color url(image-path("background.jpg")) repeat-x; color: $primary_color; font-family: "Helvetica Neue", sans-serif; letter-spacing: 0.05em; line-height: 1.1em; }
 
 #header{ @extend .container_12;
-    h1 a{ @extend .grid_12; text-indent: -999em; background: image-path("weatherham.png") no-repeat 0 40px; height: 90px; border-bottom: 1px solid $primary_color; }
+    h1 a{ @extend .grid_12; text-indent: -999em; background: url(image-path("weatherham.png")) no-repeat 0 40px; height: 90px; border-bottom: 1px solid $primary_color; }
 }
 
 a{ color: $primary_color;
@@ -33,12 +33,12 @@ p{ font-size: 0.9em; }
     #tooltip{ position: absolute; display: none; padding: 14px; background-color: #fff; letter-spacing: 0.01em; font-size: 0.8em; color: #000; line-height: 1.1em; }
 
     .flot_object{ position: absolute; top: 0px; z-index: -100; }
-    #activity{ @extend .flot_object; background: transparent image-path("ajax-loader.gif") no-repeat center center; height: $flot_height; width: $flot_width; text-align: center; line-height: $flot_height + 60px; }
+    #activity{ @extend .flot_object; background: transparent url(image-path("ajax-loader.gif")) no-repeat center center; height: $flot_height; width: $flot_width; text-align: center; line-height: $flot_height + 60px; }
 
     .nav_arrow{ @extend .flot_object; height: $flot_height; width: $flot_width / 5; }
 
-    #left_arrow{ @extend .nav_arrow; left: 0px; background: image-path("arrow-left-white.png") no-repeat center center; }
-    #right_arrow{ @extend .nav_arrow; right: 0px; background: image-path("arrow-right-white.png") no-repeat center center; }
+    #left_arrow{ @extend .nav_arrow; left: 0px; background: url(image-path("arrow-left-white.png")) no-repeat center center; }
+    #right_arrow{ @extend .nav_arrow; right: 0px; background: url(image-path("arrow-right-white.png")) no-repeat center center; }
 
 #utc_warning{ @extend .grid_11; @extend .prefix_1; font-size: 0.8em; margin-top: 1em; }
 
