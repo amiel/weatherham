@@ -29,16 +29,16 @@
 </div>
 
 <form action="/">
-  <%= metric_toggler 'wind_speed' %>
-  <%= metric_toggler 'hi_speed' %>
-  <%= metric_toggler 'temp' %>
-  <%= metric_toggler 'wind_chill', :default => false %>
-  <%= metric_toggler 'barometer' %>
+  <%= metric_toggler 'wind_speed', 'windy' %>
+  <%= metric_toggler 'hi_speed', 'cloudy-gusts' %>
+  <%= metric_toggler 'temp', 'thermometer' %>
+  <%= metric_toggler 'wind_chill', 'snowflake-cold', :default => false %>
+  <%= metric_toggler 'barometer', 'barometer' %>
   <div class="clear"></div>
 
-  <%= metric_toggler 'humidity', :default => false %>
-  <%= metric_toggler 'dew_point', :default => false %>
-  <%= metric_toggler 'rain', :default => false %>
+  <%= metric_toggler 'humidity', 'humidity', :default => false %>
+  <%= metric_toggler 'dew_point', 'raindrops', :default => false %>
+  <%= metric_toggler 'rain', 'rain', :default => false %>
   <div class="clear"></div>
 </form>
 
