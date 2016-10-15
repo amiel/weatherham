@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,700');
+
+body {
+  color: rgba(255, 255, 255, .7);
+  font-family: $font-stack;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
