@@ -20,22 +20,22 @@
 }
 
 .grid_3 {
-  .grid;
+  @extend .grid;
   width: 220px;
 }
 
 .grid_6{
-  .grid;
+  @extend .grid;
   width: 460px;
 }
 
 .grid_9{
-  .grid;
+  @extend .grid;
   width: 700px;
 }
 
 .grid_12{
-  .grid;
+  @extend .grid;
   width: 940px;
 }
 
@@ -54,42 +54,42 @@
 ----------------------------------------------------------------------------------------------------*/
 
 .grid_1 {
-  .grid;
+  @extend .grid;
   width: 60px;
 }
 
 .grid_2 {
-  .grid;
+  @extend .grid;
   width: 140px;
 }
 
 .grid_4 {
-  .grid;
+  @extend .grid;
   width: 300px;
 }
 
 .grid_5 {
-  .grid;
+  @extend .grid;
   width: 380px;
 }
 
 .grid_7 {
-  .grid;
+  @extend .grid;
   width: 540px;
 }
 
 .grid_8 {
-  .grid;
+  @extend .grid;
   width: 620px;
 }
 
 .grid_10 {
-  .grid;
+  @extend .grid;
   width: 780px;
 }
 
 .grid_11 {
-  .grid;
+  @extend .grid;
   width: 860px;
 }
 
