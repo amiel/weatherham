@@ -13,8 +13,6 @@
   <% end %>
 </div>
 
-
-
 <div class="granularity_switcher">
   <%#= link_to_function 'Day',   '$.weatherham("five_min")' %>
   <%#= link_to_function 'Week',  '$.weatherham("hourly")' %>
@@ -34,11 +32,8 @@
   <%= metric_toggler 'temp', 'thermometer' %>
   <%= metric_toggler 'wind_chill', 'snowflake-cold', :default => false %>
   <%= metric_toggler 'barometer', 'barometer' %>
-  <div class="clear"></div>
-
   <%= metric_toggler 'humidity', 'humidity', :default => false %>
   <%= metric_toggler 'dew_point', 'raindrops', :default => false %>
   <%= metric_toggler 'rain', 'rain', :default => false %>
-  <div class="clear"></div>
 </form>
 

@@ -12,17 +12,17 @@ $(document).ready(function() {
         yaxis_ranges = null,
         activity_timer = null,
         colors = [
-        "#b1ec10", // wind
-        "#749D20", // gust
-        "#f26522", // temp
-        "#CD8050", // wind chill
-        "#cccccc", // baro
-        "#24f7f2", // humidity
-        "#EEB92E", // dew_point
-        "#0BA0E5"  // rain rate
+        "#AC2C5A", // wind
+        "#14A8CC", // gust
+        "#CCBC14", // temp
+        "#FE2A40", // wind chill
+        "#23CAAF", // baro
+        "#8A4F80", // humidity
+        "#F2930C", // dew_point
+        "#66CC33"  // rain rate
         ],
-        primary_color = "#f26522",
-        tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
+        primary_color = 'rgba(0, 0, 0, 0)',
+        tick_color = 'rgba(255, 255, 255, .05)',
         // panning_distance = 4 * (1000 * 60 * 60), // hours
         // panning_modulo_chunk = panning_distance * 3,
         current_ajax_request = null,
@@ -55,7 +55,7 @@ $(document).ready(function() {
         if ($('#tooltip').length === 0)
             $('<div id="tooltip"></div>').appendTo('body');
         if (color) $('#tooltip').css('background-color', color);
-        $('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 0.8);
+        $('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 1);
     }
 
     function hide_tooltip() {
@@ -238,7 +238,7 @@ $(document).ready(function() {
             },
             grid: {
                 borderColor: primary_color, borderWidth: 1,
-                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                // backgroundColor: 'rgba(0, 0, 0, 0.4)',
                 labelMargin: 10,
                 tickColor: tick_color,
                 // markings: [ { y2axis: { from: atm, to: atm }, color: tick_color } ], // 1 atmosphere line

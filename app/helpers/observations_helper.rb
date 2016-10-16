@@ -1,6 +1,6 @@
 module ObservationsHelper
   def plot(name)
-    content_tag :div, '', id: name, style: 'width:940px;height:500px;', class: 'flot'
+    content_tag :div, '', id: name, class: 'flot'
   end
 
   def metric_toggler(name, icon_name, options = {})
