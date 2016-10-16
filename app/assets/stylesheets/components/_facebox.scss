@@ -1,0 +1,66 @@
+#facebox_overlay {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  height:100%;
+  width:100%;
+}
+
+.facebox_hide {
+  z-index: -100;
+}
+
+.facebox_overlayBG {
+  background-color: #000;
+  z-index: 99;
+}
+
+#facebox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  text-align: left;
+
+  .body {
+    width: 600px;
+    max-width: 80%;
+  }
+
+  .title {
+    background: $primary-color;
+    padding: 20px;
+    overflow: hidden;
+
+    h2 {
+      color: #fff;
+      font-weight: 300;
+      margin: 0;
+      float: left;
+      font-size: 1.2rem;
+    }
+
+    .close {
+      font-size: .9rem;
+      margin-top: .3rem;
+      float: right;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .7);
+
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+
+  .content {
+    color: $background-color;
+    background: white;
+    padding: 20px;
+
+    a {
+      color: $primary-color;
+      text-decoration: underline;
+    }
+  }
+}
