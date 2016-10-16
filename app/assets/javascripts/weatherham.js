@@ -35,19 +35,13 @@ $(document).ready(function() {
         date_format = 'ddd, mmm d, yyyy h:MMtt Z';
 
 
-    function show_activity(show_hint) {
+    function show_activity() {
         if ($('#activity').length === 0) $('<div id="activity"></div>').appendTo(placeholder);
-        $('#activity').fadeTo(100, 0.9);
-        if (show_hint)
-            setTimeout(function() {
-                $('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
-            }, 1500);
+        $('#activity').show();
     }
 
     function hide_activity() {
-        $('#activity').fadeTo(100, 0, function() {
-            $('#activity').empty();
-        });
+        $('#activity').hide();
     }
 
     function show_tooltip(x, y, contents, color) {
@@ -294,7 +288,7 @@ $(document).ready(function() {
     }
 
     function do_the_damn_graph_thing(granularity) {
-        show_activity(true);
+        show_activity();
         $.getJSON(Base.paths[granularity], function(data) {
 
             xmax = null; xmin = null;

@@ -5,7 +5,19 @@
   margin-bottom: 20px;
 
   #activity {
-
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    height: 80px;
+    width: 80px;
+    background: black no-repeat center center image-url('rolling.svg');
+    background-size: 40px 40px;
+    color: #fff;
+    text-align: center;
+    z-index: 12;
+    border-radius: 80px;
   }
 
   #left_arrow, #right_arrow {
@@ -42,5 +54,16 @@
     &:after {
       content: '→';
     }
+  }
+
+  .tickLabel {
+    color: $text-color;
+    font-size: .8rem;
+    position: relative;
+    margin-top: -5px;
+  }
+
+  .freezing {
+    display: none;
   }
 }
