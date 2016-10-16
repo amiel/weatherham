@@ -1,17 +1,46 @@
 .flot {
   height: 60vh;
   width: 100%;
+  position: relative;
   margin-bottom: 20px;
 
   #activity {
 
   }
 
-  #left_arrow {
+  #left_arrow, #right_arrow {
+    z-index: 10;
+    height: 60px;
+    line-height: 70px;
+    width: 100px;
+    background: transparentize($primary-color, .5);
+    position: absolute;
+    top: 50%;
+    margin-top: -40px;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, .5);
+    transition: .3s all ease;
+    text-align: center;
 
+    &:hover {
+      background: $primary-color;
+      color: rgba(255, 255, 255, .8);
+    }
+  }
+
+  #left_arrow {
+    left: -20px;
+
+    &:after {
+      content: '←';
+    }
   }
 
   #right_arrow {
+    right: -20px;
 
+    &:after {
+      content: '→';
+    }
   }
 }
