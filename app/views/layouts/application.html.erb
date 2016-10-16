@@ -19,27 +19,29 @@
 </head>
 <body class="<%= body_class %>">
 
-  <div id="header">
+  <header>
     <h1><%= link_to 'Weatherham.com', root_path %></h1>
-  </div>
+    <p>A visualization of weather patterns from <a href="http://bellcold.com">Bellingham Cold Storage</a>.</p>
+  </header>
 
   <div id="wrapper">
     <%= render 'flashes' %>
     <%= yield %>
-
-    <div id="footer">
-      <p>
-        Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
-        Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
-      </p>
-      <p>
-        <%= link_to 'About Weatherham', about_path %> |
-        <%= link_to 'CHANGELOG', changelog_path, rel: 'facebox', title: 'CHANGELOG' %> |
-        <%= link_to 'TODO', todo_path, rel: 'facebox', title: 'TODO' %> |
-        <%= link_to 'code', 'http://github.com/amiel/weatherham', :rel => 'external' %>
-      </p>
-    </div>
   </div>
+
+  <footer>
+    <p>
+      Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
+      Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
+    </p>
+    <p>
+      <%= link_to 'About Weatherham', about_path %> |
+      <%= link_to 'CHANGELOG', changelog_path, rel: 'facebox', title: 'CHANGELOG' %> |
+      <%= link_to 'TODO', todo_path, rel: 'facebox', title: 'TODO' %> |
+      <%= link_to 'code', 'http://github.com/amiel/weatherham', :rel => 'external' %>
+    </p>
+  </footer>
+
   <%= render 'javascript' %>
 </body>
 </html>

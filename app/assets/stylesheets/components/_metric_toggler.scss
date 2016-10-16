@@ -5,7 +5,8 @@
   margin-right: 10px;
   border-radius: 2px;
   opacity: .6;
-  transition: .4s opacity ease;
+  transition: .4s all ease;
+  color: rgba(255, 255, 255, .7);
 
   input {
     position: absolute;
@@ -14,7 +15,7 @@
     right: 0;
     top: 0;
     opacity: 0;
-    cursor: pointer;
+
   }
 
   i.wi {
@@ -34,5 +35,6 @@
 
   &.-enabled, &:hover {
     opacity: 1;
+    color: rgba(255, 255, 255, 1);
   }
 }

@@ -1,17 +1,8 @@
-
 <% js_vars_with_scope :paths do %>
   <% @granularities.each do |granularity| %>
     <% js_var granularity, observation_path(granularity, :format => :json) %>
   <% end %>
 <% end %>
-
-<div id="top_copy">
-  <p>Here you can see a visualization of weather patterns from <a href="http://bellcold.com">Bellingham Cold Storage</a>.</p>
-
-  <% if @last_observation %>
-    <p>Last Observation at <strong id="last_observation"><%=l @last_observation.observed_at, :format => :long %></strong>. Barometer: <%= @last_observation.barometer %> <%= direction_to_html @barometer_direction %></p>
-  <% end %>
-</div>
 
 <div class="granularity_switcher">
   <%#= link_to_function 'Day',   '$.weatherham("five_min")' %>
@@ -19,6 +10,10 @@
   <%#= link_to_function 'Month', '$.weatherham("six_hour")' %>
   <%#= link_to_function 'Year',  '$.weatherham("daily")' %>
 </div>
+
+<% if @last_observation %>
+  <p>Last Observation at <strong id="last_observation"><%=l @last_observation.observed_at, :format => :long %></strong>. Barometer: <%= @last_observation.barometer %> <%= direction_to_html @barometer_direction %></p>
+<% end %>
 
 <%= plot :weather %>
 
