@@ -12,14 +12,14 @@ $(document).ready(function() {
         yaxis_ranges = null,
         activity_timer = null,
         colors = [
-        "#AC2C5A", // wind
-        "#14A8CC", // gust
-        "#CCBC14", // temp
-        "#FE2A40", // wind chill
-        "#23CAAF", // baro
-        "#8A4F80", // humidity
-        "#F2930C", // dew_point
-        "#66CC33"  // rain rate
+            "#AC2C5A", // wind
+            "#14A8CC", // gust
+            "#CCBC14", // temp
+            "#FE2A40", // wind chill
+            "#23CAAF", // baro
+            "#8A4F80", // humidity
+            "#F2930C", // dew_point
+            "#66CC33"  // rain rate
         ],
         primary_color = 'rgba(0, 0, 0, 0)',
         tick_color = 'rgba(255, 255, 255, .05)',
@@ -51,19 +51,24 @@ $(document).ready(function() {
     }
 
     function show_tooltip(x, y, contents, color) {
-        tooltip_hiding = false;
         if ($('#tooltip').length === 0)
             $('<div id="tooltip"></div>').appendTo('body');
+
         if (color) $('#tooltip').css('background-color', color);
-        $('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 1);
+
+        // Align tooltip to the left of the cursor if the cursor is in the right third of the screen
+        if (x > ($('html').outerWidth() / 1.5)) {
+            var offset = $('#tooltip').outerWidth();
+            var placement = { top: y + 5, left: x - 5 - offset };
+        } else {
+            var placement = { top: y + 5, left: x + 5 };
+        }
+
+        $("#tooltip").html(contents).show().css(placement);
     }
 
     function hide_tooltip() {
-        if (tooltip_hiding) return; tooltip_hiding = true;
-        $("#tooltip").stop().fadeTo(200, 0, function() {
-            $('#tooltip').hide();
-            tooltip_hiding = false;
-        });
+        $("#tooltip").hide();
     }
 
     function edge_size() {
