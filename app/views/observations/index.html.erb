@@ -17,11 +17,7 @@
 
 <%= plot :weather %>
 
-<div id="utc_warning">
-  Labels for the x-axis on this graph are in UTC. This is a restriction of the graphing library, and I'm working on a fix for it.
-</div>
-
-<form action="/">
+<form action="/" class="metrics">
   <%= metric_toggler 'wind_speed', 'windy' %>
   <%= metric_toggler 'hi_speed', 'cloudy-gusts' %>
   <%= metric_toggler 'temp', 'thermometer' %>

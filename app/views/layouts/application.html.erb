@@ -34,6 +34,11 @@
       Created by <%= link_to 'Amiel Martin', 'http://amielmartin.com' %>.
       Weather data provided by <%= link_to 'Bellingham Cold Storage', 'http://www.bellcold.com/download.txt', :rel => 'external' %>.
     </p>
+
+    <p id="utc_warning">
+      Labels for the x-axis on this graph are in UTC. This is a restriction of the graphing library, and I'm working on a fix for it.
+    </p>
+
     <p>
       <%= link_to 'About Weatherham', about_path %> |
       <%= link_to 'CHANGELOG', changelog_path, rel: 'facebox', title: 'CHANGELOG' %> |

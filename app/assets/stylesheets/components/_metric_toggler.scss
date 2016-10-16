@@ -1,9 +1,18 @@
+.metrics {
+  overflow: hidden;
+
+  .metric_toggler {
+    float: left;
+    width: 50%;
+
+    @include min-width(560px) { width: 33.333%; }
+    @include min-width(767px) { width: 25%; }
+    @include min-width(1024px) { width: 12.5%; }
+  }
+}
+
 .metric_toggler {
   position: relative;
-  display: inline-block;
-  width: 140px;
-  margin-right: 10px;
-  border-radius: 2px;
   opacity: .6;
   transition: .4s all ease;
   color: rgba(255, 255, 255, .7);
@@ -30,7 +39,7 @@
     text-align: center;
     font-style: .85rem;
     display: block;
-    margin-bottom: 10px;
+    padding-bottom: 10px;
   }
 
   &.-enabled, &:hover {
