@@ -16,7 +16,7 @@ $(document).ready(function() {
         "#749D20", // gust
         "#f26522", // temp
         "#CD8050", // wind chill
-        "#ffffff", // baro
+        "#cccccc", // baro
         "#24f7f2", // humidity
         "#EEB92E", // dew_point
         "#0BA0E5"  // rain rate
@@ -254,13 +254,16 @@ $(document).ready(function() {
     function plot_for_checkboxes() {
         show_activity();
         plot($('.metric_toggler input:checked').map(function(){ return datasets[this.id]; }));
+
+        $('.metric_toggler').removeClass('-enabled');
+        $('.metric_toggler:has(input:checked)').addClass('-enabled');
     }
 
 
     $('.metric_toggler input').change(function() {
         plot_for_checkboxes();
     }).each(function(index) {
-        $(this).parents('.metric_toggler').find('label').css('background-color', colors[index]);
+        $(this).parents('.metric_toggler').css('background-color', colors[index]);
     });
     $('.metric_toggler.default_on input').attr('checked', 'checked');
 
