@@ -12,17 +12,17 @@ $(document).ready(function() {
         yaxis_ranges = null,
         activity_timer = null,
         colors = [
-        "#b1ec10", // wind
-        "#749D20", // gust
-        "#f26522", // temp
-        "#CD8050", // wind chill
-        "#ffffff", // baro
-        "#24f7f2", // humidity
-        "#EEB92E", // dew_point
-        "#0BA0E5"  // rain rate
+            "#AC2C5A", // wind
+            "#14A8CC", // gust
+            "#CCBC14", // temp
+            "#FE2A40", // wind chill
+            "#23CAAF", // baro
+            "#8A4F80", // humidity
+            "#F2930C", // dew_point
+            "#66CC33"  // rain rate
         ],
-        primary_color = "#f26522",
-        tick_color = 'rgba(78, 110, 141, 0.5)', // '#4e6e8d',
+        primary_color = 'rgba(0, 0, 0, 0)',
+        tick_color = 'rgba(255, 255, 255, .05)',
         // panning_distance = 4 * (1000 * 60 * 60), // hours
         // panning_modulo_chunk = panning_distance * 3,
         current_ajax_request = null,
@@ -35,35 +35,34 @@ $(document).ready(function() {
         date_format = 'ddd, mmm d, yyyy h:MMtt Z';
 
 
-    function show_activity(show_hint) {
+    function show_activity() {
         if ($('#activity').length === 0) $('<div id="activity"></div>').appendTo(placeholder);
-        $('#activity').fadeTo(100, 0.9);
-        if (show_hint)
-            setTimeout(function() {
-                $('<span>Please wait while weatherham gathers new data.</span>').hide().appendTo('#activity').fadeIn();
-            }, 1500);
+        $('#activity').show();
     }
 
     function hide_activity() {
-        $('#activity').fadeTo(100, 0, function() {
-            $('#activity').empty();
-        });
+        $('#activity').hide();
     }
 
     function show_tooltip(x, y, contents, color) {
-        tooltip_hiding = false;
         if ($('#tooltip').length === 0)
             $('<div id="tooltip"></div>').appendTo('body');
+
         if (color) $('#tooltip').css('background-color', color);
-        $('#tooltip').stop().html(contents).css({ top: y + 5, left: x + 5 }).show().fadeTo(200, 0.8);
+
+        // Align tooltip to the left of the cursor if the cursor is in the right third of the screen
+        if (x > ($('html').outerWidth() / 1.5)) {
+            var offset = $('#tooltip').outerWidth();
+            var placement = { top: y + 5, left: x - 5 - offset };
+        } else {
+            var placement = { top: y + 5, left: x + 5 };
+        }
+
+        $("#tooltip").html(contents).show().css(placement);
     }
 
     function hide_tooltip() {
-        if (tooltip_hiding) return; tooltip_hiding = true;
-        $("#tooltip").stop().fadeTo(200, 0, function() {
-            $('#tooltip').hide();
-            tooltip_hiding = false;
-        });
+        $("#tooltip").hide();
     }
 
     function edge_size() {
@@ -83,21 +82,21 @@ $(document).ready(function() {
     }
 
     function show_left_arrow() {
-        if ($('#left_arrow').length === 0) $('<div id="left_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-        $('#left_arrow').stop().fadeTo(250, 0.35);
+        if ($('#left_arrow').length === 0) $('<div id="left_arrow"></div>').appendTo(placeholder);
+        $('#left_arrow').show();
     }
 
     function show_right_arrow() {
-        if ($('#right_arrow').length === 0) $('<div id="right_arrow"></div>').css('opacity', '0').appendTo(placeholder);
-        $('#right_arrow').stop().fadeTo(250, 0.35);
+        if ($('#right_arrow').length === 0) $('<div id="right_arrow"></div>').appendTo(placeholder);
+        $('#right_arrow').show();
     }
 
     function hide_left_arrow() {
-        $('#left_arrow').stop().fadeTo(150, 0);
+        $('#left_arrow').hide();
     }
 
     function hide_right_arrow() {
-        $('#right_arrow').stop().fadeTo(150, 0);
+        $('#right_arrow').hide();
     }
 
     function make_tooltip_for_attribute(tag, attribute, value) {
@@ -238,7 +237,7 @@ $(document).ready(function() {
             },
             grid: {
                 borderColor: primary_color, borderWidth: 1,
-                backgroundColor: 'rgba(0, 0, 0, 0.4)',
+                // backgroundColor: 'rgba(0, 0, 0, 0.4)',
                 labelMargin: 10,
                 tickColor: tick_color,
                 // markings: [ { y2axis: { from: atm, to: atm }, color: tick_color } ], // 1 atmosphere line
@@ -254,13 +253,16 @@ $(document).ready(function() {
     function plot_for_checkboxes() {
         show_activity();
         plot($('.metric_toggler input:checked').map(function(){ return datasets[this.id]; }));
+
+        $('.metric_toggler').removeClass('-enabled');
+        $('.metric_toggler:has(input:checked)').addClass('-enabled');
     }
 
 
     $('.metric_toggler input').change(function() {
         plot_for_checkboxes();
     }).each(function(index) {
-        $(this).parents('.metric_toggler').find('label').css('background-color', colors[index]);
+        $(this).parents('.metric_toggler').css('background-color', colors[index]);
     });
     $('.metric_toggler.default_on input').attr('checked', 'checked');
 
@@ -286,7 +288,7 @@ $(document).ready(function() {
     }
 
     function do_the_damn_graph_thing(granularity) {
-        show_activity(true);
+        show_activity();
         $.getJSON(Base.paths[granularity], function(data) {
 
             xmax = null; xmin = null;

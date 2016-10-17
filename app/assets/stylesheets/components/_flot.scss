@@ -1,0 +1,69 @@
+.flot {
+  height: 60vh;
+  width: 100%;
+  position: relative;
+  margin-bottom: 20px;
+
+  #activity {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    margin-left: -40px;
+    height: 80px;
+    width: 80px;
+    background: black no-repeat center center image-url('rolling.svg');
+    background-size: 40px 40px;
+    color: #fff;
+    text-align: center;
+    z-index: 12;
+    border-radius: 80px;
+  }
+
+  #left_arrow, #right_arrow {
+    z-index: 10;
+    height: 60px;
+    line-height: 70px;
+    width: 100px;
+    background: transparentize($primary-color, .5);
+    position: absolute;
+    top: 50%;
+    margin-top: -40px;
+    font-size: 5rem;
+    color: rgba(255, 255, 255, .5);
+    transition: .3s all ease;
+    text-align: center;
+
+    &:hover {
+      background: $primary-color;
+      color: rgba(255, 255, 255, .8);
+    }
+  }
+
+  #left_arrow {
+    left: -20px;
+
+    &:after {
+      content: '←';
+    }
+  }
+
+  #right_arrow {
+    right: -20px;
+
+    &:after {
+      content: '→';
+    }
+  }
+
+  .tickLabel {
+    color: $text-color;
+    font-size: .8rem;
+    position: relative;
+    margin-top: -5px;
+  }
+
+  .freezing {
+    display: none;
+  }
+}

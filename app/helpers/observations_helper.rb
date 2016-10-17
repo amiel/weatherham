@@ -1,20 +1,20 @@
 module ObservationsHelper
   def plot(name)
-    content_tag :div, '', id: name, style: 'width:940px;height:500px;', class: 'flot'
+    content_tag :div, '', id: name, class: 'flot'
   end
 
-  def metric_toggler(name, options = {})
+  def metric_toggler(name, icon_name, options = {})
+    icon = icon(icon_name)
     options[:default] = true if options[:default].nil?
     options[:class] ||= ''
     options[:class] << ' ' + name.to_s
     options[:class] << (options[:default] ? " default_on" : " default_off")
-    content_tag :div, check_box_with_label(name), :class => "metric_toggler #{options[:class]}"
+    content_tag :div, check_box_with_label(name, icon), :class => "metric_toggler #{options[:class]}"
   end
 
-  def check_box_with_label(name)
-    content_tag :label, check_box_tag(name) + t(:"attributes.#{name}.title", :default => name.titleize), :for => name
+  def check_box_with_label(name, icon)
+    content_tag :label, icon + check_box_tag(name) + t(:"attributes.#{name}.title", :default => name.titleize), :for => name
   end
-
 
   def attribute_pairs_for_plot(observations, attribute)
     observations.collect{|o| o.attribute_pair_for_plot(attribute) }
@@ -40,6 +40,7 @@ module ObservationsHelper
     end
   end
 
+  # TODO: this appears to be unused
   def iphone_observation(field, options = {})
     content_tag(:li,
       content_tag(:span, options[:label] || t(:"attributes.#{field}.title"), :class => 'label') +
@@ -57,5 +58,11 @@ module ObservationsHelper
     }
 
     @_direction_entities.fetch(direction, '').html_safe
+  end
+
+  private
+
+  def icon(name)
+    content_tag :i, nil, class: "wi wi-#{name}"
   end
 end
